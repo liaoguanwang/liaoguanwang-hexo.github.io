@@ -8,7 +8,7 @@
     <meta http-equiv="Cache-Control" content="no-siteapp">
     <meta http-equiv="Cache-Control" content="no-transform">
     <meta name="renderer" content="webkit|ie-comp|ie-stand">
-    <meta name="apple-mobile-web-app-capable" content="Hexo">
+    <meta name="apple-mobile-web-app-capable" content="旺叔叔的博客">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="format-detection" content="telephone=no,email=no,adress=no">
     <meta name="browsermode" content="application">
@@ -23,7 +23,7 @@
     <meta name="keywords" content="JavaSenior">
 
 
-    <meta name="description" content="POJOPOJO（Plain Ordinary Java Object）简单的Java对象，实际就是普通JavaBeans，是为了避免和EJB混淆所创造的简称。使用POJO名称是为了避免和EJB...">
+    <meta name="description" content="1. POJOPOJO（Plain Ordinary Java Object）简单的Java对象，实际就是普通JavaBeans，是为了避免和EJB混淆所创造的简称。使用POJO名称是为了避免和...">
 
 
 
@@ -35,10 +35,10 @@
     <!--Title-->
 
 
-<title>POJO，JaveBean，VO，DTO | Hexo</title>
+<title>POJO，JaveBean，VO，DTO | 旺叔叔的博客</title>
 
 
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+    <link rel="alternate" href="/atom.xml" title="旺叔叔的博客" type="application/atom+xml">
 
 
     <link rel="icon" href="/favicon.ico">
@@ -102,7 +102,7 @@
                     <span class="sr-only"></span>
                         <i class="fa fa-bars"></i>
                     </span>
-                    <a class="navbar-brand" href="https://liaoguanwang.github.io">Hexo</a>
+                    <a class="navbar-brand" href="https://liaoguanwang.github.io">旺叔叔的博客</a>
                 </div>
                 <div class="collapse navbar-collapse" id="main-menu">
                     <ul class="menu">
@@ -178,16 +178,16 @@
     </div>
     
     <div class="post-body post-content">
-        <h1 id="POJO"><a href="#POJO" class="headerlink" title="POJO"></a>POJO</h1><p><strong>POJO（Plain Ordinary Java Object）简单的Java对象，实际就是普通JavaBeans，是为了避免和EJB混淆所创造的简称。</strong><br>使用POJO名称是为了避免和EJB混淆起来, 而且简称比较直接. 其中有一些属性及其getter setter方法的类,没有业务逻辑，有时可以作为VO(value -object)或dto(Data Transform Object)来使用.当然,如果你有一个简单的运算属性也是可以的,但不允许有业务方法,也不能携带有connection之类的方法。</p>
-<h2 id="自身特点"><a href="#自身特点" class="headerlink" title="自身特点"></a>自身特点</h2><p>POJO是Plain OrdinaryJava Object的缩写不错，但是它通指没有使用Entity Beans的普通java对象，可以把POJO作为支持业务逻辑的协助类。<br>POJO实质上可以理解为简单的实体类，顾名思义POJO类的作用是方便程序员使用数据库中的数据表，对于广大的程序员，可以很方便的将POJO类当做对象来进行使用，当然也是可以方便的调用其get,set方法。POJO类也给我们在struts框架中的配置带来了很大的方便。</p>
-<h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><p>POJO有一些private的参数作为对象的属性。然后针对每个参数定义了get和set方法作为访问的接口。<br>例如：</p>
+        <h1 id="1-POJO"><a href="#1-POJO" class="headerlink" title="1. POJO"></a>1. POJO</h1><p><strong>POJO（Plain Ordinary Java Object）简单的Java对象，实际就是普通JavaBeans，是为了避免和EJB混淆所创造的简称。</strong><br>使用POJO名称是为了避免和EJB混淆起来, 而且简称比较直接. 其中有一些属性及其getter setter方法的类,没有业务逻辑，有时可以作为VO(value -object)或dto(Data Transform Object)来使用.当然,如果你有一个简单的运算属性也是可以的,但不允许有业务方法,也不能携带有connection之类的方法。</p>
+<h2 id="1-1-自身特点"><a href="#1-1-自身特点" class="headerlink" title="1.1 自身特点"></a>1.1 自身特点</h2><p>POJO是Plain OrdinaryJava Object的缩写不错，但是它通指没有使用Entity Beans的普通java对象，可以把POJO作为支持业务逻辑的协助类。<br>POJO实质上可以理解为简单的实体类，顾名思义POJO类的作用是方便程序员使用数据库中的数据表，对于广大的程序员，可以很方便的将POJO类当做对象来进行使用，当然也是可以方便的调用其get,set方法。POJO类也给我们在struts框架中的配置带来了很大的方便。</p>
+<h2 id="1-2-实例"><a href="#1-2-实例" class="headerlink" title="1.2 实例"></a>1.2 实例</h2><p>POJO有一些private的参数作为对象的属性。然后针对每个参数定义了get和set方法作为访问的接口。<br>例如：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> id;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setId</span><span class="params">(<span class="keyword">long</span> id)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.id = id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">getId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>POJO对象有时也被称为Data对象，大量应用于表现现实中的对象。如果项目中使用了Hibernate框架，有一个关联的xml文件，使对象与数据库中的表对应，对象的属性与表中的字段相对应。</p>
-<h2 id="POJO与javabean的区别"><a href="#POJO与javabean的区别" class="headerlink" title="POJO与javabean的区别"></a>POJO与javabean的区别</h2><p>POJO 和JavaBean是我们常见的两个关键字，一般容易混淆，POJO全称是Plain Ordinary Java Object / Pure Old Java Object，中文可以翻译成：普通Java类，具有一部分getter/setter方法的那种类就可以称作POJO，但是JavaBean则比 POJO复杂很多， Java Bean 是可复用的组件，对 Java Bean 并没有严格的规范，理论上讲，任何一个 Java 类都可以是一个 Bean 。但通常情况下，由于 Java Bean 是被容器所创建（如 Tomcat) 的，所以 Java Bean 应具有一个无参的构造器，另外，通常 Java Bean 还要实现 Serializable 接口用于实现 Bean 的持久性。 </p>
+<h2 id="1-3-POJO与javabean的区别"><a href="#1-3-POJO与javabean的区别" class="headerlink" title="1.3 POJO与javabean的区别"></a>1.3 POJO与javabean的区别</h2><p>POJO 和JavaBean是我们常见的两个关键字，一般容易混淆，POJO全称是Plain Ordinary Java Object / Pure Old Java Object，中文可以翻译成：普通Java类，具有一部分getter/setter方法的那种类就可以称作POJO，但是JavaBean则比 POJO复杂很多， Java Bean 是可复用的组件，对 Java Bean 并没有严格的规范，理论上讲，任何一个 Java 类都可以是一个 Bean 。但通常情况下，由于 Java Bean 是被容器所创建（如 Tomcat) 的，所以 Java Bean 应具有一个无参的构造器，另外，通常 Java Bean 还要实现 Serializable 接口用于实现 Bean 的持久性。 </p>
 <p>Java Bean 是不能被跨进程访问的。JavaBean是一种组件技术，就好像你做了一个扳子，而这个扳子会在很多地方被拿去用，这个扳子也提供多种功能(你可以拿这个扳子扳、锤、撬等等)，而这个扳子就是一个组件。一般在web应用程序中建立一个数据库的映射对象时，我们只能称它为POJO。POJO(Plain Old Java Object)这个名字用来强调它是一个普通java对象，而不是一个特殊的对象，其主要用来指代那些没有遵从特定的Java对象模型、约定或框架（如EJB）的Java对象。理想地讲，一个POJO是一个不受任何限制的Java对象（除了Java语言规范）。</p>
-<h3 id="错误的认识"><a href="#错误的认识" class="headerlink" title="错误的认识"></a>错误的认识</h3><p>POJO是这样的一种“纯粹的”JavaBean，在它里面除了JavaBean规范的方法和属性没有别的东西，即private属性以及对这个属性方法的public的get和set方法。我们会发现这样的JavaBean很“单纯”，它只能装载数据，作为数据存储的载体，而不具有业务逻辑处理的能力。</p>
-<h3 id="真正的意思"><a href="#真正的意思" class="headerlink" title="真正的意思"></a>真正的意思</h3><p>POJO = “Plain Old Java Object”，是MartinFowler等发明的一个术语，用来表示普通的Java对象，不是JavaBean, EntityBean 或者 SessionBean。POJO不担当任何特殊的角色，也不实现任何特殊的Java框架的接口如，EJB，JDBC等等。<br>即POJO是一个简单的普通的Java对象，它不包含业务逻辑或持久逻辑等，但不是JavaBean、EntityBean等，不具有任何特殊角色和不继承或不实现任何其它Java框架的类或接口。</p>
+<h3 id="1-3-1错误的认识"><a href="#1-3-1错误的认识" class="headerlink" title="1.3.1错误的认识"></a>1.3.1错误的认识</h3><p>POJO是这样的一种“纯粹的”JavaBean，在它里面除了JavaBean规范的方法和属性没有别的东西，即private属性以及对这个属性方法的public的get和set方法。我们会发现这样的JavaBean很“单纯”，它只能装载数据，作为数据存储的载体，而不具有业务逻辑处理的能力。</p>
+<h3 id="1-3-2真正的意思"><a href="#1-3-2真正的意思" class="headerlink" title="1.3.2真正的意思"></a>1.3.2真正的意思</h3><p>POJO = “Plain Old Java Object”，是MartinFowler等发明的一个术语，用来表示普通的Java对象，不是JavaBean, EntityBean 或者 SessionBean。POJO不担当任何特殊的角色，也不实现任何特殊的Java框架的接口如，EJB，JDBC等等。<br>即POJO是一个简单的普通的Java对象，它不包含业务逻辑或持久逻辑等，但不是JavaBean、EntityBean等，不具有任何特殊角色和不继承或不实现任何其它Java框架的类或接口。</p>
 <ul>
 <li>下面是摘自Martin Fowler个人网站的一句话：<blockquote>
 <p>“We wondered why people were so against using regular objects in their systems and concluded that it was because simple objects lacked a fancy name. So we gave them one, and it’s caught on very nicely.”－－Martin Fowler<br>我们疑惑为什么人们不喜欢在他们的系统中使用普通的对象，我们得到的结论是——普通的对象缺少一个响亮的名字，因此我们给它们起了一个，并且取得了很好的效果。——Martin Fowler<br>摘自百度不知道</p>
@@ -195,11 +195,11 @@
 </li>
 </ul>
 <p>参考：<a href="https://blog.csdn.net/qq_27093465/article/details/52527270" target="_blank" rel="noopener">https://blog.csdn.net/qq_27093465/article/details/52527270</a></p>
-<h1 id="DTO"><a href="#DTO" class="headerlink" title="DTO"></a>DTO</h1><h2 id="百度百科如何解读的？"><a href="#百度百科如何解读的？" class="headerlink" title="百度百科如何解读的？"></a>百度百科如何解读的？</h2><p>DTO是Data Transfer Object 的简写，既数据传输对象。<br>是一种设计模式之间传输数据的软件应用系统。数据传输目标往往是数据访问对象从数据库中检索的数据。数据传输对象与数据交互对象或数据访问对象之间是一个不具备有任何行为除了存储和检索的数据。（访问和存取器）</p>
-<h2 id="维基百科是如何解读的？"><a href="#维基百科是如何解读的？" class="headerlink" title="维基百科是如何解读的？"></a>维基百科是如何解读的？</h2><p>A data transfer object(DTO) is an  object that carries data between two process.<br>The difference between data transfer and business objects or data access objects is that a DTO does not have any behavior except for storage and retrieval of its own data(mutators and accesssors).DTOs are simple objects that should not contain any business logic that would require testing.</p>
+<h1 id="2-DTO"><a href="#2-DTO" class="headerlink" title="2. DTO"></a>2. DTO</h1><h2 id="2-1-百度百科如何解读的？"><a href="#2-1-百度百科如何解读的？" class="headerlink" title="2.1 百度百科如何解读的？"></a>2.1 百度百科如何解读的？</h2><p>DTO是Data Transfer Object 的简写，既数据传输对象。<br>是一种设计模式之间传输数据的软件应用系统。数据传输目标往往是数据访问对象从数据库中检索的数据。数据传输对象与数据交互对象或数据访问对象之间是一个不具备有任何行为除了存储和检索的数据。（访问和存取器）</p>
+<h2 id="2-2-维基百科是如何解读的？"><a href="#2-2-维基百科是如何解读的？" class="headerlink" title="2.2 维基百科是如何解读的？"></a>2.2 维基百科是如何解读的？</h2><p>A data transfer object(DTO) is an  object that carries data between two process.<br>The difference between data transfer and business objects or data access objects is that a DTO does not have any behavior except for storage and retrieval of its own data(mutators and accesssors).DTOs are simple objects that should not contain any business logic that would require testing.</p>
 <p>和百度百科不同的是，DTO和MO（Model Object）与BO（Business Object）的不同之处在于DTO没有任何业务行为（贫血模式）只作为数据的存储。</p>
 <p>原链接：<a href="https://en.wikipedia.org/wiki/Data_transfer_object" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Data_transfer_object</a><br>References 下有许多有料的参考文章。</p>
-<h2 id="有经典的文章是如何解读的？"><a href="#有经典的文章是如何解读的？" class="headerlink" title="有经典的文章是如何解读的？"></a>有经典的文章是如何解读的？</h2><ul>
+<h2 id="2-3-有经典的文章是如何解读的？"><a href="#2-3-有经典的文章是如何解读的？" class="headerlink" title="2.3 有经典的文章是如何解读的？"></a>2.3 有经典的文章是如何解读的？</h2><ul>
 <li><p>博客园dax.net的观点：</p>
 <pre><code>表现层于应用层之间是通过DTO来进行交互的，数据传输对象是没有行为的POCO对象，他的目的是为了对领域对象进行数据封装，实现层与层之间的数据传递。为何不直接将领域对象进行数据传递？因为领域对象更注重领域，DTO更注重数据。由于“富领域模型”的特点，这样会直接将领域对象的行为暴露给表现层。</code></pre><p>  DTO本身不是业务对象，他是根据UI需求进行设计的。简单来说Model面向业务，我们是通过业务来定义Model的。而DTO是面向UI，通过UI的需求来定义的，通过DTO我们实现了表现层与Model层之间的解耦，表现层不引用Model。如果开发过程中我们的模型变了，而界面没变，我们只需改Model而不需要去改动表现层。</p>
 <p>  原文链接：<a href="http://www.cnblogs.com/daxnet/archive/2010/07/07/1772584.html" target="_blank" rel="noopener">http://www.cnblogs.com/daxnet/archive/2010/07/07/1772584.html</a></p>
@@ -217,7 +217,7 @@
 <p>  参考：<a href="https://www.cnblogs.com/simple-blog/p/7071740.html" target="_blank" rel="noopener">https://www.cnblogs.com/simple-blog/p/7071740.html</a></p>
 </li>
 </ul>
-<h1 id="JavaBean，POJO，VO，DTO的区别和联系"><a href="#JavaBean，POJO，VO，DTO的区别和联系" class="headerlink" title="JavaBean，POJO，VO，DTO的区别和联系"></a>JavaBean，POJO，VO，DTO的区别和联系</h1><ul>
+<h1 id="3-JavaBean，POJO，VO，DTO的区别和联系"><a href="#3-JavaBean，POJO，VO，DTO的区别和联系" class="headerlink" title="3. JavaBean，POJO，VO，DTO的区别和联系"></a>3. JavaBean，POJO，VO，DTO的区别和联系</h1><ul>
 <li><p>JavaBean 是一种JAVA语言写成的可重用组件。为写成JavaBean，类必须是具体的和公共的，并且具有无参数的构造器。JavaBean 通过提供符合一致性设计模式的公共方法将内部域暴露成员属性。众所周知，属性名称符合这种模式，其他Java 类可以通过自身机制发现和操作这些JavaBean 的属性。</p>
 </li>
 <li><p>VO即value object值对象<br>主要体现在视图的对象，对于一个WEB页面将整个页面的属性封装成一个对象。然后用一个VO对象在控制层与视图层进行传输交换。</p>
@@ -243,6 +243,11 @@
 </article>
 
 <div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2019/08/06/SSH和EJB的区别/" class="pre-post btn btn-default" title='SSH和EJB的区别'>
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">SSH和EJB的区别</span>
+        </a>
     
     
         <a href="/2019/07/19/hello-world/" class="next-post btn btn-default" title='Hello World'>
@@ -290,7 +295,7 @@
     <div class="widget">
         <h3 class="title">Table of Contents</h3>
         
-            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#POJO"><span class="toc-text">POJO</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#自身特点"><span class="toc-text">自身特点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实例"><span class="toc-text">实例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#POJO与javabean的区别"><span class="toc-text">POJO与javabean的区别</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#错误的认识"><span class="toc-text">错误的认识</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#真正的意思"><span class="toc-text">真正的意思</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#DTO"><span class="toc-text">DTO</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#百度百科如何解读的？"><span class="toc-text">百度百科如何解读的？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#维基百科是如何解读的？"><span class="toc-text">维基百科是如何解读的？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#有经典的文章是如何解读的？"><span class="toc-text">有经典的文章是如何解读的？</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#JavaBean，POJO，VO，DTO的区别和联系"><span class="toc-text">JavaBean，POJO，VO，DTO的区别和联系</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-POJO"><span class="toc-text">1. POJO</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-自身特点"><span class="toc-text">1.1 自身特点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-实例"><span class="toc-text">1.2 实例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-POJO与javabean的区别"><span class="toc-text">1.3 POJO与javabean的区别</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-1错误的认识"><span class="toc-text">1.3.1错误的认识</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-2真正的意思"><span class="toc-text">1.3.2真正的意思</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-DTO"><span class="toc-text">2. DTO</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-百度百科如何解读的？"><span class="toc-text">2.1 百度百科如何解读的？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-维基百科是如何解读的？"><span class="toc-text">2.2 维基百科是如何解读的？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-有经典的文章是如何解读的？"><span class="toc-text">2.3 有经典的文章是如何解读的？</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-JavaBean，POJO，VO，DTO的区别和联系"><span class="toc-text">3. JavaBean，POJO，VO，DTO的区别和联系</span></a></li></ol>
         
     </div>
 </aside>
