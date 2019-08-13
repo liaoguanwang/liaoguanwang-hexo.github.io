@@ -23,8 +23,7 @@
     <meta name="keywords" content>
 
 
-    <meta name="description" content="Alt+Insert         代码生成（构造函数/set&amp;get）Ctrl+Q             方法参数提示
-Ctrl+Alt+L        代码排版Ctrl+Alt...">
+    <meta name="description" content="1. 主键主键：表中经常有一个列或多列的组合，其值能唯一地标识表中的每一行。这样的一列或多列称为表的主键，通过它可强制表的实体完整性。当创建或更改表时可通过定义 PRIMARY KEY 约束来创...">
 
 
 
@@ -36,7 +35,7 @@ Ctrl+Alt+L        代码排版Ctrl+Alt...">
     <!--Title-->
 
 
-<title>IDEA快捷键 | 观旺叔叔的博客</title>
+<title>Navicat For MySQL--外键建立与cannot add foreign key constraint分析 | 观旺叔叔的博客</title>
 
 
     <link rel="alternate" href="/atom.xml" title="观旺叔叔的博客" type="application/atom+xml">
@@ -141,9 +140,9 @@ Ctrl+Alt+L        代码排版Ctrl+Alt...">
                     <p id="process"></p>
 <article class="post">
     <div class="post-head">
-        <h1 id="IDEA快捷键">
+        <h1 id="Navicat For MySQL--外键建立与cannot add foreign key constraint分析">
             
-	            IDEA快捷键
+	            Navicat For MySQL--外键建立与cannot add foreign key constraint分析
             
         </h1>
         <div class="post-meta">
@@ -167,7 +166,7 @@ Ctrl+Alt+L        代码排版Ctrl+Alt...">
         
         <span class="fa-wrap">
             <i class="fa fa-clock-o"></i>
-            <span class="date-meta">2019/08/12</span>
+            <span class="date-meta">2019/08/13</span>
         </span>
         
     
@@ -177,9 +176,27 @@ Ctrl+Alt+L        代码排版Ctrl+Alt...">
     </div>
     
     <div class="post-body post-content">
-        <p>Alt+Insert         代码生成（构造函数/set&amp;get）<br>Ctrl+Q             方法参数提示</p>
-<p>Ctrl+Alt+L        代码排版<br>Ctrl+Alt+T        把代码包在一个块内，例如：try/catch<br>Ctrl+Alt+M        生成方法<br>Ctrl+Alt+F        局部变量抽取成成员变量</p>
-<p>Ctrl+F               局部查找<br>Ctrl+Shift+F      全局查找<br>Ctrl+Shift+T      生成测试类</p>
+        <h2 id="1-主键"><a href="#1-主键" class="headerlink" title="1. 主键"></a>1. 主键</h2><p>主键：表中经常有一个列或多列的组合，其值能唯一地标识表中的每一行。这样的一列或多列称为表的主键，通过它可强制表的实体完整性。当创建或更改表时可通过定义 PRIMARY KEY 约束来创建主键。一个表只能有一个 PRIMARY KEY 约束，而且 PRIMARY KEY 约束中的列不能接受空值。由于 PRIMARY KEY 约束确保唯一数据，所以经常用来定义标识列。<br>作用:<br>1）保证实体的完整性;<br>2）加快数据库的操作速度<br>3）在表中添加新记录时，DBMS会自动检查新记录的主键值，不允许该值与其他记录的主键值重复。<br>4) DBMS自动按主键值的顺序显示表中的记录。如果没有定义主键，则按输入记录的顺序显示表中的记录。</p>
+<h2 id="2-外键"><a href="#2-外键" class="headerlink" title="2. 外键"></a>2. 外键</h2><p>什么是外键？如果公共关键字在一个关系中是主关键字，那么这个公共关键字被称为另一个关系的外键。由此可见，外键表示了两个关系之间的相关联系。以另一个关系的外键作主关键字的表被称为主表，具有此外键的表被称为主表的从表。外键又称作外关键字。</p>
+<h2 id="3-主键和外键的作用"><a href="#3-主键和外键的作用" class="headerlink" title="3. 主键和外键的作用"></a>3. 主键和外键的作用</h2><ol>
+<li><p>为了维护关系数据库的完整性:<br>主键是能确定一条记录的唯一标识，比如，一条记录包括身份正号，姓名，年龄。身份证号是唯一能确定你这个人的，其他都可能有重复，所以，身份证号是主键。<br>外键用于与另一张表的关联。是能确定另一张表记录的字段，用于保持数据的一致性。比如，A表中的一个字段，是B表的主键，那他就可以是A表的外键。</p>
+</li>
+<li><p>起约束作用:<br>外键取值规则：空值或参照的主键值。<br>(1)插入非空值时，如果主键表中没有这个值，则不能插入。<br>(2)更新时，不能改为主键表中没有的值。<br>(3)删除主键表记录时，你可以在建外键时选定外键记录一起级联删除还是拒绝删除。<br>(4)更新主键记录时，同样有级联更新和拒绝执行的选择。</p>
+</li>
+</ol>
+<p><strong>职位表hrm_job：主键是id</strong><br><img src="https://img2018.cnblogs.com/blog/1351916/201809/1351916-20180928234130340-1188066184.png" alt></p>
+<p><strong>部门表hrm_dept：主键是id</strong><br><img src="https://img2018.cnblogs.com/blog/1351916/201809/1351916-20180928234238888-69608745.png" alt></p>
+<p><strong>员工表hrm_employee：主键是id，外键是dept_id和job_id</strong><br><img src="https://img2018.cnblogs.com/blog/1351916/201809/1351916-20180928234217433-774131687.png" alt></p>
+<p>Navicat For MySQL如何定义外键<br>要在Mysql数据库平台建立外键关联，必须满足以下几个条件：</p>
+<ol>
+<li>两个表必须为 InnoDB 类型。</li>
+<li>外键和被引用键必须是索引中的第一列,InnoDB不会自动为外键和被引用键建立索引，必须明确创建<br> 它们。</li>
+<li>外键与对应的被引用键在 InnoDB 内必须有相似的内部数据类型，以便他们不需要一个类型转换就可<br> 以进行比较。整型字段的长度与有符号类型必须一致。 字符型则不需要一致。如果指定了一个SET<br>NULL 动作，那你必须要确定子表中的对应字段没有定义为 NOT NULL</li>
+</ol>
+<h2 id="4-设置外键"><a href="#4-设置外键" class="headerlink" title="4. 设置外键"></a>4. 设置外键</h2><p>设置外键时，删除和更新两列的均有四个选项：<br>CASCADE：父表delete、update的时候，子表会delete、update掉关联记录；<br>SET NULL：父表delete、update的时候，子表会将关联记录的外键字段所在列设为null，所以注意在设计子表时外键不能设为not null；<br>RESTRICT：如果想要删除父表的记录时，而在子表中有关联该父表的记录，则不允许删除父表中的记录；<br>NO ACTION：同 RESTRICT，也是首先先检查外键；</p>
+<p><img src="https://img2018.cnblogs.com/blog/1351916/201809/1351916-20180928235848125-146224706.png" alt></p>
+<p>参考资料：<br><a href="https://blog.csdn.net/ytm15732625529/article/details/53729155" target="_blank" rel="noopener">https://blog.csdn.net/ytm15732625529/article/details/53729155</a><br><a href="https://www.cnblogs.com/PyLearn/p/7624768.html" target="_blank" rel="noopener">https://www.cnblogs.com/PyLearn/p/7624768.html</a></p>
+<p>外键理解：<br><a href="http://www.cnblogs.com/chenxiaohei/p/6909318.html" target="_blank" rel="noopener">http://www.cnblogs.com/chenxiaohei/p/6909318.html</a><br><a href="https://www.cnblogs.com/bhlsheji/p/5332910.html" target="_blank" rel="noopener">https://www.cnblogs.com/bhlsheji/p/5332910.html</a></p>
 
     </div>
     
@@ -197,15 +214,10 @@ Ctrl+Alt+L        代码排版Ctrl+Alt...">
 
 <div class="article-nav prev-next-wrap clearfix">
     
-        <a href="/2019/08/13/Navicat-For-MySQL-外键建立与cannot-add-foreign-key-constraint分析/" class="pre-post btn btn-default" title='Navicat For MySQL--外键建立与cannot add foreign key constraint分析'>
-            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
-            <span class="hidden-xs">Navicat For MySQL--外键建立与cannot add foreign key constraint分析</span>
-        </a>
     
-    
-        <a href="/2019/08/12/maven项目导入依赖不会报错，但是jar包会标红/" class="next-post btn btn-default" title='maven项目导入依赖不会报错，但是jar包会标红'>
+        <a href="/2019/08/12/IDEA快捷键/" class="next-post btn btn-default" title='IDEA快捷键'>
             <span class="hidden-lg">下一篇</span>
-            <span class="hidden-xs">maven项目导入依赖不会报错，但是jar包会标红</span><i class="fa fa-angle-right fa-fw"></i>
+            <span class="hidden-xs">IDEA快捷键</span><i class="fa fa-angle-right fa-fw"></i>
         </a>
     
 </div>
@@ -248,7 +260,7 @@ Ctrl+Alt+L        代码排版Ctrl+Alt...">
     <div class="widget">
         <h3 class="title">Table of Contents</h3>
         
-            <p>暂无目录</p>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-主键"><span class="toc-text">1. 主键</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-外键"><span class="toc-text">2. 外键</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-主键和外键的作用"><span class="toc-text">3. 主键和外键的作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-设置外键"><span class="toc-text">4. 设置外键</span></a></li></ol>
         
     </div>
 </aside>
