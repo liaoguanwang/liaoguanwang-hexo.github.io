@@ -1,0 +1,411 @@
+<!DOCTYPE HTML>
+<html lang>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="观旺叔叔的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://liaoguanwang.github.io">
+    <!-- href="https://oindk07nf.qnssl.com/atom-one-dark.css" 代码块显示黑底美观 -->
+    <link rel="stylesheet" href="https://oindk07nf.qnssl.com/atom-one-dark.css" media="screen" type="text/css">
+    <!--SEO-->
+
+    <meta name="keywords" content>
+
+
+    <meta name="description" content="浏览器安全的基石是”同源政策”（same-origin policy）。很多开发者都知道这一点，但了解得不全面。本文详细介绍”同源政策”的各个方面，以及如何规避它。
+###一、概述
+####1....">
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+
+    <!--Title-->
+
+
+<title>【转】浏览器同源政策及其规避方法 | 观旺叔叔的博客</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="观旺叔叔的博客" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header"  style="background-image:url(http://snippet.shenliyang.com/img/banner.jpg)"  >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='liaoguanwang'>
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                <h2> 生活就是战斗 </h2>
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://liaoguanwang.github.io">观旺叔叔的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>Home</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/前端/"><i class="fa "></i>前端</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/后端/"><i class="fa "></i>后端</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/工具/"><i class="fa "></i>工具</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>时间轴</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="【转】浏览器同源政策及其规避方法">
+            
+	            【转】浏览器同源政策及其规避方法
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2019/08/22</span>
+        </span>
+        
+    
+</div>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <p>浏览器安全的基石是”同源政策”（same-origin policy）。很多开发者都知道这一点，但了解得不全面。<br>本文详细介绍”同源政策”的各个方面，以及如何规避它。</p>
+<p>###一、概述</p>
+<p>####1.1 含义<br>1995年，同源政策由 Netscape 公司引入浏览器。目前，所有浏览器都实行这个政策。</p>
+<p>最初，它的含义是指，A网页设置的 Cookie，B网页不能打开，除非这两个网页”同源”。所谓”同源”指的是”三个相同”。</p>
+<p>协议相同<br>域名相同<br>端口相同<br>举例来说，<a href="http://www.example.com/dir/page.html这个网址，协议是http://，域名是www.example.com，端口是80（默认端口可以省略）。它的同源情况如下。" target="_blank" rel="noopener">http://www.example.com/dir/page.html这个网址，协议是http://，域名是www.example.com，端口是80（默认端口可以省略）。它的同源情况如下。</a></p>
+<ul>
+<li><a href="http://www.example.com/dir2/other.html：同源" target="_blank" rel="noopener">http://www.example.com/dir2/other.html：同源</a></li>
+<li><a href="http://example.com/dir/other.html：不同源（域名不同）" target="_blank" rel="noopener">http://example.com/dir/other.html：不同源（域名不同）</a></li>
+<li><a href="http://v2.www.example.com/dir/other.html：不同源（域名不同）" target="_blank" rel="noopener">http://v2.www.example.com/dir/other.html：不同源（域名不同）</a></li>
+<li><a href="http://www.example.com:81/dir/other.html：不同源（端口不同）" target="_blank" rel="noopener">http://www.example.com:81/dir/other.html：不同源（端口不同）</a></li>
+</ul>
+<p>####1.2 目的<br>同源政策的目的，是为了保证用户信息的安全，防止恶意的网站窃取数据。</p>
+<p>设想这样一种情况：A网站是一家银行，用户登录以后，又去浏览其他网站。如果其他网站可以读取A网站的 Cookie，会发生什么？</p>
+<p>很显然，如果 Cookie 包含隐私（比如存款总额），这些信息就会泄漏。更可怕的是，Cookie 往往用来保存用户的登录状态，如果用户没有退出登录，其他网站就可以冒充用户，为所欲为。因为浏览器同时还规定，提交表单不受同源政策的限制。</p>
+<p>由此可见，”同源政策”是必需的，否则 Cookie 可以共享，互联网就毫无安全可言了。</p>
+<p>####1.3 限制范围<br>随着互联网的发展，”同源政策”越来越严格。目前，如果非同源，共有三种行为受到限制。</p>
+<p>（1） Cookie、LocalStorage 和 IndexDB 无法读取。</p>
+<p>（2） DOM 无法获得。</p>
+<p>（3） AJAX 请求不能发送。</p>
+<p>虽然这些限制是必要的，但是有时很不方便，合理的用途也受到影响。下面，我将详细介绍，如何规避上面三种限制。</p>
+<p>###二、Cookie<br>Cookie 是服务器写入浏览器的一小段信息，只有同源的网页才能共享。但是，两个网页一级域名相同，只是二级域名不同，浏览器允许通过设置document.domain共享 Cookie。</p>
+<p>举例来说，A网页是<a href="http://w1.example.com/a.html，B网页是http://w2.example.com/b.html，那么只要设置相同的document.domain，两个网页就可以共享Cookie。" target="_blank" rel="noopener">http://w1.example.com/a.html，B网页是http://w2.example.com/b.html，那么只要设置相同的document.domain，两个网页就可以共享Cookie。</a></p>
+<p>document.domain = ‘example.com’;<br>现在，A网页通过脚本设置一个 Cookie。</p>
+<p>document.cookie = “test1=hello”;<br>B网页就可以读到这个 Cookie。</p>
+<p>var allCookie = document.cookie;<br>注意，这种方法只适用于 Cookie 和 iframe 窗口，LocalStorage 和 IndexDB 无法通过这种方法，规避同源政策，而要使用下文介绍的PostMessage API。</p>
+<p>另外，服务器也可以在设置Cookie的时候，指定Cookie的所属域名为一级域名，比如.example.com。</p>
+<p>Set-Cookie: key=value; domain=.example.com; path=/<br>这样的话，二级域名和三级域名不用做任何设置，都可以读取这个Cookie。</p>
+<p>###三、iframe<br>如果两个网页不同源，就无法拿到对方的DOM。典型的例子是iframe窗口和window.open方法打开的窗口，它们与父窗口无法通信。</p>
+<p>比如，父窗口运行下面的命令，如果iframe窗口不是同源，就会报错。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">document.getElementById(&quot;myIFrame&quot;).contentWindow.document</span><br><span class="line">// Uncaught DOMException: Blocked a frame from accessing a cross-origin frame.</span><br><span class="line">上面命令中，父窗口想获取子窗口的DOM，因为跨源导致报错。</span><br></pre></td></tr></table></figure>
+
+<p>反之亦然，子窗口获取主窗口的DOM也会报错。</p>
+<p>window.parent.document.body<br>// 报错<br>如果两个窗口一级域名相同，只是二级域名不同，那么设置上一节介绍的document.domain属性，就可以规避同源政策，拿到DOM。</p>
+<p>对于完全不同源的网站，目前有三种方法，可以解决跨域窗口的通信问题。</p>
+<ul>
+<li>片段识别符（fragment identifier）</li>
+<li>window.name</li>
+<li>跨文档通信API（Cross-document messaging）</li>
+</ul>
+<p>####3.1 片段识别符<br>片段标识符（fragment identifier）指的是，URL的#号后面的部分，比如<a href="http://example.com/x.html#fragment的#fragment。如果只是改变片段标识符，页面不会重新刷新。" target="_blank" rel="noopener">http://example.com/x.html#fragment的#fragment。如果只是改变片段标识符，页面不会重新刷新。</a></p>
+<p>父窗口可以把信息，写入子窗口的片段标识符。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var src = originURL + &apos;#&apos; + data;</span><br><span class="line">document.getElementById(&apos;myIFrame&apos;).src = src;</span><br></pre></td></tr></table></figure>
+
+<p>子窗口通过监听hashchange事件得到通知。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">window.onhashchange = checkMessage;</span><br><span class="line"></span><br><span class="line">function checkMessage() &#123;</span><br><span class="line">  var message = window.location.hash;</span><br><span class="line">  // ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>同样的，子窗口也可以改变父窗口的片段标识符。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">parent.location.href= target + &quot;#&quot; + hash;</span><br></pre></td></tr></table></figure>
+
+<p>####3.2 window.name<br>浏览器窗口有window.name属性。这个属性的最大特点是，无论是否同源，只要在同一个窗口里，前一个网页设置了这个属性，后一个网页可以读取它。</p>
+<p>父窗口先打开一个子窗口，载入一个不同源的网页，该网页将信息写入window.name属性。</p>
+<p>window.name = data;<br>接着，子窗口跳回一个与主窗口同域的网址。</p>
+<p>location = ‘<a href="http://parent.url.com/xxx.html&#39;" target="_blank" rel="noopener">http://parent.url.com/xxx.html&#39;</a>;<br>然后，主窗口就可以读取子窗口的window.name了。</p>
+<p>var data = document.getElementById(‘myFrame’).contentWindow.name;<br>这种方法的优点是，window.name容量很大，可以放置非常长的字符串；缺点是必须监听子窗口window.name属性的变化，影响网页性能。</p>
+<p>####3.3 window.postMessage<br>上面两种方法都属于破解，HTML5为了解决这个问题，引入了一个全新的API：跨文档通信 API（Cross-document messaging）。</p>
+<p>这个API为window对象新增了一个window.postMessage方法，允许跨窗口通信，不论这两个窗口是否同源。</p>
+<p>举例来说，父窗口<a href="http://aaa.com向子窗口http://bbb.com发消息，调用postMessage方法就可以了。" target="_blank" rel="noopener">http://aaa.com向子窗口http://bbb.com发消息，调用postMessage方法就可以了。</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var popup = window.open(&apos;http://bbb.com&apos;, &apos;title&apos;);</span><br><span class="line">popup.postMessage(&apos;Hello World!&apos;, &apos;http://bbb.com&apos;);</span><br><span class="line">postMessage方法的第一个参数是具体的信息内容，第二个参数是接收消息的窗口的源（origin），即&quot;协议 + 域名 + 端口&quot;。也可以设为*，表示不限制域名，向所有窗口发送。</span><br></pre></td></tr></table></figure>
+
+<p>子窗口向父窗口发送消息的写法类似。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">window.opener.postMessage(&apos;Nice to see you&apos;, &apos;http://aaa.com&apos;);</span><br></pre></td></tr></table></figure>
+
+<p>父窗口和子窗口都可以通过message事件，监听对方的消息。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">window.addEventListener(&apos;message&apos;, function(e) &#123;</span><br><span class="line">  console.log(e.data);</span><br><span class="line">&#125;,false);</span><br></pre></td></tr></table></figure>
+
+<p>message事件的事件对象event，提供以下三个属性。</p>
+<p>event.source：发送消息的窗口<br>event.origin: 消息发向的网址<br>event.data: 消息内容<br>下面的例子是，子窗口通过event.source属性引用父窗口，然后发送消息。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">window.addEventListener(&apos;message&apos;, receiveMessage);</span><br><span class="line">function receiveMessage(event) &#123;</span><br><span class="line">  event.source.postMessage(&apos;Nice to see you!&apos;, &apos;*&apos;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>event.origin属性可以过滤不是发给本窗口的消息。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">window.addEventListener(&apos;message&apos;, receiveMessage);</span><br><span class="line">function receiveMessage(event) &#123;</span><br><span class="line">  if (event.origin !== &apos;http://aaa.com&apos;) return;</span><br><span class="line">  if (event.data === &apos;Hello World&apos;) &#123;</span><br><span class="line">      event.source.postMessage(&apos;Hello&apos;, event.origin);</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    console.log(event.data);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>####3.4 LocalStorage<br>通过window.postMessage，读写其他窗口的 LocalStorage 也成为了可能。</p>
+<p>下面是一个例子，主窗口写入iframe子窗口的localStorage。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">window.onmessage = function(e) &#123;</span><br><span class="line">  if (e.origin !== &apos;http://bbb.com&apos;) &#123;</span><br><span class="line">    return;</span><br><span class="line">  &#125;</span><br><span class="line">  var payload = JSON.parse(e.data);</span><br><span class="line">  localStorage.setItem(payload.key, JSON.stringify(payload.data));</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>上面代码中，子窗口将父窗口发来的消息，写入自己的LocalStorage。</p>
+<p>父窗口发送消息的代码如下。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var win = document.getElementsByTagName(&apos;iframe&apos;)[0].contentWindow;</span><br><span class="line">var obj = &#123; name: &apos;Jack&apos; &#125;;</span><br><span class="line">win.postMessage(JSON.stringify(&#123;key: &apos;storage&apos;, data: obj&#125;), &apos;http://bbb.com&apos;);</span><br></pre></td></tr></table></figure>
+
+<p>加强版的子窗口接收消息的代码如下。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">window.onmessage = function(e) &#123;</span><br><span class="line">  if (e.origin !== &apos;http://bbb.com&apos;) return;</span><br><span class="line">  var payload = JSON.parse(e.data);</span><br><span class="line">  switch (payload.method) &#123;</span><br><span class="line">    case &apos;set&apos;:</span><br><span class="line">      localStorage.setItem(payload.key, JSON.stringify(payload.data));</span><br><span class="line">      break;</span><br><span class="line">    case &apos;get&apos;:</span><br><span class="line">      var parent = window.parent;</span><br><span class="line">      var data = localStorage.getItem(payload.key);</span><br><span class="line">      parent.postMessage(data, &apos;http://aaa.com&apos;);</span><br><span class="line">      break;</span><br><span class="line">    case &apos;remove&apos;:</span><br><span class="line">      localStorage.removeItem(payload.key);</span><br><span class="line">      break;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>加强版的父窗口发送消息代码如下。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var win = document.getElementsByTagName(&apos;iframe&apos;)[0].contentWindow;</span><br><span class="line">var obj = &#123; name: &apos;Jack&apos; &#125;;</span><br><span class="line">// 存入对象</span><br><span class="line">win.postMessage(JSON.stringify(&#123;key: &apos;storage&apos;, method: &apos;set&apos;, data: obj&#125;), &apos;http://bbb.com&apos;);</span><br><span class="line">// 读取对象</span><br><span class="line">win.postMessage(JSON.stringify(&#123;key: &apos;storage&apos;, method: &quot;get&quot;&#125;), &quot;*&quot;);</span><br><span class="line">window.onmessage = function(e) &#123;</span><br><span class="line">  if (e.origin != &apos;http://aaa.com&apos;) return;</span><br><span class="line">  // &quot;Jack&quot;</span><br><span class="line">  console.log(JSON.parse(e.data).name);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>###四、AJAX<br>同源政策规定，AJAX请求只能发给同源的网址，否则就报错。</p>
+<p>除了架设服务器代理（浏览器请求同源服务器，再由后者请求外部服务），有三种方法规避这个限制。</p>
+<ul>
+<li>JSONP</li>
+<li>WebSocket</li>
+<li>CORS<br>####4.1 JSONP<br>JSONP是服务器与客户端跨源通信的常用方法。最大特点就是简单适用，老式浏览器全部支持，服务器改造非常小。</li>
+</ul>
+<p>它的基本思想是，网页通过添加一个<script>元素，向服务器请求JSON数据，这种做法不受同源政策限制；服务器收到请求后，将数据放在一个指定名字的回调函数里传回来。</p>
+<p>首先，网页动态插入<script>元素，由它向跨源网址发出请求。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">function addScriptTag(src) &#123;</span><br><span class="line">  var script = document.createElement(&apos;script&apos;);</span><br><span class="line">  script.setAttribute(&quot;type&quot;,&quot;text/javascript&quot;);</span><br><span class="line">  script.src = src;</span><br><span class="line">  document.body.appendChild(script);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">window.onload = function () &#123;</span><br><span class="line">  addScriptTag(&apos;http://example.com/ip?callback=foo&apos;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function foo(data) &#123;</span><br><span class="line">  console.log(&apos;Your public IP address is: &apos; + data.ip);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>上面代码通过动态添加<script>元素，向服务器example.com发出请求。注意，该请求的查询字符串有一个callback参数，用来指定回调函数的名字，这对于JSONP是必需的。</p>
+<p>服务器收到这个请求以后，会将数据放在回调函数的参数位置返回。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">foo(&#123;</span><br><span class="line">  &quot;ip&quot;: &quot;8.8.8.8&quot;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>由于<script>元素请求的脚本，直接作为代码运行。这时，只要浏览器定义了foo函数，该函数就会立即调用。作为参数的JSON数据被视为JavaScript对象，而不是字符串，因此避免了使用JSON.parse的步骤。</p>
+<p>4.2 WebSocket<br>WebSocket是一种通信协议，使用ws://（非加密）和wss://（加密）作为协议前缀。该协议不实行同源政策，只要服务器支持，就可以通过它进行跨源通信。</p>
+<p>下面是一个例子，浏览器发出的WebSocket请求的头信息（摘自维基百科）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">GET /chat HTTP/1.1</span><br><span class="line">Host: server.example.com</span><br><span class="line">Upgrade: websocket</span><br><span class="line">Connection: Upgrade</span><br><span class="line">Sec-WebSocket-Key: x3JJHMbDL1EzLkh9GBhXDw==</span><br><span class="line">Sec-WebSocket-Protocol: chat, superchat</span><br><span class="line">Sec-WebSocket-Version: 13</span><br><span class="line">Origin: http://example.com</span><br></pre></td></tr></table></figure>
+
+<p>上面代码中，有一个字段是Origin，表示该请求的请求源（origin），即发自哪个域名。</p>
+<p>正是因为有了Origin这个字段，所以WebSocket才没有实行同源政策。因为服务器可以根据这个字段，判断是否许可本次通信。如果该域名在白名单内，服务器就会做出如下回应。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 101 Switching Protocols</span><br><span class="line">Upgrade: websocket</span><br><span class="line">Connection: Upgrade</span><br><span class="line">Sec-WebSocket-Accept: HSmrc0sMlYUkAGmm5OPpG2HaGWk=</span><br><span class="line">Sec-WebSocket-Protocol: chat</span><br></pre></td></tr></table></figure>
+
+<p>####4.3 CORS<br>CORS是跨源资源分享（Cross-Origin Resource Sharing）的缩写。它是W3C标准，是跨源AJAX请求的根本解决方法。相比JSONP只能发GET请求，CORS允许任何类型的请求。</p>
+<p>下一篇文章，我会详细介绍，如何通过CORS完成跨源AJAX请求。（完）<br>转自：[<a href="http://www.ruanyifeng.com/blog/2016/04/same-origin-policy.html]">http://www.ruanyifeng.com/blog/2016/04/same-origin-policy.html]</a></p>
+</script></p>
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">Snippet</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+    
+        <a href="/2019/08/21/【转】-RequestBody注解出现的三点错误/" class="next-post btn btn-default" title='【转】@RequestBody注解出现的三点错误'>
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">【转】@RequestBody注解出现的三点错误</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+    <div id="comments">
+        
+	
+    <div id="vcomments" class="valine"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="/assets/valine.min.js"></script>
+
+    <script>
+        new Valine({
+            av: AV,
+            el: '#vcomments',
+            appId: 'xOKV9J4UeQAtVkvnJC7Kq2Jn-gzGzoHsz',
+            appKey: 'erIpQac4azoCmgfBB7Dl9maa',
+            placeholder: '说点什么吧',
+            notify: false,
+            verify: true,
+            avatar: 'mm',
+            meta: 'nick,mail'.split(','),
+            pageSize: '10',
+            path: window.location.pathname,
+            lang: ''.toLowerCase()
+        })
+    </script>
+
+
+    </div>
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">Table of Contents</h3>
+        
+            <p>暂无目录</p>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2017
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>
