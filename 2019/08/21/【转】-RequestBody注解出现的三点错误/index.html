@@ -23,8 +23,7 @@
     <meta name="keywords" content>
 
 
-    <meta name="description" content="###错误1
-123456789&#123;    &quot;timestamp&quot;: 1529747704259,    &quot;status&quot;: 415,    &q...">
+    <meta name="description" content="1. 错误1123456789&#123;    " timestamp": 1529747704259,    "status": 415,  "error": "unsupported m...">
 
 
 
@@ -177,18 +176,15 @@
     </div>
     
     <div class="post-body post-content">
-        <p>###错误1</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;timestamp&quot;: 1529747704259,</span><br><span class="line">    &quot;status&quot;: 415,</span><br><span class="line">    &quot;error&quot;: &quot;Unsupported Media Type&quot;,</span><br><span class="line">    &quot;exception&quot;: &quot;org.springframework.web.HttpMediaTypeNotSupportedException&quot;,</span><br><span class="line">    &quot;message&quot;: &quot;Content type &apos;multipart/form-data;boundary=--------------------------634977992820316635754608;charset=UTF-8&apos; not supported&quot;,</span><br><span class="line">    &quot;path&quot;: &quot;/girl/girls&quot;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h3 id="1-错误1"><a href="#1-错误1" class="headerlink" title="1. 错误1"></a>1. 错误1</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"timestamp"</span>: <span class="number">1529747704259</span>,</span><br><span class="line">    <span class="attr">"status"</span>: <span class="number">415</span>,</span><br><span class="line">    <span class="attr">"error"</span>: <span class="string">"Unsupported Media Type"</span>,</span><br><span class="line">    <span class="attr">"exception"</span>: <span class="string">"org.springframework.web.HttpMediaTypeNotSupportedException"</span>,</span><br><span class="line">    <span class="attr">"message"</span>: <span class="string">"Content type 'multipart/form-data;boundary=--------------------------634977992820316635754608;charset=UTF-8' not supported"</span>,</span><br><span class="line">    <span class="attr">"path"</span>: <span class="string">"/girl/girls"</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>解决方法：postman必须选择raw JSON(application/json)</p>
-<p>###错误2</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;timestamp&quot;: 1529747826005,</span><br><span class="line">    &quot;status&quot;: 400,</span><br><span class="line">    &quot;error&quot;: &quot;Bad Request&quot;,</span><br><span class="line">    &quot;exception&quot;: &quot;org.springframework.http.converter.HttpMessageNotReadableException&quot;,</span><br><span class="line">    &quot;message&quot;: &quot;Required request body is missing: public com.imooc.domain.Girl com.imooc.controller.GirlController.girlAdd(com.imooc.domain.Girl)&quot;,</span><br><span class="line">    &quot;path&quot;: &quot;/girl/girls&quot;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="2-错误2"><a href="#2-错误2" class="headerlink" title="2. 错误2"></a>2. 错误2</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"timestamp"</span>: <span class="number">1529747826005</span>,</span><br><span class="line">    <span class="attr">"status"</span>: <span class="number">400</span>,</span><br><span class="line">    <span class="attr">"error"</span>: <span class="string">"Bad Request"</span>,</span><br><span class="line">    <span class="attr">"exception"</span>: <span class="string">"org.springframework.http.converter.HttpMessageNotReadableException"</span>,</span><br><span class="line">    <span class="attr">"message"</span>: <span class="string">"Required request body is missing: public com.imooc.domain.Girl com.imooc.controller.GirlController.girlAdd(com.imooc.domain.Girl)"</span>,</span><br><span class="line">    <span class="attr">"path"</span>: <span class="string">"/girl/girls"</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>Body不能为空, 可以为{}</p>
-<p>###错误3</p>
-<p>通过ajax，向后台传对象时，@RequestBody 接收对象，一直报415的错误</p>
+<h3 id="3-错误3"><a href="#3-错误3" class="headerlink" title="3. 错误3"></a>3. 错误3</h3><p>通过ajax，向后台传对象时，@RequestBody 接收对象，一直报415的错误</p>
 <p>415说明传的数据类型不对，一直尝试各种方法改错，都不对，在百度@RequestBody 时，知道它接收的是json字符串，而ajax传送的是json对象，类型不一致，改错方法是：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var user = &#123;&quot;id&quot;:userid,</span><br><span class="line">               &quot;username&quot;:usernames,&quot;account&quot;:accounts,</span><br><span class="line">               &quot;place&quot;:places,&quot;phone&quot;:phones,&#125;;</span><br><span class="line"> $.ajax(&#123;</span><br><span class="line">        type: &quot;POST&quot;,</span><br><span class="line">       dataType: &apos;json&apos;,</span><br><span class="line">       contentType:&quot;application/json&quot;,</span><br><span class="line">       data: JSON.stringify(user),</span><br><span class="line">        ......</span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> user = &#123;<span class="string">"id"</span>:userid,</span><br><span class="line">               <span class="string">"username"</span>:usernames,<span class="string">"account"</span>:accounts,</span><br><span class="line">               <span class="string">"place"</span>:places,<span class="string">"phone"</span>:phones,&#125;;</span><br><span class="line"> $.ajax(&#123;</span><br><span class="line">        type: <span class="string">"POST"</span>,</span><br><span class="line">       dataType: <span class="string">'json'</span>,</span><br><span class="line">       contentType:<span class="string">"application/json"</span>,</span><br><span class="line">       data: <span class="built_in">JSON</span>.stringify(user),</span><br><span class="line">        ......</span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
 
 <p>其中，dataType和contentType也必须设置成json格式的，而JSON.stringify(obj)这个函数可以把json对象转换为json字符串，这三个设置是必不可少的。</p>
 <p>转自:<a href>https://blog.csdn.net/likunyv/article/details/80785607</a></p>
@@ -209,9 +205,9 @@
 
 <div class="article-nav prev-next-wrap clearfix">
     
-        <a href="/2019/08/22/【转】浏览器同源政策及其规避方法/" class="pre-post btn btn-default" title='【转】浏览器同源政策及其规避方法'>
+        <a href="/2019/08/22/【转】浏览器同源政策及其规避方法 （2）/" class="pre-post btn btn-default" title='【转】浏览器同源政策及其规避方法（2）'>
             <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
-            <span class="hidden-xs">【转】浏览器同源政策及其规避方法</span>
+            <span class="hidden-xs">【转】浏览器同源政策及其规避方法（2）</span>
         </a>
     
     
@@ -260,7 +256,7 @@
     <div class="widget">
         <h3 class="title">Table of Contents</h3>
         
-            <p>暂无目录</p>
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-错误1"><span class="toc-text">1. 错误1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-错误2"><span class="toc-text">2. 错误2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-错误3"><span class="toc-text">3. 错误3</span></a></li></ol>
         
     </div>
 </aside>
