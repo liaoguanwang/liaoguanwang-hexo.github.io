@@ -23,11 +23,11 @@
     <meta name="keywords" content>
 
 
-    <meta name="description" content="MyBatis实现模糊查询1.${…}代替#{…}
+    <meta name="description" content="1.MyBatis实现模糊查询1.${…}代替#{…}
 2.把’%#{name}%’改为”%”#{name}”%”
 3.使用sql中的字符串拼接函数
 4.使用标签bind
-1234&lt;selec...">
+1234&lt;sel...">
 
 
 
@@ -180,15 +180,15 @@
     </div>
     
     <div class="post-body post-content">
-        <h3 id="MyBatis实现模糊查询"><a href="#MyBatis实现模糊查询" class="headerlink" title="MyBatis实现模糊查询"></a>MyBatis实现模糊查询</h3><p>1.${…}代替#{…}</p>
+        <h3 id="1-MyBatis实现模糊查询"><a href="#1-MyBatis实现模糊查询" class="headerlink" title="1.MyBatis实现模糊查询"></a>1.MyBatis实现模糊查询</h3><p>1.${…}代替#{…}</p>
 <p>2.把’%#{name}%’改为”%”#{name}”%”</p>
 <p>3.使用sql中的字符串拼接函数</p>
 <p>4.使用标签bind</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;select id=&quot;selectPersons&quot; resultType-&quot;person&quot; parameterType=&quot;person&quot;&gt;</span><br><span class="line">    &lt;bind name=&quot;pattern&quot; value=&quot; &apos;%&apos; + _parameter.username + &apos;%&apos; &quot;/&gt;</span><br><span class="line">    select id, sex, age, username, password from person where username LIKE #&#123;pattern&#125;</span><br><span class="line">&lt;/select&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"selectPersons"</span> <span class="attr">resultType-</span>"<span class="attr">person</span>" <span class="attr">parameterType</span>=<span class="string">"person"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bind</span> <span class="attr">name</span>=<span class="string">"pattern"</span> <span class="attr">value</span>=<span class="string">" '%' + _parameter.username + '%' "</span>/&gt;</span></span><br><span class="line">    select id, sex, age, username, password from person where username LIKE #&#123;pattern&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>参考：<br><a href="https://blog.csdn.net/lonely_dog/article/details/74171314" target="_blank" rel="noopener">MyBatis实现模糊查询的几种方式</a><br><a href="https://www.cnblogs.com/gongchengshiwhl/p/7994761.html" target="_blank" rel="noopener">SQL Count（*）函数，GROUP_By,Having的联合使用</a></p>
-<h3 id="group-concat函数"><a href="#group-concat函数" class="headerlink" title="group_concat函数"></a>group_concat函数</h3><p>用法：group_concat( [distinct] 要连接的字段 [order by 排序字段 asc/desc ] [separator ‘分隔符’] )</p>
-<p>####group_concat长度限制<br>mysql中group_concat函数对此函数的处理结果字符串长度是有限制的，默认为1024；所以如果结果字符串太长的话，就会在数据库里被截取，因此没有显示全部数据。</p>
+<h3 id="2-group-concat函数"><a href="#2-group-concat函数" class="headerlink" title="2. group_concat函数"></a>2. group_concat函数</h3><p>用法：group_concat( [distinct] 要连接的字段 [order by 排序字段 asc/desc ] [separator ‘分隔符’] )</p>
+<h4 id="2-1-group-concat长度限制"><a href="#2-1-group-concat长度限制" class="headerlink" title="2.1 group_concat长度限制"></a>2.1 group_concat长度限制</h4><p>mysql中group_concat函数对此函数的处理结果字符串长度是有限制的，默认为1024；所以如果结果字符串太长的话，就会在数据库里被截取，因此没有显示全部数据。</p>
 <p>解决方法：<br>1、SET GLOBAL group_concat_max_len = 102400;  //其中数字大小可修改<br>注意：该方法缺点是重启服务后设置失效</p>
 <p>2、在MySQL配置文件(my.ini)中加：<br>group_concat_max_len = -1 # -1为最大值或填入你要的最大长度<br>并重启mysql</p>
 
@@ -208,7 +208,7 @@
 
 <div class="article-nav prev-next-wrap clearfix">
     
-        <a href="/2019/08/25/MySQL数据库优化/" class="pre-post btn btn-default" title='MySQL数据库优化'>
+        <a href="/2019/08/25/23-MySQL数据库优化/" class="pre-post btn btn-default" title='MySQL数据库优化'>
             <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
             <span class="hidden-xs">MySQL数据库优化</span>
         </a>
@@ -259,7 +259,7 @@
     <div class="widget">
         <h3 class="title">Table of Contents</h3>
         
-            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#MyBatis实现模糊查询"><span class="toc-text">MyBatis实现模糊查询</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#group-concat函数"><span class="toc-text">group_concat函数</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-MyBatis实现模糊查询"><span class="toc-text">1.MyBatis实现模糊查询</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-group-concat函数"><span class="toc-text">2. group_concat函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-group-concat长度限制"><span class="toc-text">2.1 group_concat长度限制</span></a></li></ol></li></ol>
         
     </div>
 </aside>
