@@ -23,7 +23,10 @@
     <meta name="keywords" content>
 
 
-    <meta name="description" content="1. 错误1123456789&#123;    " timestamp": 1529747704259,    "status": 415,  "error": "unsupported m...">
+    <meta name="description" content="@Configuration
+一句话概括就是 @Configuration 中所有带 @Bean 注解的方法都会被动态代理，因此调用该方法返回的都是同一个实例。
+
+Configuration 注...">
 
 
 
@@ -35,7 +38,7 @@
     <!--Title-->
 
 
-<title>【转】@RequestBody注解出现的三点错误 | 观旺叔叔的博客</title>
+<title>Spring注解 | 观旺叔叔的博客</title>
 
 
     <link rel="alternate" href="/atom.xml" title="观旺叔叔的博客" type="application/atom+xml">
@@ -140,9 +143,9 @@
                     <p id="process"></p>
 <article class="post">
     <div class="post-head">
-        <h1 id="【转】@RequestBody注解出现的三点错误">
+        <h1 id="Spring注解">
             
-	            【转】@RequestBody注解出现的三点错误
+	            Spring注解
             
         </h1>
         <div class="post-meta">
@@ -166,7 +169,7 @@
         
         <span class="fa-wrap">
             <i class="fa fa-clock-o"></i>
-            <span class="date-meta">2019/08/21</span>
+            <span class="date-meta">2019/08/28</span>
         </span>
         
     
@@ -176,18 +179,29 @@
     </div>
     
     <div class="post-body post-content">
-        <h3 id="1-错误1"><a href="#1-错误1" class="headerlink" title="1. 错误1"></a>1. 错误1</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"timestamp"</span>: <span class="number">1529747704259</span>,</span><br><span class="line">    <span class="attr">"status"</span>: <span class="number">415</span>,</span><br><span class="line">    <span class="attr">"error"</span>: <span class="string">"Unsupported Media Type"</span>,</span><br><span class="line">    <span class="attr">"exception"</span>: <span class="string">"org.springframework.web.HttpMediaTypeNotSupportedException"</span>,</span><br><span class="line">    <span class="attr">"message"</span>: <span class="string">"Content type 'multipart/form-data;boundary=--------------------------634977992820316635754608;charset=UTF-8' not supported"</span>,</span><br><span class="line">    <span class="attr">"path"</span>: <span class="string">"/girl/girls"</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h3 id="Configuration"><a href="#Configuration" class="headerlink" title="@Configuration"></a>@Configuration</h3><blockquote>
+<p>一句话概括就是 @Configuration 中所有带 @Bean 注解的方法都会被动态代理，因此调用该方法返回的都是同一个实例。</p>
+</blockquote>
+<h4 id="Configuration-注解："><a href="#Configuration-注解：" class="headerlink" title="Configuration 注解："></a>Configuration 注解：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@Target(ElementType.TYPE)</span><br><span class="line">@Retention(RetentionPolicy.RUNTIME)</span><br><span class="line">@Documented</span><br><span class="line">@Component</span><br><span class="line">public @interface Configuration &#123;</span><br><span class="line">    String value() default &quot;&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>解决方法：postman必须选择raw JSON(application/json)</p>
-<h3 id="2-错误2"><a href="#2-错误2" class="headerlink" title="2. 错误2"></a>2. 错误2</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"timestamp"</span>: <span class="number">1529747826005</span>,</span><br><span class="line">    <span class="attr">"status"</span>: <span class="number">400</span>,</span><br><span class="line">    <span class="attr">"error"</span>: <span class="string">"Bad Request"</span>,</span><br><span class="line">    <span class="attr">"exception"</span>: <span class="string">"org.springframework.http.converter.HttpMessageNotReadableException"</span>,</span><br><span class="line">    <span class="attr">"message"</span>: <span class="string">"Required request body is missing: public com.imooc.domain.Girl com.imooc.controller.GirlController.girlAdd(com.imooc.domain.Girl)"</span>,</span><br><span class="line">    <span class="attr">"path"</span>: <span class="string">"/girl/girls"</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>Body不能为空, 可以为{}</p>
-<h3 id="3-错误3"><a href="#3-错误3" class="headerlink" title="3. 错误3"></a>3. 错误3</h3><p>通过ajax，向后台传对象时，@RequestBody 接收对象，一直报415的错误</p>
-<p>415说明传的数据类型不对，一直尝试各种方法改错，都不对，在百度@RequestBody 时，知道它接收的是json字符串，而ajax传送的是json对象，类型不一致，改错方法是：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> user = &#123;<span class="string">"id"</span>:userid,</span><br><span class="line">               <span class="string">"username"</span>:usernames,<span class="string">"account"</span>:accounts,</span><br><span class="line">               <span class="string">"place"</span>:places,<span class="string">"phone"</span>:phones,&#125;;</span><br><span class="line"> $.ajax(&#123;</span><br><span class="line">        type: <span class="string">"POST"</span>,</span><br><span class="line">       dataType: <span class="string">'json'</span>,</span><br><span class="line">       contentType:<span class="string">"application/json"</span>,</span><br><span class="line">       data: <span class="built_in">JSON</span>.stringify(user),</span><br><span class="line">        ......</span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
-
-<p>其中，dataType和contentType也必须设置成json格式的，而JSON.stringify(obj)这个函数可以把json对象转换为json字符串，这三个设置是必不可少的。</p>
-<p>转自:<a href>https://blog.csdn.net/likunyv/article/details/80785607</a></p>
+<p>从定义来看， @Configuration 注解本质上还是 @Component，因此 <a href="context:component-scan/" target="_blank" rel="noopener">context:component-scan/</a> 或者 @ComponentScan 都能处理@Configuration 注解的类。</p>
+<p>@Configuration 标记的类必须符合下面的要求：</p>
+<ul>
+<li>配置类必须以类的形式提供（不能是工厂方法返回的实例），允许通过生成子类在运行时增强（cglib 动态代理）。</li>
+<li>配置类不能是 final 类（没法动态代理）。</li>
+<li>配置注解通常为了通过 @Bean 注解生成 Spring 容器管理的类，</li>
+<li>配置类必须是非本地的（即不能在方法中声明，不能是 private）。</li>
+<li>任何嵌套配置类都必须声明为static。</li>
+<li>@Bean 方法可能不会反过来创建进一步的配置类（也就是返回的 bean 如果带有 @Configuration，也不会被特殊处理，只会作为普通的 bean）。</li>
+</ul>
+<p>参考：<a href="https://blog.csdn.net/isea533/article/details/78072133" target="_blank" rel="noopener">Spring @Configuration 和 @Component 区别</a></p>
+<h3 id="Configuration和-Component的区别"><a href="#Configuration和-Component的区别" class="headerlink" title="@Configuration和@Component的区别"></a>@Configuration和@Component的区别</h3><p>同：都是注解在类上的注解<br>异：</p>
+<ul>
+<li>使用Configuration时在driver和spring容器之中的是同一个对象，而使用Component时是不同的对象</li>
+<li>@Component范围广，所有类都可注解</li>
+<li>@Value的成员变量和@Bean注解方法，就是一个配置类</li>
+</ul>
+<p>参考：<a href="https://blog.csdn.net/long476964/article/details/80626930" target="_blank" rel="noopener">@Component和@Configuration作为配置类的差别</a></p>
 
     </div>
     
@@ -205,15 +219,15 @@
 
 <div class="article-nav prev-next-wrap clearfix">
     
-        <a href="/2019/08/22/17-【转】浏览器同源政策及其规避方法（1）/" class="pre-post btn btn-default" title='【转】浏览器同源政策及其规避方法（1）'>
+        <a href="/2019/08/29/Java——string类型与date类型之间的转化/" class="pre-post btn btn-default" title='Java——string类型与date类型之间的转化'>
             <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
-            <span class="hidden-xs">【转】浏览器同源政策及其规避方法（1）</span>
+            <span class="hidden-xs">Java——string类型与date类型之间的转化</span>
         </a>
     
     
-        <a href="/2019/08/21/15-【BUG】Spring-Mvc使用Jackson进行json转对象时，遇到的字符串转日期的异常处理（JSON-parse-error-Can-not-deserialize-value-of-type-java-util-Date-from-String-）/" class="next-post btn btn-default" title='【BUG】Spring Mvc使用Jackson进行json转对象时，遇到的字符串转日期的异常处理（JSON parse error: Can not deserialize value of type java.util.Date from String[]）'>
+        <a href="/2019/08/28/27.SpringBoot配置文件/" class="next-post btn btn-default" title='SpringBoot配置文件'>
             <span class="hidden-lg">下一篇</span>
-            <span class="hidden-xs">【BUG】Spring Mvc使用Jackson进行json转对象时，遇到的字符串转日期的异常处理（JSON parse error: Can not deserialize value of type java.util.Date from String[]）</span><i class="fa fa-angle-right fa-fw"></i>
+            <span class="hidden-xs">SpringBoot配置文件</span><i class="fa fa-angle-right fa-fw"></i>
         </a>
     
 </div>
@@ -256,7 +270,7 @@
     <div class="widget">
         <h3 class="title">Table of Contents</h3>
         
-            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-错误1"><span class="toc-text">1. 错误1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-错误2"><span class="toc-text">2. 错误2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-错误3"><span class="toc-text">3. 错误3</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Configuration"><span class="toc-text">@Configuration</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Configuration-注解："><span class="toc-text">Configuration 注解：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Configuration和-Component的区别"><span class="toc-text">@Configuration和@Component的区别</span></a></li></ol>
         
     </div>
 </aside>
