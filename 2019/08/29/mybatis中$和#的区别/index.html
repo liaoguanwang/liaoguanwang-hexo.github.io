@@ -23,7 +23,7 @@
     <meta name="keywords" content>
 
 
-    <meta name="description" content="知识点MyBatis中使用parameterType向SQL语句传参，parameterType后的类型可以是基本类型int,String,HashMap和java自定义类型。在SQL中引用这些...">
+    <meta name="description" content>
 
 
 
@@ -35,7 +35,7 @@
     <!--Title-->
 
 
-<title>mybatis中  #的区别 | 观旺叔叔的博客</title>
+<title>mybatis中$和#的区别 | 观旺叔叔的博客</title>
 
 
     <link rel="alternate" href="/atom.xml" title="观旺叔叔的博客" type="application/atom+xml">
@@ -140,9 +140,9 @@
                     <p id="process"></p>
 <article class="post">
     <div class="post-head">
-        <h1 id="mybatis中  #的区别">
+        <h1 id="mybatis中$和#的区别">
             
-	            mybatis中  #的区别
+	            mybatis中$和#的区别
             
         </h1>
         <div class="post-meta">
@@ -176,22 +176,7 @@
     </div>
     
     <div class="post-body post-content">
-        <h3 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h3><p>MyBatis中使用parameterType向SQL语句传参，parameterType后的类型可以是基本类型int,String,HashMap和java自定义类型。<br>在SQL中引用这些参数的时候，可以使用两种方式#{parameterName}或者${parameterName}。</p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ol>
-<li><p>#将传入的数据都当成一个字符串，会对自动传入的数据加一个双引号。<br>例如：where username=#{username}，如果传入的值是zhangsan,那么解析成sql时的值为where username=”zhangsan”。</p>
-</li>
-<li><p>\$ 将传入的数据直接显示生成在sql中。<br>例如：where username=\${username}，如果传入的值是zhangsan,那么解析成sql时的值为where username=zhangsan；</p>
-</li>
-<li><p>#方式能够很大程度防止SQL注入，\$方式无法防止SQL注入。<br>如果传入的值为;drop table user;<br>#{}方式的SQL语句为: select id, username, password from user where username = “;drop table user;”<br>${}方式的SQL语句为: select id, username, password from user where username = ;drop table user;</p>
-</li>
-<li><p>\$ 方式一般用于传入数据库对象，例如传入表名和列名。<br>例外：排序时使用order by动态参数时需要使用\$  ,ORDER BY ${columnName}</p>
-</li>
-<li><p>一般能用#的就别用\$ ，若不得不使用”${xxx}”这样的参数，要手工地做好过滤工作，来防止sql注入攻击。</p>
-</li>
-<li><p>在MyBatis中，”\$ {xxx}”这样格式的参数会直接参与SQL编译，从而不能避免注入攻击。但涉及到动态表名和列名时，只能使用”${xxx}”这样的参数格式。所以，这样的参数需要我们在代码中手工进行处理来防止注入。</p>
-</li>
-</ol>
-
+        
     </div>
     
     <div class="post-footer">
@@ -254,7 +239,7 @@
     <div class="widget">
         <h3 class="title">Table of Contents</h3>
         
-            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#知识点"><span class="toc-text">知识点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结"><span class="toc-text">总结</span></a></li></ol>
+            <p>暂无目录</p>
         
     </div>
 </aside>
