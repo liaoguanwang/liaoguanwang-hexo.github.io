@@ -23,8 +23,29 @@
     <meta name="keywords" content>
 
 
-    <meta name="description" content="在读取springBoot+gradle构建的项目时，如果使用传统的FileInputStream读取文件流或者ResourceUtils工具类的方式，都会失败，下面解释原因：
-一、读取文件的三...">
+    <meta name="description" content="IDEA快捷键
+
+
+按键
+含义
+
+
+
+输入psvm
+main函数
+
+
+输入fori
+for循环
+
+
+输入iter
+增强for循环
+
+
+输入sout
+输出语句System.Out.Println
+...">
 
 
 
@@ -36,7 +57,7 @@
     <!--Title-->
 
 
-<title>SpringBoot——web项目下读取classpath下的文件心得 | 观旺叔叔的博客</title>
+<title>常用快捷键 | 观旺叔叔的博客</title>
 
 
     <link rel="alternate" href="/atom.xml" title="观旺叔叔的博客" type="application/atom+xml">
@@ -141,9 +162,9 @@
                     <p id="process"></p>
 <article class="post">
     <div class="post-head">
-        <h1 id="SpringBoot——web项目下读取classpath下的文件心得">
+        <h1 id="常用快捷键">
             
-	            SpringBoot——web项目下读取classpath下的文件心得
+	            常用快捷键
             
         </h1>
         <div class="post-meta">
@@ -167,7 +188,7 @@
         
         <span class="fa-wrap">
             <i class="fa fa-clock-o"></i>
-            <span class="date-meta">2019/08/13</span>
+            <span class="date-meta">2019/08/12</span>
         </span>
         
     
@@ -177,22 +198,242 @@
     </div>
     
     <div class="post-body post-content">
-        <p>在读取springBoot+gradle构建的项目时，如果使用传统的FileInputStream读取文件流或者ResourceUtils工具类的方式，都会失败，下面解释原因：</p>
-<h2 id="一、读取文件的三种方式："><a href="#一、读取文件的三种方式：" class="headerlink" title="一、读取文件的三种方式："></a>一、读取文件的三种方式：</h2><h3 id="1-ResourceUtils工具类"><a href="#1-ResourceUtils工具类" class="headerlink" title="1. ResourceUtils工具类"></a>1. ResourceUtils工具类</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import org.springframework.util.ResourceUtils;</span><br><span class="line">//使用：</span><br><span class="line">File file= ResourceUtils.getFile(&quot;classpath:test.txt&quot;);</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-FileInputStream文件流的方式读取"><a href="#2-FileInputStream文件流的方式读取" class="headerlink" title="2. FileInputStream文件流的方式读取"></a>2. FileInputStream文件流的方式读取</h3><p><img src="https://img2018.cnblogs.com/blog/1351916/201810/1351916-20181007134706666-1792888992.png" alt><br>（该方式为按行读取，若不是按行处理，需要像图中将每行数据存在一个buffer中，然后转成String处理）</p>
-<h3 id="3-ClassPathResource获取文件流的方式"><a href="#3-ClassPathResource获取文件流的方式" class="headerlink" title="3. ClassPathResource获取文件流的方式"></a>3. ClassPathResource获取文件流的方式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ClassPathResource classPathResource = new ClassPathResource(&quot;test.txt&quot;);</span><br><span class="line"> </span><br><span class="line">获取文件：classPathResource .getFile();</span><br><span class="line"> </span><br><span class="line">获取文件流：classPathResource .getInputStream();</span><br></pre></td></tr></table></figure>
-
-<h2 id="二、不同web容器读取文件的区别"><a href="#二、不同web容器读取文件的区别" class="headerlink" title="二、不同web容器读取文件的区别"></a>二、不同web容器读取文件的区别</h2><p>有两种常见的web容器：</p>
-<ol>
-<li><p>第一种是普通的web项目，特点是jar/war压缩包会随着容器的启动解压缩成一个文件夹，当项目访问的时候，实际是访问文件夹，而非jar或者war包。该种方式下，用获取路径的方法：this.getClass().getResource(“/“)+fileName或者获取流的方法：this.getClass().getResourceAsStream(failName);都可以成功。</p>
-</li>
-<li><p>第二种是内嵌web容器，Spring boot就是内嵌web容器，其特点是只有一个jar文件，在容器启动后不会解压缩，项目实际访问的就是jar/war包该种方式最容易遇坑！！最大的坑就是，this.getClass().getResource(“/“)+fileName在本地windows下能完美找到路径，可是在linux测试服务器下就失败，所以读取jar中的文件只能用流读取，不能用file，即只能用方式三读取。所以，用spring boot搭建的工程，只能用</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">classPathResource .getInputStream();获取文件流。</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<p>转自：<a href="https://blog.csdn.net/NNnora/article/details/80734326" target="_blank" rel="noopener">https://blog.csdn.net/NNnora/article/details/80734326</a></p>
+        <h2 id="IDEA快捷键"><a href="#IDEA快捷键" class="headerlink" title="IDEA快捷键"></a>IDEA快捷键</h2><table>
+<thead>
+<tr>
+<th>按键</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>输入psvm</td>
+<td>main函数</td>
+</tr>
+<tr>
+<td>输入fori</td>
+<td>for循环</td>
+</tr>
+<tr>
+<td>输入iter</td>
+<td>增强for循环</td>
+</tr>
+<tr>
+<td>输入sout</td>
+<td>输出语句System.Out.Println</td>
+</tr>
+<tr>
+<td>选择代码块，再按Ctrl+Alt+T</td>
+<td>try/catch语句块</td>
+</tr>
+<tr>
+<td>Alt+1</td>
+<td>侧边栏收缩展开</td>
+</tr>
+<tr>
+<td>Alt+6</td>
+<td>控制台收缩展开</td>
+</tr>
+<tr>
+<td>Alt+7</td>
+<td>查看当前所有方法</td>
+</tr>
+<tr>
+<td>Alt+Insert</td>
+<td>代码生成（构造函数/set&amp;get）</td>
+</tr>
+<tr>
+<td>Alt+Left(&lt;-)/Right(-&gt;)</td>
+<td>代码视图切换前一张/后一张</td>
+</tr>
+<tr>
+<td>Ctrl+Q/H</td>
+<td>方法参数提示</td>
+</tr>
+<tr>
+<td>Ctrl+Alt+L</td>
+<td>代码排版</td>
+</tr>
+<tr>
+<td>Ctrl+Alt+T</td>
+<td>把代码包在一个块内，例如：try/catch</td>
+</tr>
+<tr>
+<td>Ctrl+Alt+M</td>
+<td>生成方法</td>
+</tr>
+<tr>
+<td>Ctrl+Alt+F</td>
+<td>局部变量抽取成成员变量</td>
+</tr>
+<tr>
+<td>Ctrl+F</td>
+<td>局部查找</td>
+</tr>
+<tr>
+<td>Ctrl+Shift+F</td>
+<td>全局查找</td>
+</tr>
+<tr>
+<td>Ctrl+Shift+T</td>
+<td>生成测试类</td>
+</tr>
+<tr>
+<td>Ctrl+Shift+F12</td>
+<td>代码窗口最大化</td>
+</tr>
+<tr>
+<td>Shit+F6</td>
+<td>重构-重命名</td>
+</tr>
+</tbody></table>
+<h2 id="Windows快捷键"><a href="#Windows快捷键" class="headerlink" title="Windows快捷键"></a>Windows快捷键</h2><table>
+<thead>
+<tr>
+<th>按键</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>F2</td>
+<td>文件/文件夹重命名</td>
+</tr>
+<tr>
+<td>Home</td>
+<td>行首</td>
+</tr>
+<tr>
+<td>End</td>
+<td>行尾</td>
+</tr>
+<tr>
+<td>Ctrl+Home</td>
+<td>移动到工作表表头</td>
+</tr>
+<tr>
+<td>Ctrl+End</td>
+<td>移动到工作表表尾</td>
+</tr>
+<tr>
+<td>Win+&lt;-</td>
+<td>窗口放屏幕左边</td>
+</tr>
+<tr>
+<td>Win+-&gt;</td>
+<td>窗口放屏幕右边</td>
+</tr>
+<tr>
+<td>Win+D</td>
+<td>显示桌面</td>
+</tr>
+<tr>
+<td>Win+E</td>
+<td>打开“我的电脑”</td>
+</tr>
+<tr>
+<td>Win+M</td>
+<td>最小化所有窗口</td>
+</tr>
+<tr>
+<td>Win+Shitf+M</td>
+<td>还原所有窗口</td>
+</tr>
+<tr>
+<td>Win+R+”regedit”</td>
+<td>打开注册表</td>
+</tr>
+<tr>
+<td>Win+R+”services.msc”</td>
+<td>打开系统服务</td>
+</tr>
+<tr>
+<td>Ctrl+Shift+N</td>
+<td>新建文件夹</td>
+</tr>
+</tbody></table>
+<h2 id="Chrome快捷键"><a href="#Chrome快捷键" class="headerlink" title="Chrome快捷键"></a>Chrome快捷键</h2><table>
+<thead>
+<tr>
+<th>按键</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Ctrl+T</td>
+<td>新建一个标签</td>
+</tr>
+<tr>
+<td>Ctrl+W</td>
+<td>关闭当前标签</td>
+</tr>
+<tr>
+<td>Ctrl+N</td>
+<td>运行一个浏览器</td>
+</tr>
+<tr>
+<td>Ctrl+Shitf+N</td>
+<td>运行一个无痕模式的浏览器</td>
+</tr>
+<tr>
+<td>Ctrl+Alt+Delete</td>
+<td>清除缓存和记录</td>
+</tr>
+<tr>
+<td><strong>功能快捷键</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>Ctrl+H</td>
+<td>新标签打开“历史记录”</td>
+</tr>
+<tr>
+<td>Ctrl+J</td>
+<td>新标签打开“下载内容”</td>
+</tr>
+<tr>
+<td><strong>网页快捷键</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>Esc建</td>
+<td>停止加载网页</td>
+</tr>
+<tr>
+<td>空格键</td>
+<td>向下滚动网页</td>
+</tr>
+<tr>
+<td>Shift+空格键</td>
+<td>向上滚动网页</td>
+</tr>
+<tr>
+<td>Ctrl+0</td>
+<td>网页比例恢复默认</td>
+</tr>
+<tr>
+<td>Ctrl+D</td>
+<td>将当前网页保存到书签</td>
+</tr>
+<tr>
+<td><strong>鼠标快捷键</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>Alt+点击链接</td>
+<td>下载该链接</td>
+</tr>
+<tr>
+<td>Ctrl+点击链接</td>
+<td>另起标签打开该链接</td>
+</tr>
+<tr>
+<td>Shift+点击链接</td>
+<td>另起浏览器打开该链接</td>
+</tr>
+<tr>
+<td>Ctrl+Sift+点击链接</td>
+<td>另起标签打开并跳转该链接</td>
+</tr>
+</tbody></table>
 
     </div>
     
@@ -210,15 +451,15 @@
 
 <div class="article-nav prev-next-wrap clearfix">
     
-        <a href="/2019/08/14/9-Druid连接池/" class="pre-post btn btn-default" title='Druid连接池'>
+        <a href="/2019/08/13/7-Navicat-For-MySQL-外键建立与cannot-add-foreign-key-constraint分析/" class="pre-post btn btn-default" title='Navicat For MySQL——外键建立与cannot add foreign key constraint分析'>
             <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
-            <span class="hidden-xs">Druid连接池</span>
+            <span class="hidden-xs">Navicat For MySQL——外键建立与cannot add foreign key constraint分析</span>
         </a>
     
     
-        <a href="/2019/08/13/7-Navicat-For-MySQL-外键建立与cannot-add-foreign-key-constraint分析/" class="next-post btn btn-default" title='Navicat For MySQL--外键建立与cannot add foreign key constraint分析'>
+        <a href="/2019/08/12/5-【BUG】IDEA导入Maven项目依赖不会报错，但使用的JAR会标红/" class="next-post btn btn-default" title='【BUG】IDEA导入Maven项目依赖不会报错，但使用的JAR会标红'>
             <span class="hidden-lg">下一篇</span>
-            <span class="hidden-xs">Navicat For MySQL--外键建立与cannot add foreign key constraint分析</span><i class="fa fa-angle-right fa-fw"></i>
+            <span class="hidden-xs">【BUG】IDEA导入Maven项目依赖不会报错，但使用的JAR会标红</span><i class="fa fa-angle-right fa-fw"></i>
         </a>
     
 </div>
@@ -261,7 +502,7 @@
     <div class="widget">
         <h3 class="title">Table of Contents</h3>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、读取文件的三种方式："><span class="toc-text">一、读取文件的三种方式：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-ResourceUtils工具类"><span class="toc-text">1. ResourceUtils工具类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-FileInputStream文件流的方式读取"><span class="toc-text">2. FileInputStream文件流的方式读取</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-ClassPathResource获取文件流的方式"><span class="toc-text">3. ClassPathResource获取文件流的方式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、不同web容器读取文件的区别"><span class="toc-text">二、不同web容器读取文件的区别</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#IDEA快捷键"><span class="toc-text">IDEA快捷键</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Windows快捷键"><span class="toc-text">Windows快捷键</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chrome快捷键"><span class="toc-text">Chrome快捷键</span></a></li></ol>
         
     </div>
 </aside>
