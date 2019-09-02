@@ -233,7 +233,7 @@
 </ol>
 <p>MEMORY存储引擎默认使用哈希（HASH）索引，其速度比使用B-+Tree型要快，但也可以使用B树型索引。由于这种存储引擎所存储的数据保存在内存中，所以其保存的数据具有不稳定性，比如如果mysqld进程发生异常、重启或计算机关机等等都会造成这些数据的消失，所以这种存储引擎中的表的生命周期很短，一般只使用一次。现在mongodb、redis等NOSQL数据库愈发流行，MEMORY存储引擎的使用场景越来越少。</p>
 <h4 id="2-3-2-使用场景"><a href="#2-3-2-使用场景" class="headerlink" title="2.3.2 使用场景"></a>2.3.2 使用场景</h4><p>如果需要该数据库中一个用于查询的临时表。</p>
-<h2 id="3-存储引擎的选择"><a href="#3-存储引擎的选择" class="headerlink" title="3.存储引擎的选择"></a>3.存储引擎的选择</h2><p>在实际工作中，选择一个合适的存储引擎是一个比较复杂的问题。每种存储引擎都有自己的优缺点，不能笼统地说谁比谁好。但建议选择使用InnoDB</p>
+<h2 id="3-存储引擎的选择"><a href="#3-存储引擎的选择" class="headerlink" title="3.存储引擎的选择"></a>3.存储引擎的选择</h2><p>在实际工作中，选择一个合适的存储引擎是一个比较复杂的问题。每种存储引擎都有自己的优缺点，不能笼统地说谁比谁好。如果不知道选择啥存储引擎，建议选择使用InnoDB。</p>
 <p><img src="https://img2018.cnblogs.com/blog/1351916/201810/1351916-20181010010820916-385487321.jpg" alt></p>
 <h2 id="4-存储引擎总结"><a href="#4-存储引擎总结" class="headerlink" title="4.存储引擎总结"></a>4.存储引擎总结</h2><p>InnoDB： 支持事务处理，支持外键，支持崩溃修复能力和并发控制。如果需要对事务的完整性要求比较高（比如银行），要求实现并发控制（比如售票），那选择InnoDB有很大的优势。如果需要频繁的更新、删除操作的数据库，也可以选择InnoDB，因为支持事务的提交（commit）和回滚（rollback）。</p>
 <p>MyISAM： 插入数据快，空间和内存使用比较低。如果表主要是用于插入新记录和读出记录，那么选择MyISAM能实现处理高效率。如果应用的完整性、并发性要求比 较低，也可以使用。</p>
@@ -243,6 +243,7 @@
 <ol>
 <li><a href="https://blog.csdn.net/yjclsx/article/details/81911027" target="_blank" rel="noopener">mysql存储引擎</a></li>
 <li><a href="https://www.cnblogs.com/snake23/p/9635822.html" target="_blank" rel="noopener">mysql中四种存储引擎的区别和选择</a></li>
+<li><a href="https://blog.csdn.net/len9596/article/details/80206532" target="_blank" rel="noopener">Mysql存储引擎比较</a></li>
 </ol>
 
     </div>
