@@ -23,9 +23,7 @@
     <meta name="keywords" content>
 
 
-    <meta name="description" content="1. 问题描述使用spring-boot开发时候，有时候程序没事，往往不经意会造成中文到前端变成乱码（？？？？这样情况）
-2. 解决方法下面给出spring-boot项目统一字符集设置方案：
-2...">
+    <meta name="description" content="获取到一个inputstream后，可能要多次利用它进行read的操作。由于流读过一次就不能再读了，而InputStream对象本身不能复制，而且它也没有实现Cloneable接口，所以得想点办...">
 
 
 
@@ -37,7 +35,7 @@
     <!--Title-->
 
 
-<title>【转】Spring-boot 字符集设置 解决乱码方案 | 观旺叔叔的博客</title>
+<title>Java实现inputstream流的复制 | 观旺叔叔的博客</title>
 
 
     <link rel="alternate" href="/atom.xml" title="观旺叔叔的博客" type="application/atom+xml">
@@ -142,9 +140,9 @@
                     <p id="process"></p>
 <article class="post">
     <div class="post-head">
-        <h1 id="【转】Spring-boot 字符集设置 解决乱码方案">
+        <h1 id="Java实现inputstream流的复制">
             
-	            【转】Spring-boot 字符集设置 解决乱码方案
+	            Java实现inputstream流的复制
             
         </h1>
         <div class="post-meta">
@@ -168,7 +166,7 @@
         
         <span class="fa-wrap">
             <i class="fa fa-clock-o"></i>
-            <span class="date-meta">2019/08/22</span>
+            <span class="date-meta">2019/09/05</span>
         </span>
         
     
@@ -178,16 +176,15 @@
     </div>
     
     <div class="post-body post-content">
-        <h3 id="1-问题描述"><a href="#1-问题描述" class="headerlink" title="1. 问题描述"></a>1. 问题描述</h3><p>使用spring-boot开发时候，有时候程序没事，往往不经意会造成中文到前端变成乱码（？？？？这样情况）</p>
-<h3 id="2-解决方法"><a href="#2-解决方法" class="headerlink" title="2. 解决方法"></a>2. 解决方法</h3><p>下面给出spring-boot项目统一字符集设置方案：</p>
-<h4 id="2-1-Spring-Boot修改编码方法，在application-properties里面配置："><a href="#2-1-Spring-Boot修改编码方法，在application-properties里面配置：" class="headerlink" title="2.1 Spring Boot修改编码方法，在application.properties里面配置："></a>2.1 Spring Boot修改编码方法，在application.properties里面配置：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">spring.http.encoding.charset=UTF-8</span><br><span class="line">spring.http.encoding.force=true</span><br><span class="line">spring.http.encoding.enabled=true</span><br></pre></td></tr></table></figure>
+        <p>获取到一个inputstream后，可能要多次利用它进行read的操作。由于流读过一次就不能再读了，而InputStream对象本身不能复制，而且它也没有实现Cloneable接口，所以得想点办法。</p>
+<p>实现思路：</p>
+<p>1、先把InputStream转化成ByteArrayOutputStream</p>
+<p>2、后面要使用InputStream对象时，再从ByteArrayOutputStream转化回来</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.test;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">import</span> java.io.ByteArrayInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.ByteArrayOutputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.FileInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.FileNotFoundException;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.io.InputStream;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StreamOperateUtil</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> FileNotFoundException </span>&#123;</span><br><span class="line">		 </span><br><span class="line">		InputStream input =  <span class="keyword">new</span> FileInputStream(<span class="string">"c:\\test.txt"</span>); </span><br><span class="line">		<span class="comment">//InputStream input =  httpconn.getInputStream(); //这里可以写你获取到的流</span></span><br><span class="line">		</span><br><span class="line">		ByteArrayOutputStream baos = cloneInputStream(input);</span><br><span class="line">		</span><br><span class="line">		<span class="comment">// 打开两个新的输入流  </span></span><br><span class="line">		InputStream stream1 = <span class="keyword">new</span> ByteArrayInputStream(baos.toByteArray());  </span><br><span class="line">		InputStream stream2 = <span class="keyword">new</span> ByteArrayInputStream(baos.toByteArray());</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line"> </span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">static</span> ByteArrayOutputStream <span class="title">cloneInputStream</span><span class="params">(InputStream input)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			ByteArrayOutputStream baos = <span class="keyword">new</span> ByteArrayOutputStream();</span><br><span class="line">			<span class="keyword">byte</span>[] buffer = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];</span><br><span class="line">			<span class="keyword">int</span> len;</span><br><span class="line">			<span class="keyword">while</span> ((len = input.read(buffer)) &gt; -<span class="number">1</span>) &#123;</span><br><span class="line">				baos.write(buffer, <span class="number">0</span>, len);</span><br><span class="line">			&#125;</span><br><span class="line">			baos.flush();</span><br><span class="line">			<span class="keyword">return</span> baos;</span><br><span class="line">		&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">			<span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h4 id="或者在Spring-Boot-项目的application-yml里面配置："><a href="#或者在Spring-Boot-项目的application-yml里面配置：" class="headerlink" title="或者在Spring Boot 项目的application.yml里面配置："></a>或者在Spring Boot 项目的application.yml里面配置：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">spring:</span><br><span class="line">    http:</span><br><span class="line">       encoding:</span><br><span class="line">           charset: UTF-8</span><br><span class="line">           force: true</span><br><span class="line">           enabled: true</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-2-在Bean中配置（启动类）"><a href="#2-2-在Bean中配置（启动类）" class="headerlink" title="2.2 在Bean中配置（启动类）"></a>2.2 在Bean中配置（启动类）</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">@Bean</span><br><span class="line">public FilterRegistrationBean filterRegistrationBean() &#123;</span><br><span class="line">    FilterRegistrationBean registrationBean = new FilterRegistrationBean();</span><br><span class="line">    CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();</span><br><span class="line">    characterEncodingFilter.setForceEncoding(true);</span><br><span class="line">    characterEncodingFilter.setEncoding(&quot;UTF-8&quot;);</span><br><span class="line">    registrationBean.setFilter(characterEncodingFilter);</span><br><span class="line">    return registrationBean;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>PS：最后强调一点，开发中保持前后端以及DB字符集一致！</p>
-<p>转自：<a href>https://www.songliguo.com/spring-boot-charset.html</a></p>
+<p>这种适用于一些不是很大的流，因为缓存流是会消耗内存的。</p>
+<p>备注：<a href="http://blog.csdn.net/dreamtdp/article/details/26733563" target="_blank" rel="noopener">关于InputStream为什么不能被重复读取？</a></p>
+<p>转自: <a href="https://blog.csdn.net/qq_25646191/article/details/78856639" target="_blank" rel="noopener">Java实现inputstream流的复制</a></p>
 
     </div>
     
@@ -205,15 +202,10 @@
 
 <div class="article-nav prev-next-wrap clearfix">
     
-        <a href="/2019/08/24/21-swagger2常用注解/" class="pre-post btn btn-default" title='swagger2常用注解'>
-            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
-            <span class="hidden-xs">swagger2常用注解</span>
-        </a>
     
-    
-        <a href="/2019/08/22/19-Spring注解/" class="next-post btn btn-default" title='Spring注解'>
+        <a href="/2019/08/30/30.mybatis中${}和井{}的区别/" class="next-post btn btn-default" title='mybatis中${}和#{}的区别'>
             <span class="hidden-lg">下一篇</span>
-            <span class="hidden-xs">Spring注解</span><i class="fa fa-angle-right fa-fw"></i>
+            <span class="hidden-xs">mybatis中${}和#{}的区别</span><i class="fa fa-angle-right fa-fw"></i>
         </a>
     
 </div>
@@ -256,7 +248,7 @@
     <div class="widget">
         <h3 class="title">Table of Contents</h3>
         
-            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-问题描述"><span class="toc-text">1. 问题描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-解决方法"><span class="toc-text">2. 解决方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-Spring-Boot修改编码方法，在application-properties里面配置："><span class="toc-text">2.1 Spring Boot修改编码方法，在application.properties里面配置：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#或者在Spring-Boot-项目的application-yml里面配置："><span class="toc-text">或者在Spring Boot 项目的application.yml里面配置：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-在Bean中配置（启动类）"><span class="toc-text">2.2 在Bean中配置（启动类）</span></a></li></ol></li></ol>
+            <p>暂无目录</p>
         
     </div>
 </aside>
