@@ -23,14 +23,9 @@
     <meta name="keywords" content>
 
 
-    <meta name="description" content="1.问题排查项目配置
-
-springboot 2.1
-Mave配置Jackson依赖
-
-出现的场景
-
-服务端通过springmvc写了一个对外的接口，查询数据中的表，表中有一个字段属性是时间戳，...">
+    <meta name="description" content="有时候项目需要解除svn关联，百度谷歌几篇，以下方式是最简单快捷的。
+从.idea文件夹下手，找到了cvs.xml，其内容如下：
+123456&lt;?xml version=" 1.0" enc...">
 
 
 
@@ -42,7 +37,7 @@ Mave配置Jackson依赖
     <!--Title-->
 
 
-<title>【BUG】Spring Mvc使用Jackson进行json转对象时，遇到的字符串转日期的异常处理（JSON parse error: Can not deserialize value of type java.util.Date from String[]） | 观旺叔叔的博客</title>
+<title>idea解除svn关联 | 观旺叔叔的博客</title>
 
 
     <link rel="alternate" href="/atom.xml" title="观旺叔叔的博客" type="application/atom+xml">
@@ -147,9 +142,9 @@ Mave配置Jackson依赖
                     <p id="process"></p>
 <article class="post">
     <div class="post-head">
-        <h1 id="【BUG】Spring Mvc使用Jackson进行json转对象时，遇到的字符串转日期的异常处理（JSON parse error: Can not deserialize value of type java.util.Date from String[]）">
+        <h1 id="idea解除svn关联">
             
-	            【BUG】Spring Mvc使用Jackson进行json转对象时，遇到的字符串转日期的异常处理（JSON parse error: Can not deserialize value of type java.util.Date from String[]）
+	            idea解除svn关联
             
         </h1>
         <div class="post-meta">
@@ -173,7 +168,7 @@ Mave配置Jackson依赖
         
         <span class="fa-wrap">
             <i class="fa fa-clock-o"></i>
-            <span class="date-meta">2019/08/21</span>
+            <span class="date-meta">2019/09/09</span>
         </span>
         
     
@@ -183,23 +178,14 @@ Mave配置Jackson依赖
     </div>
     
     <div class="post-body post-content">
-        <h3 id="1-问题排查"><a href="#1-问题排查" class="headerlink" title="1.问题排查"></a>1.问题排查</h3><p><strong>项目配置</strong></p>
-<ul>
-<li>springboot 2.1</li>
-<li>Mave配置Jackson依赖</li>
-</ul>
-<p><strong>出现的场景</strong></p>
-<ul>
-<li>服务端通过springmvc写了一个对外的接口，查询数据中的表，表中有一个字段属性是时间戳，返回一个json字符串，其中该json带有日期，格式为yyyy-MM-dd HH:mm:ss</li>
-<li>客户端调用该http接口，指定返回值为一个Vo，Vo中日期的字段为Date类型</li>
-<li>客户端调用该接口后抛异常了。报错信息如下：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">feign.codec.DecodeException: JSON parse error: Can not deserialize value of type java.util.Date from String <span class="string">"2018-03-07 16:18:35"</span>: <span class="function">not a valid <span class="title">representation</span> <span class="params">(error: Failed to parse Date value <span class="string">'2018-03-07 16:18:35'</span>: Can not parse date <span class="string">"2018-03-07 16:18:35Z"</span>: <span class="keyword">while</span> it seems to fit format <span class="string">'yyyy-MM-dd'</span>T<span class="string">'HH:mm:ss.SSS'</span>Z<span class="string">''</span>, parsing fails (leniency? <span class="keyword">null</span>)</span>)</span>; nested exception is com.fasterxml.jackson.databind.exc.InvalidFormatException: Can not deserialize value of type java.util.Date from String <span class="string">"2018-03-07 16:18:35"</span>: <span class="function">not a valid <span class="title">representation</span> <span class="params">(error: Failed to parse Date value <span class="string">'2018-03-07 16:18:35'</span>: Can not parse date <span class="string">"2018-03-07 16:18:35Z"</span>: <span class="keyword">while</span> it seems to fit format <span class="string">'yyyy-MM-dd'</span>T<span class="string">'HH:mm:ss.SSS'</span>Z<span class="string">''</span>, parsing fails (leniency? <span class="keyword">null</span>)</span>)</span></span><br></pre></td></tr></table></figure>
+        <p>有时候项目需要解除svn关联，百度谷歌几篇，以下方式是最简单快捷的。</p>
+<p>从.idea文件夹下手，找到了cvs.xml，其内容如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">version</span>=<span class="string">"4"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">component</span> <span class="attr">name</span>=<span class="string">"VcsDirectoryMappings"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mapping</span> <span class="attr">directory</span>=<span class="string">""</span> <span class="attr">vcs</span>=<span class="string">"svn"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">component</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-</li>
-</ul>
-<h3 id="2-解决方法"><a href="#2-解决方法" class="headerlink" title="2.解决方法"></a>2.解决方法</h3><p>因为数据库中存在一个create_time字段，属性是timestamp，服务器端查询数据库并把字段映射到定义的Vo中出现了格式问题，所以在Vo中把createTime添加@JsonFormat注释就可以完成时间字段映射的格式问题。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@JsonFormat( pattern=&quot;yyyy-MM-dd HH:mm:ss&quot;)  </span><br><span class="line">  private Date createTime;</span><br></pre></td></tr></table></figure>
-
-<h3 id="3-异常的原因"><a href="#3-异常的原因" class="headerlink" title="3.异常的原因"></a>3.异常的原因</h3><p>这篇博客可以了解底层报错的原因。<br><a href="https://blog.csdn.net/qq906627950/article/details/79503801" target="_blank" rel="noopener">https://blog.csdn.net/qq906627950/article/details/79503801</a></p>
+<ol>
+<li><component> </component>节点及其内容全部注释掉</li>
+<li>直接删除掉.idea文件</li>
+</ol>
 
     </div>
     
@@ -217,15 +203,15 @@ Mave配置Jackson依赖
 
 <div class="article-nav prev-next-wrap clearfix">
     
-        <a href="/2019/08/22/17-【转】浏览器同源政策及其规避方法（1）/" class="pre-post btn btn-default" title='【转】浏览器同源政策及其规避方法（1）'>
+        <a href="/2019/09/09/根据经纬度算出附近的正方形的四个角的经纬度/" class="pre-post btn btn-default" title='Java根据经纬度算出附近的正方形的四个角的经纬度'>
             <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
-            <span class="hidden-xs">【转】浏览器同源政策及其规避方法（1）</span>
+            <span class="hidden-xs">Java根据经纬度算出附近的正方形的四个角的经纬度</span>
         </a>
     
     
-        <a href="/2019/08/18/13-【转】Springboot-mybatis读取配置文件/" class="next-post btn btn-default" title='【转】Springboot-Mybatis 读取配置文件'>
+        <a href="/2019/09/05/Java实现inputstream流的复制/" class="next-post btn btn-default" title='Java实现inputstream流的复制'>
             <span class="hidden-lg">下一篇</span>
-            <span class="hidden-xs">【转】Springboot-Mybatis 读取配置文件</span><i class="fa fa-angle-right fa-fw"></i>
+            <span class="hidden-xs">Java实现inputstream流的复制</span><i class="fa fa-angle-right fa-fw"></i>
         </a>
     
 </div>
@@ -268,7 +254,7 @@ Mave配置Jackson依赖
     <div class="widget">
         <h3 class="title">Table of Contents</h3>
         
-            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-问题排查"><span class="toc-text">1.问题排查</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-解决方法"><span class="toc-text">2.解决方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-异常的原因"><span class="toc-text">3.异常的原因</span></a></li></ol>
+            <p>暂无目录</p>
         
     </div>
 </aside>

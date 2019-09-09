@@ -23,14 +23,8 @@
     <meta name="keywords" content>
 
 
-    <meta name="description" content="1.问题排查项目配置
-
-springboot 2.1
-Mave配置Jackson依赖
-
-出现的场景
-
-服务端通过springmvc写了一个对外的接口，查询数据中的表，表中有一个字段属性是时间戳，...">
+    <meta name="description" content="背景  项目开发中csv文件转化为geojson文件中，涉及到路测图的打点生成，打点是由一个个正方形组成，而正方形是由四个点组成的，这四个点根据经纬度和范围生成，实现代码参考网上：
+123456...">
 
 
 
@@ -42,7 +36,7 @@ Mave配置Jackson依赖
     <!--Title-->
 
 
-<title>【BUG】Spring Mvc使用Jackson进行json转对象时，遇到的字符串转日期的异常处理（JSON parse error: Can not deserialize value of type java.util.Date from String[]） | 观旺叔叔的博客</title>
+<title>Java根据经纬度算出附近的正方形的四个角的经纬度 | 观旺叔叔的博客</title>
 
 
     <link rel="alternate" href="/atom.xml" title="观旺叔叔的博客" type="application/atom+xml">
@@ -147,9 +141,9 @@ Mave配置Jackson依赖
                     <p id="process"></p>
 <article class="post">
     <div class="post-head">
-        <h1 id="【BUG】Spring Mvc使用Jackson进行json转对象时，遇到的字符串转日期的异常处理（JSON parse error: Can not deserialize value of type java.util.Date from String[]）">
+        <h1 id="Java根据经纬度算出附近的正方形的四个角的经纬度">
             
-	            【BUG】Spring Mvc使用Jackson进行json转对象时，遇到的字符串转日期的异常处理（JSON parse error: Can not deserialize value of type java.util.Date from String[]）
+	            Java根据经纬度算出附近的正方形的四个角的经纬度
             
         </h1>
         <div class="post-meta">
@@ -173,7 +167,7 @@ Mave配置Jackson依赖
         
         <span class="fa-wrap">
             <i class="fa fa-clock-o"></i>
-            <span class="date-meta">2019/08/21</span>
+            <span class="date-meta">2019/09/09</span>
         </span>
         
     
@@ -183,23 +177,10 @@ Mave配置Jackson依赖
     </div>
     
     <div class="post-body post-content">
-        <h3 id="1-问题排查"><a href="#1-问题排查" class="headerlink" title="1.问题排查"></a>1.问题排查</h3><p><strong>项目配置</strong></p>
-<ul>
-<li>springboot 2.1</li>
-<li>Mave配置Jackson依赖</li>
-</ul>
-<p><strong>出现的场景</strong></p>
-<ul>
-<li>服务端通过springmvc写了一个对外的接口，查询数据中的表，表中有一个字段属性是时间戳，返回一个json字符串，其中该json带有日期，格式为yyyy-MM-dd HH:mm:ss</li>
-<li>客户端调用该http接口，指定返回值为一个Vo，Vo中日期的字段为Date类型</li>
-<li>客户端调用该接口后抛异常了。报错信息如下：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">feign.codec.DecodeException: JSON parse error: Can not deserialize value of type java.util.Date from String <span class="string">"2018-03-07 16:18:35"</span>: <span class="function">not a valid <span class="title">representation</span> <span class="params">(error: Failed to parse Date value <span class="string">'2018-03-07 16:18:35'</span>: Can not parse date <span class="string">"2018-03-07 16:18:35Z"</span>: <span class="keyword">while</span> it seems to fit format <span class="string">'yyyy-MM-dd'</span>T<span class="string">'HH:mm:ss.SSS'</span>Z<span class="string">''</span>, parsing fails (leniency? <span class="keyword">null</span>)</span>)</span>; nested exception is com.fasterxml.jackson.databind.exc.InvalidFormatException: Can not deserialize value of type java.util.Date from String <span class="string">"2018-03-07 16:18:35"</span>: <span class="function">not a valid <span class="title">representation</span> <span class="params">(error: Failed to parse Date value <span class="string">'2018-03-07 16:18:35'</span>: Can not parse date <span class="string">"2018-03-07 16:18:35Z"</span>: <span class="keyword">while</span> it seems to fit format <span class="string">'yyyy-MM-dd'</span>T<span class="string">'HH:mm:ss.SSS'</span>Z<span class="string">''</span>, parsing fails (leniency? <span class="keyword">null</span>)</span>)</span></span><br></pre></td></tr></table></figure>
+        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>  项目开发中csv文件转化为geojson文件中，涉及到路测图的打点生成，打点是由一个个正方形组成，而正方形是由四个点组成的，这四个点根据经纬度和范围生成，实现代码参考网上：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">     * </span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> longitude 经度</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> latitude  纬度</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> distance  范围（米）</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Map&lt;String, <span class="keyword">double</span>[]&gt; returnLLSquarePoint(<span class="keyword">double</span> longitude,  <span class="keyword">double</span> latitude, <span class="keyword">double</span> distance) &#123;</span><br><span class="line">        Map&lt;String, <span class="keyword">double</span>[]&gt; squareMap = <span class="keyword">new</span> HashMap&lt;String, <span class="keyword">double</span>[]&gt;();</span><br><span class="line">        <span class="comment">// 计算经度弧度,从弧度转换为角度</span></span><br><span class="line">        <span class="keyword">double</span> dLongitude = <span class="number">2</span> * (Math.asin(Math.sin(distance</span><br><span class="line">                / (<span class="number">2</span> * <span class="number">6378137</span>))</span><br><span class="line">                / Math.cos(Math.toRadians(latitude))));</span><br><span class="line">        dLongitude = Math.toDegrees(dLongitude);</span><br><span class="line">        <span class="comment">// 计算纬度角度</span></span><br><span class="line">        <span class="keyword">double</span> dLatitude = distance / <span class="number">6378137</span>;</span><br><span class="line">        dLatitude = Math.toDegrees(dLatitude);</span><br><span class="line">        <span class="comment">// 正方形</span></span><br><span class="line">        <span class="keyword">double</span>[] leftTopPoint = &#123; latitude + dLatitude, longitude - dLongitude &#125;;</span><br><span class="line">        <span class="keyword">double</span>[] rightTopPoint = &#123; latitude + dLatitude, longitude + dLongitude &#125;;</span><br><span class="line">        <span class="keyword">double</span>[] leftBottomPoint = &#123; latitude - dLatitude,</span><br><span class="line">                longitude - dLongitude &#125;;</span><br><span class="line">        <span class="keyword">double</span>[] rightBottomPoint = &#123; latitude - dLatitude,</span><br><span class="line">                longitude + dLongitude &#125;;</span><br><span class="line">        squareMap.put(<span class="string">"leftTopPoint"</span>, leftTopPoint);</span><br><span class="line">        squareMap.put(<span class="string">"rightTopPoint"</span>, rightTopPoint);</span><br><span class="line">        squareMap.put(<span class="string">"leftBottomPoint"</span>, leftBottomPoint);</span><br><span class="line">        squareMap.put(<span class="string">"rightBottomPoint"</span>, rightBottomPoint);</span><br><span class="line">        System.out.println(<span class="string">"leftTop："</span>+leftTopPoint[<span class="number">0</span>]+<span class="string">"======"</span>+leftTopPoint[<span class="number">1</span>]);</span><br><span class="line">        System.out.println(<span class="string">"rightTop："</span>+rightTopPoint[<span class="number">0</span>]+<span class="string">"======"</span>+rightTopPoint[<span class="number">1</span>]);</span><br><span class="line">        System.out.println(<span class="string">"leftBottom："</span>+leftBottomPoint[<span class="number">0</span>]+<span class="string">"======"</span>+leftBottomPoint[<span class="number">1</span>]);</span><br><span class="line">        System.out.println(<span class="string">"rightBottom："</span>+rightBottomPoint[<span class="number">0</span>]+<span class="string">"======"</span>+rightBottomPoint[<span class="number">1</span>]);</span><br><span class="line">        <span class="keyword">return</span> squareMap;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
-</li>
-</ul>
-<h3 id="2-解决方法"><a href="#2-解决方法" class="headerlink" title="2.解决方法"></a>2.解决方法</h3><p>因为数据库中存在一个create_time字段，属性是timestamp，服务器端查询数据库并把字段映射到定义的Vo中出现了格式问题，所以在Vo中把createTime添加@JsonFormat注释就可以完成时间字段映射的格式问题。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@JsonFormat( pattern=&quot;yyyy-MM-dd HH:mm:ss&quot;)  </span><br><span class="line">  private Date createTime;</span><br></pre></td></tr></table></figure>
-
-<h3 id="3-异常的原因"><a href="#3-异常的原因" class="headerlink" title="3.异常的原因"></a>3.异常的原因</h3><p>这篇博客可以了解底层报错的原因。<br><a href="https://blog.csdn.net/qq906627950/article/details/79503801" target="_blank" rel="noopener">https://blog.csdn.net/qq906627950/article/details/79503801</a></p>
+<p>参考：<a href="https://www.cnblogs.com/chen-lhx/p/5800187.html" target="_blank" rel="noopener">JAVA 根据经纬度算出附近的正方形的四个角的经纬度</a></p>
 
     </div>
     
@@ -217,15 +198,10 @@ Mave配置Jackson依赖
 
 <div class="article-nav prev-next-wrap clearfix">
     
-        <a href="/2019/08/22/17-【转】浏览器同源政策及其规避方法（1）/" class="pre-post btn btn-default" title='【转】浏览器同源政策及其规避方法（1）'>
-            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
-            <span class="hidden-xs">【转】浏览器同源政策及其规避方法（1）</span>
-        </a>
     
-    
-        <a href="/2019/08/18/13-【转】Springboot-mybatis读取配置文件/" class="next-post btn btn-default" title='【转】Springboot-Mybatis 读取配置文件'>
+        <a href="/2019/09/09/idea解除svn关联/" class="next-post btn btn-default" title='idea解除svn关联'>
             <span class="hidden-lg">下一篇</span>
-            <span class="hidden-xs">【转】Springboot-Mybatis 读取配置文件</span><i class="fa fa-angle-right fa-fw"></i>
+            <span class="hidden-xs">idea解除svn关联</span><i class="fa fa-angle-right fa-fw"></i>
         </a>
     
 </div>
@@ -268,7 +244,7 @@ Mave配置Jackson依赖
     <div class="widget">
         <h3 class="title">Table of Contents</h3>
         
-            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-问题排查"><span class="toc-text">1.问题排查</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-解决方法"><span class="toc-text">2.解决方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-异常的原因"><span class="toc-text">3.异常的原因</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#背景"><span class="toc-text">背景</span></a></li></ol>
         
     </div>
 </aside>
