@@ -24,9 +24,9 @@
 
 
     <meta name="description" content="1. mongodb启动配置参考：Windows下mongodb的启动
-2.Invalid command: files\mongoDB报错信息：
+2. Invalid command: files\mongoDB报错信息：
 正确方法：
-原因：路径之中有空格会当参数来处理...">
+原因：路径之中有空格会当参数来处...">
 
 
 
@@ -180,9 +180,33 @@
     
     <div class="post-body post-content">
         <h3 id="1-mongodb启动配置"><a href="#1-mongodb启动配置" class="headerlink" title="1. mongodb启动配置"></a>1. mongodb启动配置</h3><p>参考：<a href="https://www.jianshu.com/p/6f4549037cc1" target="_blank" rel="noopener">Windows下mongodb的启动</a></p>
-<h3 id="2-Invalid-command-files-mongoDB"><a href="#2-Invalid-command-files-mongoDB" class="headerlink" title="2.Invalid command: files\mongoDB"></a>2.Invalid command: files\mongoDB</h3><p>报错信息：<br><img src="https://img2018.cnblogs.com/blog/1351916/201905/1351916-20190506235357505-310315469.png" alt></p>
+<h3 id="2-Invalid-command-files-mongoDB"><a href="#2-Invalid-command-files-mongoDB" class="headerlink" title="2. Invalid command: files\mongoDB"></a>2. Invalid command: files\mongoDB</h3><p>报错信息：<br><img src="https://img2018.cnblogs.com/blog/1351916/201905/1351916-20190506235357505-310315469.png" alt></p>
 <p>正确方法：<br><img src="https://img2018.cnblogs.com/blog/1351916/201905/1351916-20190506235618294-1343038263.png" alt></p>
 <p>原因：路径之中有空格会当参数来处理，需要将整个路径加上引号</p>
+<h3 id="3-MongoDB连接认证失败"><a href="#3-MongoDB连接认证失败" class="headerlink" title="3. MongoDB连接认证失败"></a>3. MongoDB连接认证失败</h3><p>SpringBoot配置MongoDB地址时，如果不设置连接方式默认是MONGODB-CR,如果安装的时候设置的是SCRAM-SHA-1。</p>
+<p>需要在配置mongodb地址的时候加上连接方式：<br>spring.data.mongodb.uri=mongodb://root(userName):root(password)@localhost(ip地址):27017(端口号)/gis(collections/数据库)?authSource=admin&amp;authMechanism=SCRAM-SHA-1</p>
+<h3 id="4-Unauthorized-not-authorized-on-test-to-execute-command-dbstats-1-0-scale-undefined-db-“test”"><a href="#4-Unauthorized-not-authorized-on-test-to-execute-command-dbstats-1-0-scale-undefined-db-“test”" class="headerlink" title="4. Unauthorized: not authorized on test to execute command { dbstats: 1.0, scale: undefined, $db: “test” }"></a>4. Unauthorized: not authorized on test to execute command { dbstats: 1.0, scale: undefined, $db: “test” }</h3><p>当前版本3.6.2<br>问题原因出在读写的权限上：stackoverflow上的解决方法</p>
+<p>You should have started the mongod instance with access control, i.e., the –auth command line option, such as:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mongod --auth</span><br></pre></td></tr></table></figure>
+
+<p>Let’s start the mongo shell, and create an administrator in the admin database:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ mongo</span><br><span class="line">&gt; use admin</span><br><span class="line">&gt; db.createUser(</span><br><span class="line">  &#123;</span><br><span class="line">    user: &quot;myUserAdmin&quot;,</span><br><span class="line">    pwd: &quot;abc123&quot;,</span><br><span class="line">    roles: [ &#123; role: &quot;userAdminAnyDatabase&quot;, db: &quot;admin&quot; &#125; ]</span><br><span class="line">  &#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>Now if you run command “db.stats()”, or “show users”, you will get error “not authorized on admin to execute command…”</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt; db.stats()</span><br><span class="line">&#123;</span><br><span class="line">        &quot;ok&quot; : 0,</span><br><span class="line">        &quot;errmsg&quot; : &quot;not authorized on admin to execute command &#123; dbstats: 1.0, scale: undefined &#125;&quot;,</span><br><span class="line">        &quot;code&quot; : 13,</span><br><span class="line">        &quot;codeName&quot; : &quot;Unauthorized&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>下面这两句最重要，如果是开始新建 ，则要从头开始看:<br>The reason is that you still have not granted role “read” or “readWrite” to user myUserAdmin. You can do it as below:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; db.auth(&quot;myUserAdmin&quot;, &quot;abc123&quot;)</span><br><span class="line">&gt; db.grantRolesToUser(&quot;myUserAdmin&quot;, [ &#123; role: &quot;read&quot;, db: &quot;admin&quot; &#125; ])</span><br></pre></td></tr></table></figure>
+
+<p>Now You can verify it (Command “show users” now works):</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&gt; show users</span><br><span class="line">&#123;</span><br><span class="line">        &quot;_id&quot; : &quot;admin.myUserAdmin&quot;,</span><br><span class="line">        &quot;user&quot; : &quot;myUserAdmin&quot;,</span><br><span class="line">        &quot;db&quot; : &quot;admin&quot;,</span><br><span class="line">        &quot;roles&quot; : [</span><br><span class="line">                &#123;</span><br><span class="line">                        &quot;role&quot; : &quot;read&quot;,</span><br><span class="line">                        &quot;db&quot; : &quot;admin&quot;</span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">                        &quot;role&quot; : &quot;userAdminAnyDatabase&quot;,</span><br><span class="line">                        &quot;db&quot; : &quot;admin&quot;</span><br><span class="line">                &#125;</span><br><span class="line">        ]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Now if you run &quot;db.stats()&quot;, you&apos;ll also be OK:</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>db.stats()<br>{<br>        “db” : “admin”,<br>        “collections” : 2,<br>        “views” : 0,<br>        “objects” : 3,<br>        “avgObjSize” : 151,<br>        “dataSize” : 453,<br>        “storageSize” : 65536,<br>        “numExtents” : 0,<br>        “indexes” : 3,<br>        “indexSize” : 81920,<br>        “ok” : 1<br>}</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">This user and role mechanism can be applied to any other databases in MongoDB as well, in addition to the admin database.</span><br></pre></td></tr></table></figure>
+
+<p>参考：<a href="https://www.cnblogs.com/herosoft/p/8399974.html" target="_blank" rel="noopener">Unauthorized: not authorized on test to execute command { dbstats: 1.0, scale: undefined, $db: “test” } 错误的解决</a></p>
 
     </div>
     
@@ -251,7 +275,7 @@
     <div class="widget">
         <h3 class="title">Table of Contents</h3>
         
-            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-mongodb启动配置"><span class="toc-text">1. mongodb启动配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Invalid-command-files-mongoDB"><span class="toc-text">2.Invalid command: files\mongoDB</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-mongodb启动配置"><span class="toc-text">1. mongodb启动配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Invalid-command-files-mongoDB"><span class="toc-text">2. Invalid command: files\mongoDB</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-MongoDB连接认证失败"><span class="toc-text">3. MongoDB连接认证失败</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-Unauthorized-not-authorized-on-test-to-execute-command-dbstats-1-0-scale-undefined-db-“test”"><span class="toc-text">4. Unauthorized: not authorized on test to execute command { dbstats: 1.0, scale: undefined, $db: “test” }</span></a></li></ol>
         
     </div>
 </aside>
