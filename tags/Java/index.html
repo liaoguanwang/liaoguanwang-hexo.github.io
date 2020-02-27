@@ -23,7 +23,7 @@
     <meta name="keywords" content>
 
 
-    <meta name="description" content="1. 知识点MyBatis中使用parameterType向SQL语句传参，parameterType后的类型可以是基本类型int,String,HashMap和java自定义类型。在SQL中引...">
+    <meta name="description" content>
 
 
 
@@ -35,7 +35,7 @@
     <!--Title-->
 
 
-<title>mybatis中${}和#{}的区别 | CSLiao&#39;s Blog</title>
+<title>Tag: Java | CSLiao&#39;s Blog</title>
 
 
     <link rel="alternate" href="/atom.xml" title="CSLiao&#39;s Blog" type="application/atom+xml">
@@ -136,118 +136,42 @@
     <section class="content-wrap">
         <div class="container">
             <div class="row">
-                <main class="col-md-8 main-content m-post">
-                    <p id="process"></p>
-<article class="post">
-    <div class="post-head">
-        <h1 id="mybatis中${}和#{}的区别">
-            
-	            mybatis中${}和#{}的区别
-            
-        </h1>
-        <div class="post-meta">
+                <main class="col-md-8 main-content ">
+                    <ol class="breadcrumb">
     
-        <span class="categories-meta fa-wrap">
-            <i class="fa fa-folder-open-o"></i>
-            
-        </span>
+    
+        <li>
+            Java
+        </li>
+    
     
 
-    
-        <span class="fa-wrap">
-            <i class="fa fa-tags"></i>
-            <span class="tags-meta">
-                
-            </span>
-        </span>
-    
-
-    
-        
-        <span class="fa-wrap">
-            <i class="fa fa-clock-o"></i>
-            <span class="date-meta">2019/08/30</span>
-        </span>
-        
-    
-</div>
-            
-            
-    </div>
-    
-    <div class="post-body post-content">
-        <h2 id="1-知识点"><a href="#1-知识点" class="headerlink" title="1. 知识点"></a>1. 知识点</h2><p>MyBatis中使用parameterType向SQL语句传参，parameterType后的类型可以是基本类型int,String,HashMap和java自定义类型。<br>在SQL中引用这些参数的时候，可以使用两种方式#{parameterName}或者${parameterName}。</p>
-<h2 id="2-总结"><a href="#2-总结" class="headerlink" title="2. 总结"></a>2. 总结</h2><ol>
-<li><p>#将传入的数据都当成一个字符串，会对自动传入的数据加一个双引号。<br>例如：where username=#{username}，如果传入的值是zhangsan,那么解析成sql时的值为where username=”zhangsan”。</p>
-</li>
-<li><p>$ 将传入的数据直接显示生成在sql中。<br>例如：where username=${username}，如果传入的值是zhangsan,那么解析成sql时的值为where username=zhangsan；</p>
-</li>
-<li><p>#方式能够很大程度防止SQL注入，$方式无法防止SQL注入。<br>如果传入的值为;drop table user;<br>#{}方式的SQL语句为: select id, username, password from user where username = “;drop table user;”<br>${}方式的SQL语句为: select id, username, password from user where username = ;drop table user;</p>
-</li>
-<li><p>$ 方式一般用于传入数据库对象，例如传入表名和列名。<br>例外：排序时使用order by动态参数时需要使用$  ,ORDER BY ${columnName}</p>
-</li>
-<li><p>一般能用#的就别用$ ，若不得不使用”${xxx}”这样的参数，要手工地做好过滤工作，来防止sql注入攻击。</p>
-</li>
-<li><p>在MyBatis中，”$ {xxx}”这样格式的参数会直接参与SQL编译，从而不能避免注入攻击。但涉及到动态表名和列名时，只能使用”${xxx}”这样的参数格式。所以，这样的参数需要我们在代码中手工进行处理来防止注入。</p>
-</li>
 </ol>
 
-    </div>
-    
-    <div class="post-footer">
-        <div>
-            
-                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">Snippet</a>
-            
-        </div>
-        <div>
-            
-        </div>
-    </div>
-</article>
 
-<div class="article-nav prev-next-wrap clearfix">
-    
-        <a href="/2019/09/05/Java实现inputstream流的复制/" class="pre-post btn btn-default" title='Java实现inputstream流的复制'>
-            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
-            <span class="hidden-xs">Java实现inputstream流的复制</span>
-        </a>
-    
-    
-        <a href="/2019/08/29/29.Java——string类型与date类型之间的转化/" class="next-post btn btn-default" title='Java——string类型与date类型之间的转化'>
-            <span class="hidden-lg">下一篇</span>
-            <span class="hidden-xs">Java——string类型与date类型之间的转化</span><i class="fa fa-angle-right fa-fw"></i>
-        </a>
-    
-</div>
-
-
-    <div id="comments">
+    <article class="post">
         
-	
-    <div id="vcomments" class="valine"></div>
-    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-<script src="/assets/valine.min.js"></script>
-
-    <script>
-        new Valine({
-            av: AV,
-            el: '#vcomments',
-            appId: 'xOKV9J4UeQAtVkvnJC7Kq2Jn-gzGzoHsz',
-            appKey: 'erIpQac4azoCmgfBB7Dl9maa',
-            placeholder: '说点什么吧',
-            notify: false,
-            verify: true,
-            avatar: 'mm',
-            meta: 'nick,mail'.split(','),
-            pageSize: '10',
-            path: window.location.pathname,
-            lang: ''.toLowerCase()
-        })
-    </script>
+        <div class="post-content">
+            <div class="post-head home-post-head">
+                <h1 class="post-title">
+                    <a href="/2019/08/05/2-POJO，JaveBean，VO，DTO/">POJO|JaveBean|VO|DTO</a>
+                </h1>
+                <div class="post-meta">  &bull;
+                    <time class="post-date" datetime="" title="">
+                        2019年08月05日
+                    </time>
+                </div>
+            </div>
+            <p class="brief">
+                
+                    1.POJO1.1 概念定义POJO（Plain Ordinary Java Object）简单的Java对象，实际就是普通JavaBeans，是为了避免和EJB混淆所创造的简称。使用POJO名称是为了避免和EJB混淆起来, 而且简称...
+                
+            </p>
+        </div>
+    </article>
+ 
 
 
-    </div>
 
 
 
@@ -255,14 +179,118 @@
 
                 </main>
                 
-                    <aside id="article-toc" role="navigation" class="col-md-4">
-    <div class="widget">
-        <h3 class="title">Table of Contents</h3>
+                    
+    <aside class="col-md-4 sidebar">
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-知识点"><span class="toc-text">1. 知识点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-总结"><span class="toc-text">2. 总结</span></a></li></ol>
+        
+    <div class="widget">
+        <h3 class="title">Search</h3>
+        <div id="search-form">
+            <div id="result-mask" class="hide"></div>
+            <div class="search-area">
+                
+                    <input id="search-key" type="search" autocomplete="off" placeholder="Search What？">
+                    <button type="button" class="search-form-submit" id="search-local">localSearch</button>
+                
+                
+            </div>
+            <div id="result-wrap" class="hide">
+                <div id="search-result"></div>
+            </div>
+            <div class="hide">
+                <template id="search-tpl">
+                    <div class="item">
+                        <a href="/{path}" title="{title}">
+                            <div class="title">{title}</div>
+                            <div class="content">{content}</div>
+                        </a>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </div>
+
+        
+        
+    <div class="widget">
+        <h3 class="title">Notification</h3>
+        <div class="notification">
+            <p>
+    主题下载：<a href="https://github.com/shenliyang/hexo-theme-snippet" title="fork me" target="_blank">Snippet主题</a> <br/>
+    主题使用：<a href="https://github.com/shenliyang/hexo-theme-snippet/blob/master/README.md#常见问题" title="" target="_blank">常见使用问题</a> <br/>
+    支持主题：<a href="https://github.com/shenliyang/hexo-theme-snippet/stargazers">Star一下</a>
+</p>
+        </div>
+    </div>
+
+        
+        
+    <div class="widget">
+      <h3 class="title">Social</h3> 
+        <div class="content social">
+            
+	            <a href="//github.com/liaoguanwang" rel="external nofollow" title="Github" target="_blank">
+			    	<i class="git fa fa-git"></i>
+			    </a>
+            
+	            <a href="mailto:snippet@91h5.cc" rel="external nofollow" title="邮箱" target="_blank">
+			    	<i class="envelope-o fa fa-envelope-o"></i>
+			    </a>
+            
+	            <a href="/" rel="external nofollow" title="联系QQ" target="_blank">
+			    	<i class="qq fa fa-qq"></i>
+			    </a>
+            
+	            <a href="/" rel="external nofollow" title="微信" target="_blank">
+			    	<i class="weixin fa fa-weixin"></i>
+			    </a>
+            
+        </div>
+    </div>
+
+
+        
+        
+    <div class="widget">
+        <h3 class="title">Categories</h3>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/后端/"><i class="fa" aria-hidden="true">后端</i></a><span class="category-list-count">1</span></li></ul>
+    </div>
+
+
+        
+        
+    <div class="widget">
+        <h3 class="title">Archives</h3>
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/"><i class="fa" aria-hidden="true">2020年02月</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/"><i class="fa" aria-hidden="true">2019年09月</i></a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/"><i class="fa" aria-hidden="true">2019年08月</i></a><span class="archive-list-count">28</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/"><i class="fa" aria-hidden="true">2019年07月</i></a><span class="archive-list-count">1</span></li></ul>
+    </div>
+
+
+        
+        
+  <div class="widget">
+    <h3 class="title">Tag Cloud</h3>
+    <div class="content tag-cloud">
+        
+            <a href="/tags/Concept/" style="font-size: 10px;">Concept</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/websocket/" style="font-size: 10px;">websocket</a>
         
     </div>
-</aside>
+  </div>
+
+
+        
+        
+    <div class="widget">
+        <h3 class="title">Friends</h3>
+        <div class="content friends-link">
+        
+            <a href="https://hexo.io/zh-cn/" class="fa" target="_blank">Hexo官网</a>
+        
+        </div>
+    </div>
+
+
+        
+    </aside>
 
                 
             </div>
@@ -305,6 +333,8 @@
     </div>
 </div>
 
+
+	<script src="/js/search.js?rev=@@hash"></script>
 
 
 
