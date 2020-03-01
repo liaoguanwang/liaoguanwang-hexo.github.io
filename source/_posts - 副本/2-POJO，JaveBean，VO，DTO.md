@@ -4,7 +4,8 @@ date: 2019-08-05 23:20:36
 tags: 
  - Java
  - Concept
-categories: 后端
+categories: 
+- JavaWeb
 ---
 
 # 1.POJO

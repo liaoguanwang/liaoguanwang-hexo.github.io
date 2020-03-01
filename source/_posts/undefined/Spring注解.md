@@ -1,0 +1,66 @@
+---
+title: Spring注解
+date: 2019-08-28 23:51:24
+tags:
+---
+### @Configuration
+
+>一句话概括就是 @Configuration 中所有带 @Bean 注解的方法都会被动态代理，因此调用该方法返回的都是同一个实例。
+
+#### Configuration 注解：
+```
+@Target(ElementType.TYPE)
+@Retention(RetentionPolicy.RUNTIME)
+@Documented
+@Component
+public @interface Configuration {
+    String value() default "";
+}
+```
+从定义来看， @Configuration 注解本质上还是 @Component，因此 <context:component-scan/> 或者 @ComponentScan 都能处理@Configuration 注解的类。
+
+@Configuration 标记的类必须符合下面的要求：
+- 配置类必须以类的形式提供（不能是工厂方法返回的实例），允许通过生成子类在运行时增强（cglib 动态代理）。
+- 配置类不能是 final 类（没法动态代理）。
+- 配置注解通常为了通过 @Bean 注解生成 Spring 容器管理的类，
+- 配置类必须是非本地的（即不能在方法中声明，不能是 private）。
+- 任何嵌套配置类都必须声明为static。
+- @Bean 方法可能不会反过来创建进一步的配置类（也就是返回的 bean 如果带有 @Configuration，也不会被特殊处理，只会作为普通的 bean）。
+
+
+参考：[Spring @Configuration 和 @Component 区别](https://blog.csdn.net/isea533/article/details/78072133)
+
+### @Configuration和@Component的区别
+同：都是注解在类上的注解
+异：
+- 使用Configuration时在driver和spring容器之中的是同一个对象，而使用Component时是不同的对象
+- @Component范围广，所有类都可注解
+- @Value的成员变量和@Bean注解方法，就是一个配置类
+
+参考：[@Component和@Configuration作为配置类的差别](https://blog.csdn.net/long476964/article/details/80626930)
+
+### spring不返回某个字段给前端
+1.@JsonIngoreProperties(value={"xxx})
+注解使用在类名，接口头上
+```java
+@JsonIngoreProperties(value={"username})
+public interface User(){
+}
+```
+
+2.@JsonIgnore
+该注解用在字段的get方法上
+```java
+@JsonIngore
+public String getUserName{
+    return this.username;
+}
+```
+
+### json与bean之间字段转换
+@JsonProperty
+json里的字段采用下划线格式，bean里的字段采用驼峰
+```java
+@JsonProperty("user_name")
+private String userName;
+```

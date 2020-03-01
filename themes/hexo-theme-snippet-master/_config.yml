@@ -8,8 +8,11 @@ menu:
 - page: home
   url: /
   icon:
-- page: 前端
-  url: /categories/前端/
+# - page: 前端
+#   url: /categories/前端/
+#   icon:
+- page: 分类
+  url: /categories
   icon:
 - page: 后端
   url: /categories/后端/
@@ -115,7 +118,7 @@ links:
 # 主题自定义个性化配置
 
 ## 网站宣传语
-branding: 爪哇工程师
+branding: 爪哇攻城狮
 
 ## 设置banner背景图片
 banner:
@@ -243,7 +246,7 @@ baidu_site_verification:
 ### 百度自动推送
 baidu_push: false
 
-#网站主题配置
-since: 2017
+#网站主题配置 
+since: 2019
 robot: 'all' ### 控制搜索引擎的抓取和索引编制行为，默认为all
 version: 1.2.3
