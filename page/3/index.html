@@ -1,869 +1,108 @@
-<!DOCTYPE HTML>
-<html lang>
-<head><meta name="generator" content="Hexo 3.9.0">
-    <!--Setting-->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
-    <meta http-equiv="Cache-Control" content="no-siteapp">
-    <meta http-equiv="Cache-Control" content="no-transform">
-    <meta name="renderer" content="webkit|ie-comp|ie-stand">
-    <meta name="apple-mobile-web-app-capable" content="CSLiao&#39;s Blog">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="format-detection" content="telephone=no,email=no,adress=no">
-    <meta name="browsermode" content="application">
-    <meta name="screen-orientation" content="portrait">
-    <meta name="theme-version" content="1.2.3">
-    <meta name="root" content="/">
-    <link rel="dns-prefetch" href="https://liaoguanwang.github.io">
-    <!-- href="https://oindk07nf.qnssl.com/atom-one-dark.css" 代码块显示黑底美观 -->
-    <link rel="stylesheet" href="https://oindk07nf.qnssl.com/atom-one-dark.css" media="screen" type="text/css">
-    <!--SEO-->
+<!DOCTYPE html><html data-theme="light"><head><meta name="generator" content="Hexo 3.9.0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5"><title>CSLiao's Blog</title><meta name="description"><meta name="author" content="csliao"><meta name="copyright" content="csliao"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon-panda.ico"><link rel="preconnect" href="//cdn.jsdelivr.net"><link rel="preconnect" href="https://fonts.googleapis.com" crossorigin><link rel="preconnect" href="//busuanzi.ibruce.info"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="CSLiao's Blog"><meta name="twitter:description"><meta name="twitter:image" content="https://liaoguanwang.github.io/img/avatar-my.png"><meta property="og:type" content="website"><meta property="og:title" content="CSLiao's Blog"><meta property="og:url" content="https://liaoguanwang.github.io/page/3/"><meta property="og:site_name" content="CSLiao's Blog"><meta property="og:description"><meta property="og:image" content="https://liaoguanwang.github.io/img/avatar-my.png"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script src="https://cdn.jsdelivr.net/npm/js-cookie/dist/js.cookie.min.js"></script><script>const autoChangeMode = 'false'
+var t = Cookies.get("theme");
+if (autoChangeMode == '1'){
+const isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches
+const isLightMode = window.matchMedia("(prefers-color-scheme: light)").matches
+const isNotSpecified = window.matchMedia("(prefers-color-scheme: no-preference)").matches
+const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
 
-    <meta name="keywords" content>
+if (t === undefined){
+  if (isLightMode) activateLightMode()
+  else if (isDarkMode) activateDarkMode()
+  else if (isNotSpecified || hasNoSupport){
+    console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+    now = new Date();
+    hour = now.getHours();
+    isNight = hour < 6 || hour >= 18
+    isNight ? activateDarkMode() : activateLightMode()
+}
+} else if (t == 'light') activateLightMode()
+else activateDarkMode()
 
 
-    <meta name="description" content>
+} else if (autoChangeMode == '2'){
+  now = new Date();
+  hour = now.getHours();
+  isNight = hour < 6 || hour >= 18
+  if(t === undefined) isNight? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode() 
+} else {
+  if ( t == 'dark' ) activateDarkMode()
+  else if ( t == 'light') activateLightMode()
+}
 
-
-
-<meta name="robots" content="all">
-<meta name="google" content="all">
-<meta name="googlebot" content="all">
-<meta name="verify" content="all">
-
-    <!--Title-->
-
-
-<title>CSLiao&#39;s Blog</title>
-
-
-    <link rel="alternate" href="/atom.xml" title="CSLiao&#39;s Blog" type="application/atom+xml">
-
-
-    <link rel="icon" href="/favicon.ico">
-
-    
-
-
-
-<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
-<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
-<link rel="stylesheet" href="/css/style.css?rev=@@hash">
-
-
-
-
-    
-	<div class="hide">
-		<script type="text/javascript">
-			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
-		</script>
-	</div>
-
-
-
-
-
-
-    
-
-</head>
-
-</html>
-<!--[if lte IE 8]>
-<style>
-    html{ font-size: 1em }
-</style>
-<![endif]-->
-<!--[if lte IE 9]>
-<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
-<![endif]-->
-
-<body>
-    <header class="main-header"  style="background-image:url(http://snippet.shenliyang.com/img/banner.jpg)"  >
-    <div class="main-header-box">
-        <a class="header-avatar" href="/" title='csliao'>
-            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
-        </a>
-        <div class="branding">
-        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
-            
-                <h2> 爪哇工程师 </h2>
-            
-    	</div>
-    </div>
-</header>
-    <nav class="main-navigation">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
-                    <span class="sr-only"></span>
-                        <i class="fa fa-bars"></i>
-                    </span>
-                    <a class="navbar-brand" href="https://liaoguanwang.github.io">CSLiao&#39;s Blog</a>
-                </div>
-                <div class="collapse navbar-collapse" id="main-menu">
-                    <ul class="menu">
-                        
-                            <li role="presentation" class="text-center">
-                                <a href="/"><i class="fa "></i>Home</a>
-                            </li>
-                        
-                            <li role="presentation" class="text-center">
-                                <a href="/categories/前端/"><i class="fa "></i>前端</a>
-                            </li>
-                        
-                            <li role="presentation" class="text-center">
-                                <a href="/categories/后端/"><i class="fa "></i>后端</a>
-                            </li>
-                        
-                            <li role="presentation" class="text-center">
-                                <a href="/categories/工具/"><i class="fa "></i>工具</a>
-                            </li>
-                        
-                            <li role="presentation" class="text-center">
-                                <a href="/archives/"><i class="fa "></i>时间轴</a>
-                            </li>
-                        
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-</nav>
-    <section class="content-wrap">
-        <div class="container">
-            <div class="row">
-                <main class="col-md-8 main-content ">
-                    
-    <div class="carousel">
-        <a href="https://promotion.aliyun.com/ntms/act/qwbk.html?userCode=xs0pypd2" target="_blank">
-            <img src="/./img/head-img.jpg" alt="">
-        </a>
-    </div>
-
-
-
-
-
-<article class="post">
-    
-    <div class="post-content">
-        <div class="post-head home-post-head">
-            <h1 class="post-title">
-                <a href="/2019/08/24/21-swagger2常用注解/">swagger2常用注解</a>
-            </h1>
-            <div class="post-meta">  &bull;
-                <time class="post-date" datetime="" title="">
-                    2019年08月24日
-                </time>
-            </div>
-        </div>
-        <p class="brief">
-            
-                常用注解：
+function activateDarkMode(){
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+    document.querySelector('meta[name="theme-color"]').setAttribute('content','#000')
+  }
+}
+function activateLightMode(){
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+  document.querySelector('meta[name="theme-color"]').setAttribute('content','#fff')
+  }
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="canonical" href="https://liaoguanwang.github.io/page/3/"><link rel="preload" href="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/index.jpg" as="image"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"cookieDomain":"https://xxx/","msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  copy: {
+    success: '複製成功',
+    error: '複製錯誤',
+    noSupport: '瀏覽器不支持'
+  },
+  bookmark: {
+    title: 'Snackbar.bookmark.title',
+    message_prev: '按',
+    message_next: '鍵將本頁加入書籤'
+  },
+  runtime_unit: '天',
+  runtime: true,
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: undefined,
+  baiduPush: false,
+  isHome: true,
+  isPost: false
+  
+}</script><link rel="alternate" href="/atom.xml" title="CSLiao's Blog" type="application/atom+xml">
+</head><body><canvas class="fireworks"></canvas><header> <div id="page-header"><span class="pull_left" id="blog_name"><a class="blog_title" id="site-name" href="/">CSLiao's Blog</a></span><span class="toggle-menu pull_right close"><a class="site-page"><i class="fa fa-bars fa-fw" aria-hidden="true"></i></a></span><span class="pull_right menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于我</span></a></div></div></span></div></header><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/img/avatar-my.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">39</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">標籤</div><div class="length_num">18</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">分類</div><div class="length_num">8</div></a></div></div></div><hr><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于我</span></a></div></div></div></div><div id="body-wrap"><nav class="full_page" id="nav" style="background-image: url(https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/index.jpg)"><div id="site-info"><div id="site-title"><span class="blogtitle">CSLiao's Blog</span></div><div id="site-sub-title"><span class="subtitle"></span></div><div id="site-social-icons"><a class="social-icon" href="https://github.com/liaoguanwang" target="_blank"><i class="fa fa-github" aria-hidden="true"></i></a><a class="social-icon" href="mailto:sz_liaoguanwang@qq.com" target="_blank"><i class="fa fa-envelope" aria-hidden="true"></i></a><a class="social-icon" href="/atom.xml" target="_blank"><i class="fa fa-rss" aria-hidden="true"></i></a></div></div><div class="scroll-down"><i class="fa fa-angle-down scroll-down-effects"></i></div></nav><main id="content-outer"><div class="layout_page" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item article-container"><div class="post_cover left_radius"><a href="/SpringBoot实现跨域/" title="SpringBoot实现跨域"><img class="post_bg lazyload" data-src="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/default.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="SpringBoot实现跨域"></a></div><div class="recent-post-info">  <a class="article-title" href="/SpringBoot实现跨域/" title="SpringBoot实现跨域">SpringBoot实现跨域</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-08-24</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/SpringBoot/">SpringBoot</a></span><div class="content">1. 什么是跨域请求？跨域请求，就是说浏览器在执行脚本文件的ajax请求时，脚本文件所在的服务地址和请求的服务地址不一样。说白了就是ip、网络协议、端口都一样的时候，就是同一个域，否则就是跨域。这是由于Netscape提出一个著名的安全策略——同源策略造成的，这是浏览器对JavaScript施加的安 ...</div></div></div><div class="recent-post-item article-container"><div class="post_cover right_radius"><a href="/swagger2常用注解/" title="swagger2常用注解"><img class="post_bg lazyload" data-src="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/default.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="swagger2常用注解"></a></div><div class="recent-post-info">  <a class="article-title" href="/swagger2常用注解/" title="swagger2常用注解">swagger2常用注解</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-08-24</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/未分类/">未分类</a></span><div class="content">常用注解：
 @Api()用于类；表示标识这个类是swagger的资源
 
 @ApiOperation()用于方法；表示一个http请求的操作
 
 @ApiParam()用于方法，参数，字段说明；表示对参数的添加元数据（说明或是否必填等）
-...
-            
-        </p>
-    </div>
-    
-        <footer class="post-footer clearfix">
-            <div class="pull-left tag-list">
-                <div class="post-meta">
-    
-        <span class="categories-meta fa-wrap">
-            <i class="fa fa-folder-open-o"></i>
-            
-        </span>
-    
 
-    
-        <span class="fa-wrap">
-            <i class="fa fa-tags"></i>
-            <span class="tags-meta">
-                
-            </span>
-        </span>
-    
+@ApiResponse()用于方法响应配置
 
-    
-</div>
-            </div>
-
-            <div class="post-permalink">
-                <a href="/2019/08/24/21-swagger2常用注解/" class="btn btn-default">Read</a>
-            </div>
-        </footer>
-    
-</article>
-
-
-<article class="post">
-    
-    <div class="post-content">
-        <div class="post-head home-post-head">
-            <h1 class="post-title">
-                <a href="/2019/08/22/19-Spring注解/">Spring注解</a>
-            </h1>
-            <div class="post-meta">  &bull;
-                <time class="post-date" datetime="" title="">
-                    2019年08月22日
-                </time>
-            </div>
-        </div>
-        <p class="brief">
-            
-                spring不返回某个字段给前端1.@JsonIngoreProperties(value={“xxx})注解使用在类名，接口头上
-123@JsonIngoreProperties(value=&amp;#123;&#34;username&amp;#125...
-            
-        </p>
-    </div>
-    
-        <footer class="post-footer clearfix">
-            <div class="pull-left tag-list">
-                <div class="post-meta">
-    
-        <span class="categories-meta fa-wrap">
-            <i class="fa fa-folder-open-o"></i>
-            
-        </span>
-    
-
-    
-        <span class="fa-wrap">
-            <i class="fa fa-tags"></i>
-            <span class="tags-meta">
-                
-            </span>
-        </span>
-    
-
-    
-</div>
-            </div>
-
-            <div class="post-permalink">
-                <a href="/2019/08/22/19-Spring注解/" class="btn btn-default">Read</a>
-            </div>
-        </footer>
-    
-</article>
-
-
-<article class="post">
-    
-    <div class="post-content">
-        <div class="post-head home-post-head">
-            <h1 class="post-title">
-                <a href="/2019/08/22/18-【转】浏览器同源政策及其规避方法（2）/">【转】浏览器同源政策及其规避方法（2）</a>
-            </h1>
-            <div class="post-meta">  &bull;
-                <time class="post-date" datetime="" title="">
-                    2019年08月22日
-                </time>
-            </div>
-        </div>
-        <p class="brief">
-            
-                四、AJAX同源政策规定，AJAX请求只能发给同源的网址，否则就报错。
+@ApiResp ...</div></div></div><div class="recent-post-item article-container"><div class="post_cover left_radius"><a href="/19-Spring注解/" title="Spring注解"><img class="post_bg lazyload" data-src="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/default.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Spring注解"></a></div><div class="recent-post-info">  <a class="article-title" href="/19-Spring注解/" title="Spring注解">Spring注解</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-08-22</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/未分类/">未分类</a></span><div class="content">spring不返回某个字段给前端1.@JsonIngoreProperties(value={“xxx})注解使用在类名，接口头上
+java123@JsonIngoreProperties(value=&#123;"username&#125;)public interface User()&#12 ...</div></div></div><div class="recent-post-item article-container"><div class="post_cover right_radius"><a href="/【转】浏览器同源政策及其规避方法（2）/" title="【转】浏览器同源政策及其规避方法（2）"><img class="post_bg lazyload" data-src="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/default.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【转】浏览器同源政策及其规避方法（2）"></a></div><div class="recent-post-info">  <a class="article-title" href="/【转】浏览器同源政策及其规避方法（2）/" title="【转】浏览器同源政策及其规避方法（2）">【转】浏览器同源政策及其规避方法（2）</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-08-22</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/网络/">网络</a></span><div class="content">四、AJAX同源政策规定，AJAX请求只能发给同源的网址，否则就报错。
 除了架设服务器代理（浏览器请求同源服务器，再由后者请求外部服务），有三种方法规避这个限制。
 
 JSONP
 WebSocket
-CORS4.1 JSONPJSONP...
-            
-        </p>
-    </div>
-    
-        <footer class="post-footer clearfix">
-            <div class="pull-left tag-list">
-                <div class="post-meta">
-    
-        <span class="categories-meta fa-wrap">
-            <i class="fa fa-folder-open-o"></i>
-            
-        </span>
-    
-
-    
-        <span class="fa-wrap">
-            <i class="fa fa-tags"></i>
-            <span class="tags-meta">
-                
-            </span>
-        </span>
-    
-
-    
-</div>
-            </div>
-
-            <div class="post-permalink">
-                <a href="/2019/08/22/18-【转】浏览器同源政策及其规避方法（2）/" class="btn btn-default">Read</a>
-            </div>
-        </footer>
-    
-</article>
-
-
-<article class="post">
-    
-    <div class="post-content">
-        <div class="post-head home-post-head">
-            <h1 class="post-title">
-                <a href="/2019/08/22/17-【转】浏览器同源政策及其规避方法（1）/">【转】浏览器同源政策及其规避方法（1）</a>
-            </h1>
-            <div class="post-meta">  &bull;
-                <time class="post-date" datetime="" title="">
-                    2019年08月22日
-                </time>
-            </div>
-        </div>
-        <p class="brief">
-            
-                浏览器安全的基石是”同源政策”（same-origin policy）。很多开发者都知道这一点，但了解得不全面。本文详细介绍”同源政策”的各个方面，以及如何规避它。
-一、概述1.1 含义1995年，同源政策由 Netscape 公司引...
-            
-        </p>
-    </div>
-    
-        <footer class="post-footer clearfix">
-            <div class="pull-left tag-list">
-                <div class="post-meta">
-    
-        <span class="categories-meta fa-wrap">
-            <i class="fa fa-folder-open-o"></i>
-            
-        </span>
-    
-
-    
-        <span class="fa-wrap">
-            <i class="fa fa-tags"></i>
-            <span class="tags-meta">
-                
-            </span>
-        </span>
-    
-
-    
-</div>
-            </div>
-
-            <div class="post-permalink">
-                <a href="/2019/08/22/17-【转】浏览器同源政策及其规避方法（1）/" class="btn btn-default">Read</a>
-            </div>
-        </footer>
-    
-</article>
-
-
-<article class="post">
-    
-    <div class="post-content">
-        <div class="post-head home-post-head">
-            <h1 class="post-title">
-                <a href="/2019/08/21/15-【BUG】Spring-Mvc使用Jackson进行json转对象时，遇到的字符串转日期的异常处理（JSON-parse-error-Can-not-deserialize-value-of-type-java-util-Date-from-String-）/">【BUG】Spring Mvc使用Jackson进行json转对象时，遇到的字符串转日期的异常处理（JSON parse error: Can not deserialize value of type java.util.Date from String[]）</a>
-            </h1>
-            <div class="post-meta">  &bull;
-                <time class="post-date" datetime="" title="">
-                    2019年08月21日
-                </time>
-            </div>
-        </div>
-        <p class="brief">
-            
-                1.问题排查项目配置
+CORS4.1 JSONPJSONP是服务器与客户端跨源通信的常用方法。最大特点就是简单适用，老式浏览 ...</div></div></div><div class="recent-post-item article-container"><div class="post_cover left_radius"><a href="/【转】浏览器同源政策及其规避方法（1）/" title="【转】浏览器同源政策及其规避方法（1）"><img class="post_bg lazyload" data-src="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/default.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【转】浏览器同源政策及其规避方法（1）"></a></div><div class="recent-post-info">  <a class="article-title" href="/【转】浏览器同源政策及其规避方法（1）/" title="【转】浏览器同源政策及其规避方法（1）">【转】浏览器同源政策及其规避方法（1）</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-08-22</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/网络/">网络</a></span><div class="content">浏览器安全的基石是”同源政策”（same-origin policy）。很多开发者都知道这一点，但了解得不全面。本文详细介绍”同源政策”的各个方面，以及如何规避它。
+一、概述1.1 含义1995年，同源政策由 Netscape 公司引入浏览器。目前，所有浏览器都实行这个政策。
+最初，它的含义是指，A ...</div></div></div><div class="recent-post-item article-container"><div class="post_cover right_radius"><a href="/【BUG】Spring-Mvc使用Jackson进行json转对象时，遇到的字符串转日期的异常处理（JSON-parse-error-Can-not-deserialize-value-of-type-java-util-Date-from-String-）/" title="【BUG】Spring Mvc使用Jackson进行json转对象时，遇到的字符串转日期的异常处理（JSON parse error: Can not deserialize value of type java.util.Date from String[]）"><img class="post_bg lazyload" data-src="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/default.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【BUG】Spring Mvc使用Jackson进行json转对象时，遇到的字符串转日期的异常处理（JSON parse error: Can not deserialize value of type java.util.Date from String[]）"></a></div><div class="recent-post-info">  <a class="article-title" href="/【BUG】Spring-Mvc使用Jackson进行json转对象时，遇到的字符串转日期的异常处理（JSON-parse-error-Can-not-deserialize-value-of-type-java-util-Date-from-String-）/" title="【BUG】Spring Mvc使用Jackson进行json转对象时，遇到的字符串转日期的异常处理（JSON parse error: Can not deserialize value of type java.util.Date from String[]）">【BUG】Spring Mvc使用Jackson进行json转对象时，遇到的字符串转日期的异常处理（JSON parse error: Can not deserialize value of type java.util.Date from String[]）</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-08-21</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/BUG/">BUG</a></span><div class="content">1.问题排查项目配置
 
 springboot 2.1
 Mave配置Jackson依赖
 
 出现的场景
 
-服务端通过springmvc写了一个对外的接口，查询数据中的表，表中有一个字段属性是时间戳，返回一个json字符串，其中该json带...
-            
-        </p>
-    </div>
-    
-        <footer class="post-footer clearfix">
-            <div class="pull-left tag-list">
-                <div class="post-meta">
-    
-        <span class="categories-meta fa-wrap">
-            <i class="fa fa-folder-open-o"></i>
-            
-        </span>
-    
-
-    
-        <span class="fa-wrap">
-            <i class="fa fa-tags"></i>
-            <span class="tags-meta">
-                
-            </span>
-        </span>
-    
-
-    
-</div>
-            </div>
-
-            <div class="post-permalink">
-                <a href="/2019/08/21/15-【BUG】Spring-Mvc使用Jackson进行json转对象时，遇到的字符串转日期的异常处理（JSON-parse-error-Can-not-deserialize-value-of-type-java-util-Date-from-String-）/" class="btn btn-default">Read</a>
-            </div>
-        </footer>
-    
-</article>
-
-
-<article class="post">
-    
-    <div class="post-content">
-        <div class="post-head home-post-head">
-            <h1 class="post-title">
-                <a href="/2019/08/18/13-【转】Springboot-mybatis读取配置文件/">【转】Springboot-Mybatis 读取配置文件</a>
-            </h1>
-            <div class="post-meta">  &bull;
-                <time class="post-date" datetime="" title="">
-                    2019年08月18日
-                </time>
-            </div>
-        </div>
-        <p class="brief">
-            
-                Springboot-Mybatis配置整理
-1. 加载mybatis的配置1.1 手写配置，写死在代码里1234567891011121314151617181920212223242526272829303132333435363...
-            
-        </p>
-    </div>
-    
-        <footer class="post-footer clearfix">
-            <div class="pull-left tag-list">
-                <div class="post-meta">
-    
-        <span class="categories-meta fa-wrap">
-            <i class="fa fa-folder-open-o"></i>
-            
-        </span>
-    
-
-    
-        <span class="fa-wrap">
-            <i class="fa fa-tags"></i>
-            <span class="tags-meta">
-                
-            </span>
-        </span>
-    
-
-    
-</div>
-            </div>
-
-            <div class="post-permalink">
-                <a href="/2019/08/18/13-【转】Springboot-mybatis读取配置文件/" class="btn btn-default">Read</a>
-            </div>
-        </footer>
-    
-</article>
-
-
-<article class="post">
-    
-        <div class="post-media">
-            <a href="/2019/08/18/12-MySQL-常见的存储引擎/">
-                <img class="img-ajax" src="/img/loading.gif"  data-src="https://img2018.cnblogs.com/blog/1351916/201810/1351916-20181010010820916-385487321.jpg"   alt="MySQL - 常见的存储引擎">
-            </a>
-        </div>
-    
-    <div class="post-content">
-        <div class="post-head home-post-head">
-            <h1 class="post-title">
-                <a href="/2019/08/18/12-MySQL-常见的存储引擎/">MySQL - 常见的存储引擎</a>
-            </h1>
-            <div class="post-meta">  &bull;
-                <time class="post-date" datetime="" title="">
-                    2019年08月18日
-                </time>
-            </div>
-        </div>
-        <p class="brief">
-            
-                1.存储引擎数据库存储引擎： 是数据库底层软件组织，数据库管理系统（DBMS）使用数据引擎进行创建、查询、更新和删除数据。不同的存储引擎提供不同的存储机制、索引技巧、锁定水平等功能，使用不同的存储引擎，还可以 获得特定的功能。现在许多...
-            
-        </p>
-    </div>
-    
-        <footer class="post-footer clearfix">
-            <div class="pull-left tag-list">
-                <div class="post-meta">
-    
-        <span class="categories-meta fa-wrap">
-            <i class="fa fa-folder-open-o"></i>
-            
-        </span>
-    
-
-    
-        <span class="fa-wrap">
-            <i class="fa fa-tags"></i>
-            <span class="tags-meta">
-                
-            </span>
-        </span>
-    
-
-    
-</div>
-            </div>
-
-            <div class="post-permalink">
-                <a href="/2019/08/18/12-MySQL-常见的存储引擎/" class="btn btn-default">Read</a>
-            </div>
-        </footer>
-    
-</article>
-
-
-<article class="post">
-    
-    <div class="post-content">
-        <div class="post-head home-post-head">
-            <h1 class="post-title">
-                <a href="/2019/08/18/11-【转】使用Mybatis时遇到的延迟加载造成返回异常的问题——HttpMessageConversionException-Type-definition-error/">【转】使用Mybatis时遇到的延迟加载造成返回异常的问题——HttpMessageConversionException: Type definition error</a>
-            </h1>
-            <div class="post-meta">  &bull;
-                <time class="post-date" datetime="" title="">
-                    2019年08月18日
-                </time>
-            </div>
-        </div>
-        <p class="brief">
-            
-                在使用Mybatis的过程中，使用了resultMap延迟加载。
+服务端通过springmvc写了一个对外的接口，查询数据中的表，表中有一个字段属性是时间戳，返回一个json字符串，其中该json带有日期，格式为yyyy-MM-dd HH:mm:ss
+客户端调用该 ...</div></div></div><div class="recent-post-item article-container"><div class="post_cover left_radius"><a href="/【转】Springboot-mybatis读取配置文件/" title="【转】Springboot-Mybatis 读取配置文件"><img class="post_bg lazyload" data-src="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/default.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【转】Springboot-Mybatis 读取配置文件"></a></div><div class="recent-post-info">  <a class="article-title" href="/【转】Springboot-mybatis读取配置文件/" title="【转】Springboot-Mybatis 读取配置文件">【转】Springboot-Mybatis 读取配置文件</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-08-18</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/SpringBoot/">SpringBoot</a></span><div class="content">Springboot-Mybatis配置整理
+1. 加载mybatis的配置1.1 手写配置，写死在代码里java123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051 ...</div></div></div><div class="recent-post-item article-container"><div class="post_cover right_radius"><a href="/MySQL/MySQL-常见的存储引擎/" title="MySQL - 常见的存储引擎"><img class="post_bg lazyload" data-src="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/default.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="MySQL - 常见的存储引擎"></a></div><div class="recent-post-info">  <a class="article-title" href="/MySQL/MySQL-常见的存储引擎/" title="MySQL - 常见的存储引擎">MySQL - 常见的存储引擎</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-08-18</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/数据库/">数据库</a></span><div class="content">1.存储引擎数据库存储引擎： 是数据库底层软件组织，数据库管理系统（DBMS）使用数据引擎进行创建、查询、更新和删除数据。不同的存储引擎提供不同的存储机制、索引技巧、锁定水平等功能，使用不同的存储引擎，还可以 获得特定的功能。现在许多不同的数据库管理系统都支持多种不同的数据引擎。MySql的核心就是 ...</div></div></div><div class="recent-post-item article-container"><div class="post_cover left_radius"><a href="/【BUG】【转】使用Mybatis时遇到的延迟加载造成返回异常的问题——HttpMessageConversionException-Type-definition-error/" title="【转】使用MyBatis时遇到的延迟加载造成返回异常的问题——HttpMessageConversionException: Type definition error"><img class="post_bg lazyload" data-src="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/default.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【转】使用MyBatis时遇到的延迟加载造成返回异常的问题——HttpMessageConversionException: Type definition error"></a></div><div class="recent-post-info">  <a class="article-title" href="/【BUG】【转】使用Mybatis时遇到的延迟加载造成返回异常的问题——HttpMessageConversionException-Type-definition-error/" title="【转】使用MyBatis时遇到的延迟加载造成返回异常的问题——HttpMessageConversionException: Type definition error">【转】使用MyBatis时遇到的延迟加载造成返回异常的问题——HttpMessageConversionException: Type definition error</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-08-18</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/BUG/">BUG</a></span><div class="content">在使用Mybatis的过程中，使用了resultMap延迟加载。
 延迟加载：association联表查询的过程中，查询另外两个表的对象。而延迟加载是指只有在使用这两个对象的时候才会进行查询。
-问题的产生，在我这里，我是直接通过路由u...
-            
-        </p>
-    </div>
-    
-        <footer class="post-footer clearfix">
-            <div class="pull-left tag-list">
-                <div class="post-meta">
-    
-        <span class="categories-meta fa-wrap">
-            <i class="fa fa-folder-open-o"></i>
-            
-        </span>
-    
-
-    
-        <span class="fa-wrap">
-            <i class="fa fa-tags"></i>
-            <span class="tags-meta">
-                
-            </span>
-        </span>
-    
-
-    
-</div>
-            </div>
-
-            <div class="post-permalink">
-                <a href="/2019/08/18/11-【转】使用Mybatis时遇到的延迟加载造成返回异常的问题——HttpMessageConversionException-Type-definition-error/" class="btn btn-default">Read</a>
-            </div>
-        </footer>
-    
-</article>
-
-
-<article class="post">
-    
-    <div class="post-content">
-        <div class="post-head home-post-head">
-            <h1 class="post-title">
-                <a href="/2019/08/14/11-【BUG】Write-operations-are-not-allowed-in-read-only-mode-FlushMode-MANUAL-Turn-your-Session-into-FlushMode-COMMIT-AUTO-or-remove-readOnly-marker-from-transaction-definition/">【BUG】Write operations are not allowed in read-only mode (FlushMode.MANUAL):Turn your Session into FlushMode.COMMIT/AUTO or remove 'readOnly' marker from transaction definition.</a>
-            </h1>
-            <div class="post-meta">  &bull;
-                <time class="post-date" datetime="" title="">
-                    2019年08月14日
-                </time>
-            </div>
-        </div>
-        <p class="brief">
-            
-                1. 问题描述Struts Problem ReportStruts has detected an unhandled exception:
-123456Messages:	Write operations are not allo...
-            
-        </p>
-    </div>
-    
-        <footer class="post-footer clearfix">
-            <div class="pull-left tag-list">
-                <div class="post-meta">
-    
-        <span class="categories-meta fa-wrap">
-            <i class="fa fa-folder-open-o"></i>
-            
-        </span>
-    
-
-    
-        <span class="fa-wrap">
-            <i class="fa fa-tags"></i>
-            <span class="tags-meta">
-                
-            </span>
-        </span>
-    
-
-    
-</div>
-            </div>
-
-            <div class="post-permalink">
-                <a href="/2019/08/14/11-【BUG】Write-operations-are-not-allowed-in-read-only-mode-FlushMode-MANUAL-Turn-your-Session-into-FlushMode-COMMIT-AUTO-or-remove-readOnly-marker-from-transaction-definition/" class="btn btn-default">Read</a>
-            </div>
-        </footer>
-    
-</article>
-
-
-<article class="post">
-    
-    <div class="post-content">
-        <div class="post-head home-post-head">
-            <h1 class="post-title">
-                <a href="/2019/08/14/10-spring的multipartResolver和java后端获取的MultipartHttpServletRequest方法对比-（附：遇到的坑）/">【转】spring的multipartResolver和java后端获取的MultipartHttpServletRequest方法对比</a>
-            </h1>
-            <div class="post-meta">  &bull;
-                <time class="post-date" datetime="" title="">
-                    2019年08月14日
-                </time>
-            </div>
-        </div>
-        <p class="brief">
-            
-                1. 问题描述这两天在用spring进行上传上遇到问题，今天进行了问题的排查，这个过程也增加了我看spring源码的兴趣！还是很有收获的！
-首先先给A组提供了上传接口，并没有在spring的配置文件进行multipartResolve...
-            
-        </p>
-    </div>
-    
-        <footer class="post-footer clearfix">
-            <div class="pull-left tag-list">
-                <div class="post-meta">
-    
-        <span class="categories-meta fa-wrap">
-            <i class="fa fa-folder-open-o"></i>
-            
-        </span>
-    
-
-    
-        <span class="fa-wrap">
-            <i class="fa fa-tags"></i>
-            <span class="tags-meta">
-                
-            </span>
-        </span>
-    
-
-    
-</div>
-            </div>
-
-            <div class="post-permalink">
-                <a href="/2019/08/14/10-spring的multipartResolver和java后端获取的MultipartHttpServletRequest方法对比-（附：遇到的坑）/" class="btn btn-default">Read</a>
-            </div>
-        </footer>
-    
-</article>
-
-
-
-
-    <nav class="pagination" role="navigation">
-        <div id="page-nav">
-            <a class="extend prev" rel="prev" href="/page/2/"><i class='fa fa-angle-left'></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/"><i class='fa fa-angle-right'></i></a>
-        </div>
-    </nav>
-
-
-
-                </main>
-                
-                    
-    <aside class="col-md-4 sidebar">
-        
-        
-    <div class="widget">
-        <h3 class="title">Search</h3>
-        <div id="search-form">
-            <div id="result-mask" class="hide"></div>
-            <div class="search-area">
-                
-                    <input id="search-key" type="search" autocomplete="off" placeholder="Search What？">
-                    <button type="button" class="search-form-submit" id="search-local">localSearch</button>
-                
-                
-            </div>
-            <div id="result-wrap" class="hide">
-                <div id="search-result"></div>
-            </div>
-            <div class="hide">
-                <template id="search-tpl">
-                    <div class="item">
-                        <a href="/{path}" title="{title}">
-                            <div class="title">{title}</div>
-                            <div class="content">{content}</div>
-                        </a>
-                    </div>
-                </template>
-            </div>
-        </div>
-    </div>
-
-        
-        
-    <div class="widget">
-        <h3 class="title">Notification</h3>
-        <div class="notification">
-            <p>
-    主题下载：<a href="https://github.com/shenliyang/hexo-theme-snippet" title="fork me" target="_blank">Snippet主题</a> <br/>
-    主题使用：<a href="https://github.com/shenliyang/hexo-theme-snippet/blob/master/README.md#常见问题" title="" target="_blank">常见使用问题</a> <br/>
-    支持主题：<a href="https://github.com/shenliyang/hexo-theme-snippet/stargazers">Star一下</a>
-</p>
-        </div>
-    </div>
-
-        
-        
-    <div class="widget">
-      <h3 class="title">Social</h3> 
-        <div class="content social">
-            
-	            <a href="//github.com/liaoguanwang" rel="external nofollow" title="Github" target="_blank">
-			    	<i class="git fa fa-git"></i>
-			    </a>
-            
-	            <a href="mailto:snippet@91h5.cc" rel="external nofollow" title="邮箱" target="_blank">
-			    	<i class="envelope-o fa fa-envelope-o"></i>
-			    </a>
-            
-	            <a href="/" rel="external nofollow" title="联系QQ" target="_blank">
-			    	<i class="qq fa fa-qq"></i>
-			    </a>
-            
-	            <a href="/" rel="external nofollow" title="微信" target="_blank">
-			    	<i class="weixin fa fa-weixin"></i>
-			    </a>
-            
-        </div>
-    </div>
-
-
-        
-        
-    <div class="widget">
-        <h3 class="title">Categories</h3>
-        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/后端/"><i class="fa" aria-hidden="true">后端</i></a><span class="category-list-count">1</span></li></ul>
-    </div>
-
-
-        
-        
-    <div class="widget">
-        <h3 class="title">Archives</h3>
-        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/"><i class="fa" aria-hidden="true">2020年02月</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/"><i class="fa" aria-hidden="true">2019年09月</i></a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/"><i class="fa" aria-hidden="true">2019年08月</i></a><span class="archive-list-count">28</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/"><i class="fa" aria-hidden="true">2019年07月</i></a><span class="archive-list-count">1</span></li></ul>
-    </div>
-
-
-        
-        
-  <div class="widget">
-    <h3 class="title">Tag Cloud</h3>
-    <div class="content tag-cloud">
-        
-            <a href="/tags/Concept/" style="font-size: 10px;">Concept</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/websocket/" style="font-size: 10px;">websocket</a>
-        
-    </div>
-  </div>
-
-
-        
-        
-    <div class="widget">
-        <h3 class="title">Friends</h3>
-        <div class="content friends-link">
-        
-            <a href="https://hexo.io/zh-cn/" class="fa" target="_blank">Hexo官网</a>
-        
-        </div>
-    </div>
-
-
-        
-    </aside>
-
-                
-            </div>
-        </div>
-    </section>
-    <footer class="main-footer">
-    <div class="container">
-        <div class="row">
-        </div>
-    </div>
-</footer>
-
-<a id="back-to-top" class="icon-btn hide">
-	<i class="fa fa-chevron-up"></i>
-</a>
-
-
-
-
-    <div class="copyright">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="busuanzi">
-    
-</div>
-
-            </div>
-            <div class="col-sm-12">
-                <span>Copyright &copy; 2017
-                </span> |
-                <span>
-                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
-                </span> |
-                <span>
-                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
-                </span>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-	<script src="/js/search.js?rev=@@hash"></script>
-
-
-
-
-
-
-<script src="/js/app.js?rev=@@hash"></script>
-
-</body>
-</html>
+问题的产生，在我这里，我是直接通过路由url直接查询 StudentDto_2 对象。延迟加载的对象为 T ...</div></div></div><div class="recent-post-item article-container"><div class="post_cover right_radius"><a href="/【BUG】Write-operations-are-not-allowed-in-read-only-mode-FlushMode-MANUAL-Turn-your-Session-into-FlushMode-COMMIT-AUTO-or-remove-readOnly-marker-from-transaction-definition/" title="【BUG】Write operations are not allowed in read-only mode (FlushMode.MANUAL):Turn your Session into FlushMode.COMMIT/AUTO or remove 'readOnly' marker from transaction definition."><img class="post_bg lazyload" data-src="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/default.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【BUG】Write operations are not allowed in read-only mode (FlushMode.MANUAL):Turn your Session into FlushMode.COMMIT/AUTO or remove 'readOnly' marker from transaction definition."></a></div><div class="recent-post-info">  <a class="article-title" href="/【BUG】Write-operations-are-not-allowed-in-read-only-mode-FlushMode-MANUAL-Turn-your-Session-into-FlushMode-COMMIT-AUTO-or-remove-readOnly-marker-from-transaction-definition/" title="【BUG】Write operations are not allowed in read-only mode (FlushMode.MANUAL):Turn your Session into FlushMode.COMMIT/AUTO or remove 'readOnly' marker from transaction definition.">【BUG】Write operations are not allowed in read-only mode (FlushMode.MANUAL):Turn your Session into FlushMode.COMMIT/AUTO or remove 'readOnly' marker from transaction definition.</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-08-14</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/BUG/">BUG</a></span><div class="content">1. 问题描述Struts Problem ReportStruts has detected an unhandled exception:
+java123456Messages:	Write operations are not allowed in read-only mode (FlushM ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-fw fa-chevron-left" aria-hidden="true"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-fw fa-chevron-right" aria-hidden="true"></i></a></div></nav></div><div class="aside_content" id="aside_content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><img class="avatar-img" src="/img/avatar-my.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"><div class="author-info__name">csliao</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length_num">39</div></a></div><div class="card-info-data-item is-center">      <a href="/tags/"><div class="headline">標籤</div><div class="length_num">18</div></a></div><div class="card-info-data-item is-center">     <a href="/categories/"><div class="headline">分類</div><div class="length_num">8</div></a></div></div><div class="card-info-bookmark is-center"><a class="bookmark button--primary button--animated" id="bookmark-it" href="javascript:;" title="加入書籤" target="_self"><i class="fa fa-bookmark" aria-hidden="true"></i><span>加入書籤</span></a></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/liaoguanwang" target="_blank"><i class="fa fa-github" aria-hidden="true"></i></a><a class="social-icon" href="mailto:sz_liaoguanwang@qq.com" target="_blank"><i class="fa fa-envelope" aria-hidden="true"></i></a><a class="social-icon" href="/atom.xml" target="_blank"><i class="fa fa-rss" aria-hidden="true"></i></a></div></div></div><div class="card-widget card-announcement"><div class="card-content"><div class="item-headline"><i class="fa fa-bullhorn card-announcement-animation" aria-hidden="true"></i><span>公告</span></div><div class="announcement_content">感谢访问本站，若喜欢请收藏 ^_^</div></div></div><div class="card-widget card-recent-post"><div class="card-content"><div class="item-headline"><i class="fa fa-history" aria-hidden="true"></i><span>最新文章</span></div><div class="aside-recent-item"> <div class="aside-recent-post"><a href="/linux常用命令总结/"><div class="aside-post-cover"><img class="aside-post-bg lazyload" data-src="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/default.png" onerror="this.onerror=null;this.src='/img/404.jpg'" title="linux常用命令总结" alt="linux常用命令总结"></div><div class="aside-post-title"><div class="aside-post_title" href="/linux常用命令总结/" title="linux常用命令总结">linux常用命令总结</div><time class="aside-post_meta post-meta__date">2020-03-05</time></div></a></div><div class="aside-recent-post"><a href="/Java实现WebSocket聊天室（一）/"><div class="aside-post-cover"><img class="aside-post-bg lazyload" data-src="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/default.png" onerror="this.onerror=null;this.src='/img/404.jpg'" title="Java实现WebSocket聊天室（一）" alt="Java实现WebSocket聊天室（一）"></div><div class="aside-post-title"><div class="aside-post_title" href="/Java实现WebSocket聊天室（一）/" title="Java实现WebSocket聊天室（一）">Java实现WebSocket聊天室（一）</div><time class="aside-post_meta post-meta__date">2020-02-26</time></div></a></div><div class="aside-recent-post"><a href="/【BUG】java-sql-SQLException-The-server-time-zone-value-OÐ¹u±e×¼E±¼a-is-unrecognized-or-represents-more-than-one-time-zone/"><div class="aside-post-cover"><img class="aside-post-bg lazyload" data-src="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/default.png" onerror="this.onerror=null;this.src='/img/404.jpg'" title="【BUG】java.sql.SQLException: The server time zone value 'ÖÐ¹ú±ê×¼Ê±¼ä' is unrecognized or represents more than one time zone" alt="【BUG】java.sql.SQLException: The server time zone value 'ÖÐ¹ú±ê×¼Ê±¼ä' is unrecognized or represents more than one time zone"></div><div class="aside-post-title"><div class="aside-post_title" href="/【BUG】java-sql-SQLException-The-server-time-zone-value-OÐ¹u±e×¼E±¼a-is-unrecognized-or-represents-more-than-one-time-zone/" title="【BUG】java.sql.SQLException: The server time zone value 'ÖÐ¹ú±ê×¼Ê±¼ä' is unrecognized or represents more than one time zone">【BUG】java.sql.SQLException: The server time zone value 'ÖÐ¹ú±ê×¼Ê±¼ä' is unrecognized or represents more than one time zone</div><time class="aside-post_meta post-meta__date">2019-09-23</time></div></a></div><div class="aside-recent-post"><a href="/IntelliJ-IDEA控制台输出中文乱码问题/"><div class="aside-post-cover"><img class="aside-post-bg lazyload" data-src="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/default.png" onerror="this.onerror=null;this.src='/img/404.jpg'" title="IntelliJ IDEA控制台输出中文乱码问题" alt="IntelliJ IDEA控制台输出中文乱码问题"></div><div class="aside-post-title"><div class="aside-post_title" href="/IntelliJ-IDEA控制台输出中文乱码问题/" title="IntelliJ IDEA控制台输出中文乱码问题">IntelliJ IDEA控制台输出中文乱码问题</div><time class="aside-post_meta post-meta__date">2019-09-18</time></div></a></div><div class="aside-recent-post"><a href="/CMD命令/"><div class="aside-post-cover"><img class="aside-post-bg lazyload" data-src="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/default.png" onerror="this.onerror=null;this.src='/img/404.jpg'" title="CMD命令" alt="CMD命令"></div><div class="aside-post-title"><div class="aside-post_title" href="/CMD命令/" title="CMD命令">CMD命令</div><time class="aside-post_meta post-meta__date">2019-09-18</time></div></a></div></div></div></div><div class="card-widget card-categories"><div class="card-content"><div class="item-headline"><i class="fa fa-folder-open" aria-hidden="true"></i><span>分類</span></div><ul class="aside-category-item">       <li class="aside-category-list"><a class="aside-category-list_link" href="/categories/BUG/"><span class="aside-category-list_name">BUG</span><span class="aside-category-list_length">6</span></a></li><li class="aside-category-list"><a class="aside-category-list_link" href="/categories/Java/"><span class="aside-category-list_name">Java</span><span class="aside-category-list_length">3</span></a></li><li class="aside-category-list"><a class="aside-category-list_link" href="/categories/JavaWeb/"><span class="aside-category-list_name">JavaWeb</span><span class="aside-category-list_length">1</span></a></li><li class="aside-category-list"><a class="aside-category-list_link" href="/categories/SpringBoot/"><span class="aside-category-list_name">SpringBoot</span><span class="aside-category-list_length">4</span></a></li><li class="aside-category-list"><a class="aside-category-list_link" href="/categories/开发技巧/"><span class="aside-category-list_name">开发技巧</span><span class="aside-category-list_length">1</span></a></li><li class="aside-category-list"><a class="aside-category-list_link" href="/categories/数据库/"><span class="aside-category-list_name">数据库</span><span class="aside-category-list_length">9</span></a></li><li class="aside-category-list"><a class="aside-category-list_link" href="/categories/未分类/"><span class="aside-category-list_name">未分类</span><span class="aside-category-list_length">13</span></a></li><li class="aside-category-list"><a class="aside-category-list_link" href="/categories/网络/"><span class="aside-category-list_name">网络</span><span class="aside-category-list_length">2</span></a></li></ul></div></div><div class="card-widget card-tags"><div class="card-content"><div class="item-headline"><i class="fa fa-tags" aria-hidden="true"></i><span>標籤</span></div><div class="card-tag-cloud"><a href="/tags/Concept/" style="font-size: 16px; color: #999">Concept</a> <a href="/tags/IO/" style="font-size: 16px; color: #999">IO</a> <a href="/tags/Java/" style="font-size: 16px; color: #999">Java</a> <a href="/tags/Maven/" style="font-size: 16px; color: #999">Maven</a> <a href="/tags/MongoDB/" style="font-size: 18.67px; color: #999ea6">MongoDB</a> <a href="/tags/MyBatis/" style="font-size: 24px; color: #99a9bf">MyBatis</a> <a href="/tags/MySQL/" style="font-size: 24px; color: #99a9bf">MySQL</a> <a href="/tags/SVN/" style="font-size: 16px; color: #999">SVN</a> <a href="/tags/SpringMVC/" style="font-size: 16px; color: #999">SpringMVC</a> <a href="/tags/websocket/" style="font-size: 16px; color: #999">websocket</a> <a href="/tags/乱码/" style="font-size: 16px; color: #999">乱码</a> <a href="/tags/事务/" style="font-size: 16px; color: #999">事务</a> <a href="/tags/命令/" style="font-size: 16px; color: #999">命令</a> <a href="/tags/快捷键/" style="font-size: 16px; color: #999">快捷键</a> <a href="/tags/数据库连接池/" style="font-size: 16px; color: #999">数据库连接池</a> <a href="/tags/概念/" style="font-size: 16px; color: #999">概念</a> <a href="/tags/跨域/" style="font-size: 18.67px; color: #999ea6">跨域</a> <a href="/tags/配置/" style="font-size: 21.33px; color: #99a4b2">配置</a></div></div></div><div class="card-widget card-archives"><div class="card-content"><div class="item-headline"><i class="fa fa-archive" aria-hidden="true"></i><span>歸檔</span></div><ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/"><span class="archive-list-date">2020年03月</span><span class="archive-list-count">1</span></a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/"><span class="archive-list-date">2020年02月</span><span class="archive-list-count">1</span></a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/"><span class="archive-list-date">2019年09月</span><span class="archive-list-count">10</span></a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/"><span class="archive-list-date">2019年08月</span><span class="archive-list-count">27</span></a></li></ul></div></div><div class="card-widget card-webinfo"><div class="card-content"><div class="item-headline"><i class="fa fa-line-chart" aria-hidden="true"></i><span>網站資訊</span></div><div class="webinfo"><div class="webinfo-item"><div class="webinfo-article-name">文章數目 :</div><div class="webinfo-article-count">39</div></div><div class="webinfo-item"><div class="webinfo-runtime-name">已運行時間 :</div><div class="webinfo-runtime-count" id="webinfo-runtime-count" start_date="2019/7/1 00:00:00">     </div></div><div class="webinfo-item">      <div class="webinfo-site-uv-name">本站訪客數 :</div><div class="webinfo-site-uv-count" id="busuanzi_value_site_uv"></div></div><div class="webinfo-item"><div class="webinfo-site-name">本站總訪問量 :</div><div class="webinfo-site-pv-count" id="busuanzi_value_site_pv"></div></div></div></div></div></div></div></main><footer id="footer" data-type="color"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2020 By csliao</div><div class="framework-info"><span>Power by </span><a href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme </span><a href="https://github.com/jerryc127/hexo-theme-butterfly"><span>Butterfly</span></a></div></div></footer></div><section class="rightside" id="rightside"><div id="rightside-config-hide"><a class="translate_chn_to_cht" id="translateLink" href="javascript:translatePage();" title="簡繁轉換" target="_self">简</a><i class="darkmode fa fa-moon-o" id="darkmode" title="夜間模式"></i></div><div id="rightside-config-show"><div id="rightside_config" title="設置"><i class="fa fa-cog" aria-hidden="true"></i></div><i class="fa fa-arrow-up" id="go-up" title="回到頂部" aria-hidden="true"></i></div></section><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/js/fireworks.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@latest/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@latest/lazysizes.min.js" async></script><script src="https://cdn.jsdelivr.net/npm/typed.js"></script><script>var typed = new Typed(".subtitle", {
+strings: '好好学习 &#44; 天天向上,Good Good Study &#44; Day Day Up'.split(","),
+startDelay: 300,
+typeSpeed: 100,
+loop: true,
+backSpeed: 50
+});</script></body></html>

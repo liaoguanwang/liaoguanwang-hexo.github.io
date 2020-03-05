@@ -1,0 +1,354 @@
+<!DOCTYPE html><html data-theme="light"><head><meta name="generator" content="Hexo 3.9.0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5"><title>swagger2常用注解 | CSLiao's Blog</title><meta name="description" content="swagger2常用注解"><meta name="author" content="csliao"><meta name="copyright" content="csliao"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon-panda.ico"><link rel="preconnect" href="//cdn.jsdelivr.net"><link rel="preconnect" href="https://fonts.googleapis.com" crossorigin><link rel="preconnect" href="//busuanzi.ibruce.info"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="swagger2常用注解"><meta name="twitter:description" content="swagger2常用注解"><meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/default.png"><meta property="og:type" content="article"><meta property="og:title" content="swagger2常用注解"><meta property="og:url" content="https://liaoguanwang.github.io/swagger2常用注解/"><meta property="og:site_name" content="CSLiao's Blog"><meta property="og:description" content="swagger2常用注解"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/default.png"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script src="https://cdn.jsdelivr.net/npm/js-cookie/dist/js.cookie.min.js"></script><script>const autoChangeMode = 'false'
+var t = Cookies.get("theme");
+if (autoChangeMode == '1'){
+const isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches
+const isLightMode = window.matchMedia("(prefers-color-scheme: light)").matches
+const isNotSpecified = window.matchMedia("(prefers-color-scheme: no-preference)").matches
+const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+if (t === undefined){
+  if (isLightMode) activateLightMode()
+  else if (isDarkMode) activateDarkMode()
+  else if (isNotSpecified || hasNoSupport){
+    console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+    now = new Date();
+    hour = now.getHours();
+    isNight = hour < 6 || hour >= 18
+    isNight ? activateDarkMode() : activateLightMode()
+}
+} else if (t == 'light') activateLightMode()
+else activateDarkMode()
+
+
+} else if (autoChangeMode == '2'){
+  now = new Date();
+  hour = now.getHours();
+  isNight = hour < 6 || hour >= 18
+  if(t === undefined) isNight? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode() 
+} else {
+  if ( t == 'dark' ) activateDarkMode()
+  else if ( t == 'light') activateLightMode()
+}
+
+function activateDarkMode(){
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+    document.querySelector('meta[name="theme-color"]').setAttribute('content','#000')
+  }
+}
+function activateLightMode(){
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+  document.querySelector('meta[name="theme-color"]').setAttribute('content','#fff')
+  }
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="canonical" href="https://liaoguanwang.github.io/swagger2常用注解/"><link rel="prev" title="SpringBoot实现跨域" href="https://liaoguanwang.github.io/SpringBoot实现跨域/"><link rel="next" title="Spring注解" href="https://liaoguanwang.github.io/19-Spring注解/"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"cookieDomain":"https://xxx/","msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  copy: {
+    success: '複製成功',
+    error: '複製錯誤',
+    noSupport: '瀏覽器不支持'
+  },
+  bookmark: {
+    title: 'Snackbar.bookmark.title',
+    message_prev: '按',
+    message_next: '鍵將本頁加入書籤'
+  },
+  runtime_unit: '天',
+  runtime: true,
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: undefined,
+  baiduPush: false,
+  isHome: false,
+  isPost: true
+  
+}</script><link rel="alternate" href="/atom.xml" title="CSLiao's Blog" type="application/atom+xml">
+</head><body><canvas class="fireworks"></canvas><header> <div id="page-header"><span class="pull_left" id="blog_name"><a class="blog_title" id="site-name" href="/">CSLiao's Blog</a></span><span class="toggle-menu pull_right close"><a class="site-page"><i class="fa fa-bars fa-fw" aria-hidden="true"></i></a></span><span class="pull_right menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于我</span></a></div></div></span></div></header><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/img/avatar-my.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">39</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">標籤</div><div class="length_num">18</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">分類</div><div class="length_num">8</div></a></div></div></div><hr><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于我</span></a></div></div></div><div id="mobile-sidebar-toc"><div class="toc_mobile_headline">目錄</div><div class="sidebar-toc__content"><ol class="toc_mobile_items"><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#常用注解："><span class="toc_mobile_items-number">1.</span> <span class="toc_mobile_items-text">常用注解：</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#1-Api"><span class="toc_mobile_items-number">2.</span> <span class="toc_mobile_items-text">1. @Api()</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#2-ApiOperation"><span class="toc_mobile_items-number">3.</span> <span class="toc_mobile_items-text">2.@ApiOperation()</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#3-ApiParam"><span class="toc_mobile_items-number">4.</span> <span class="toc_mobile_items-text">3. @ApiParam()</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#4-ApiResponses"><span class="toc_mobile_items-number">5.</span> <span class="toc_mobile_items-text">4. @ApiResponses()</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#5-ApiResponse"><span class="toc_mobile_items-number">6.</span> <span class="toc_mobile_items-text">5. @ApiResponse()</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#6-ResponseHeader"><span class="toc_mobile_items-number">7.</span> <span class="toc_mobile_items-text">6. @ResponseHeader()</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#7-ApiModel-用于类"><span class="toc_mobile_items-number">8.</span> <span class="toc_mobile_items-text">7. @ApiModel()用于类</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#8-ApiModelProperty-用于方法，字段"><span class="toc_mobile_items-number">9.</span> <span class="toc_mobile_items-text">8. @ApiModelProperty()用于方法，字段</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#9-ApiImplicitParams"><span class="toc_mobile_items-number">10.</span> <span class="toc_mobile_items-text">9.@ApiImplicitParams()</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#10-ApiImplicitParam"><span class="toc_mobile_items-number">11.</span> <span class="toc_mobile_items-text">10.@ApiImplicitParam()</span></a></li></ol></div></div></div><div id="body-wrap"><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true">     </i><div class="auto_open" id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">目錄</div><div class="sidebar-toc__progress"><span class="progress-notice">你已經讀了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#常用注解："><span class="toc-number">1.</span> <span class="toc-text">常用注解：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Api"><span class="toc-number">2.</span> <span class="toc-text">1. @Api()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-ApiOperation"><span class="toc-number">3.</span> <span class="toc-text">2.@ApiOperation()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-ApiParam"><span class="toc-number">4.</span> <span class="toc-text">3. @ApiParam()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-ApiResponses"><span class="toc-number">5.</span> <span class="toc-text">4. @ApiResponses()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-ApiResponse"><span class="toc-number">6.</span> <span class="toc-text">5. @ApiResponse()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-ResponseHeader"><span class="toc-number">7.</span> <span class="toc-text">6. @ResponseHeader()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-ApiModel-用于类"><span class="toc-number">8.</span> <span class="toc-text">7. @ApiModel()用于类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-ApiModelProperty-用于方法，字段"><span class="toc-number">9.</span> <span class="toc-text">8. @ApiModelProperty()用于方法，字段</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-ApiImplicitParams"><span class="toc-number">10.</span> <span class="toc-text">9.@ApiImplicitParams()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-ApiImplicitParam"><span class="toc-number">11.</span> <span class="toc-text">10.@ApiImplicitParam()</span></a></li></ol></div></div></div><main id="content-outer"><div id="top-container" style="background-image: url(https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/default.png)"><div id="post-info"><div id="post-title"><div class="posttitle">swagger2常用注解</div></div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2019-08-24</time><span class="post-meta__separator">|</span><span><i class="fa fa-inbox post-meta__icon fa-fw" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/未分类/">未分类</a></span><div class="post-meta-wordcount"><div class="post-meta-pv-cv"><span><i class="fa fa-eye post-meta__icon fa-fw" aria-hidden="true"> </i>閲讀量:</span><span id="busuanzi_value_page_pv"></span></div></div></div></div></div><div class="layout layout_post" id="content-inner">   <article id="post"><div class="article-container" id="post-content"><h2 id="常用注解："><a href="#常用注解：" class="headerlink" title="常用注解："></a>常用注解：</h2><ul>
+<li><p>@Api()用于类；<br>表示标识这个类是swagger的资源</p>
+</li>
+<li><p>@ApiOperation()用于方法；<br>表示一个http请求的操作</p>
+</li>
+<li><p>@ApiParam()用于方法，参数，字段说明；<br>表示对参数的添加元数据（说明或是否必填等）</p>
+</li>
+<li><p>@ApiResponse()用于方法<br>响应配置</p>
+</li>
+<li><p>@ApiResponses()用于方法<br>响应集配置</p>
+</li>
+<li><p>@ResponseHeader()用于方法<br>响应头设置，使用方法</p>
+</li>
+<li><p>@ApiModel()用于类；<br>表示对类进行说明，用于参数用实体类接收</p>
+</li>
+<li><p>@ApiModelProperty()用于方法，字段;<br>表示对model属性的说明或者数据操作更改</p>
+</li>
+<li><p>@ApiIgnore()用于类，方法，方法参数<br>表示这个方法或者类被忽略 </p>
+</li>
+</ul>
+<h2 id="1-Api"><a href="#1-Api" class="headerlink" title="1. @Api()"></a>1. @Api()</h2><p>用于类，表示标识这个类是swagger文档资源 ，使用方式：</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">Code</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@Api(value = &quot;/url&quot;, description = &quot;对api资源的描述&quot;)</span><br></pre></td></tr></table></figure></div>
+
+<p>与Controller注解并列使用。 </p>
+<p>属性配置：</p>
+<table>
+<thead>
+<tr>
+<th>属性名称</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>value</td>
+<td>url的路径值</td>
+</tr>
+<tr>
+<td>tags</td>
+<td>如果设置这个值，value的值会被覆盖</td>
+</tr>
+<tr>
+<td>description</td>
+<td>对api资源的描述</td>
+</tr>
+<tr>
+<td>basePath</td>
+<td>基本路径，可以不配置</td>
+</tr>
+<tr>
+<td>position</td>
+<td>如果配置多个Api，想改变显示的顺序位置</td>
+</tr>
+<tr>
+<td>produces</td>
+<td>For example，”application/json”，”application/xml”</td>
+</tr>
+<tr>
+<td>consumes</td>
+<td>For example, “application/json, application/xml”</td>
+</tr>
+<tr>
+<td>protocols</td>
+<td>Possible values: http, https, ws, wss</td>
+</tr>
+<tr>
+<td>hidden</td>
+<td>配置为true 将在文档中隐藏</td>
+</tr>
+<tr>
+<td>authorizations</td>
+<td>高级特性认证时配置</td>
+</tr>
+</tbody></table>
+<h2 id="2-ApiOperation"><a href="#2-ApiOperation" class="headerlink" title="2.@ApiOperation()"></a>2.@ApiOperation()</h2><p>用于方法上，说明方法的作用，每一个url资源的定义，使用方式：</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">java</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ApiOperation</span>(</span><br><span class="line">    value = <span class="string">"url的路径值"</span>,</span><br><span class="line">    notes = <span class="string">""</span>,</span><br><span class="line">    response = order,</span><br><span class="line">    tags = &#123;<span class="string">'Pet Store'</span>&#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure></div>
+
+<p>与Controller中的方法并列使用</p>
+<p>属性配置：</p>
+<table>
+<thead>
+<tr>
+<th>属性名称</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>value</td>
+<td>url的路径值</td>
+</tr>
+<tr>
+<td>tags</td>
+<td>如果设置这个值、value的值会被覆盖</td>
+</tr>
+<tr>
+<td>description</td>
+<td>对api资源的描述</td>
+</tr>
+<tr>
+<td>basePath</td>
+<td>基本路径可以不配置</td>
+</tr>
+<tr>
+<td>position</td>
+<td>如果配置多个Api 想改变显示的顺序位置</td>
+</tr>
+<tr>
+<td>produces</td>
+<td>For example, “application/json, application/xml”</td>
+</tr>
+<tr>
+<td>consumes</td>
+<td>For example, “application/json, application/xml”</td>
+</tr>
+<tr>
+<td>protocols</td>
+<td>Possible values: http, https, ws, wss.</td>
+</tr>
+<tr>
+<td>authorizations</td>
+<td>高级特性认证时配置</td>
+</tr>
+<tr>
+<td>hidden</td>
+<td>配置为true 将在文档中隐藏</td>
+</tr>
+<tr>
+<td>response</td>
+<td>返回的对象</td>
+</tr>
+<tr>
+<td>code</td>
+<td>http的状态码 默认 200</td>
+</tr>
+<tr>
+<td>extensions</td>
+<td>扩展属性</td>
+</tr>
+<tr>
+<td>responseContainer</td>
+<td>这些对象是有效的 “List”, “Set” or “Map”.，其他无效</td>
+</tr>
+<tr>
+<td>httpMethod</td>
+<td>“GET”, “HEAD”, “POST”, “PUT”, “DELETE”, “OPTIONS” and “PATCH”</td>
+</tr>
+</tbody></table>
+<h2 id="3-ApiParam"><a href="#3-ApiParam" class="headerlink" title="3. @ApiParam()"></a>3. @ApiParam()</h2><p>用于方法，参数，字段说明，表示对参数的添加元数据（说明或是否必填等)。<br>使用方式：</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">java</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> Result <span class="title">login</span><span class="params">(@RequestBody @ApiParam( value = <span class="string">"属性值"</span>, required = <span class="keyword">true</span>)</span> User user)</span></span><br></pre></td></tr></table></figure></div>
+
+<p>与Controller中的方法使用：</p>
+<table>
+<thead>
+<tr>
+<th>属性名称</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>name</td>
+<td>属性名称</td>
+</tr>
+<tr>
+<td>value</td>
+<td>属性值</td>
+</tr>
+<tr>
+<td>defaultValue</td>
+<td>默认属性值</td>
+</tr>
+<tr>
+<td>allowableValues</td>
+<td>可以不配置</td>
+</tr>
+<tr>
+<td>required</td>
+<td>是否属性必填</td>
+</tr>
+<tr>
+<td>access</td>
+<td>不过多描述</td>
+</tr>
+<tr>
+<td>allowMultiple</td>
+<td>默认为false</td>
+</tr>
+<tr>
+<td>hidden</td>
+<td>隐藏该属性</td>
+</tr>
+<tr>
+<td>example</td>
+<td>举例子</td>
+</tr>
+</tbody></table>
+<h2 id="4-ApiResponses"><a href="#4-ApiResponses" class="headerlink" title="4. @ApiResponses()"></a>4. @ApiResponses()</h2><p>响应集配置，使用方式：</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">java</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ApiResponses</span>(&#123; <span class="meta">@ApiResponse</span>(code = <span class="number">400</span>, message = <span class="string">"Invalid Order"</span>) &#125;)</span><br></pre></td></tr></table></figure></div>
+
+<p>与Controller中的方法并列使用。属性配置：</p>
+<table>
+<thead>
+<tr>
+<th>属性名称</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>value</td>
+<td>多个ApiResponse配置</td>
+</tr>
+</tbody></table>
+<h2 id="5-ApiResponse"><a href="#5-ApiResponse" class="headerlink" title="5. @ApiResponse()"></a>5. @ApiResponse()</h2><p>响应配置，使用方式：</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">java</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ApiResponse</span>(code=<span class="number">400</span>, message = <span class="string">"Invalid user supplied"</span>)</span><br></pre></td></tr></table></figure></div>
+
+<p>与Controller中的方法并列使用。属性配置：</p>
+<table>
+<thead>
+<tr>
+<th>属性名称</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>code</td>
+<td>http的状态码</td>
+</tr>
+<tr>
+<td>message</td>
+<td>描述</td>
+</tr>
+<tr>
+<td>response</td>
+<td>默认响应类 Void</td>
+</tr>
+<tr>
+<td>reference</td>
+<td>参考ApiOperation中配置</td>
+</tr>
+<tr>
+<td>responseHeaders</td>
+<td>参考 ResponseHeader 属性配置说明</td>
+</tr>
+<tr>
+<td>responseContainer</td>
+<td>参考ApiOperation中配置</td>
+</tr>
+</tbody></table>
+<h2 id="6-ResponseHeader"><a href="#6-ResponseHeader" class="headerlink" title="6. @ResponseHeader()"></a>6. @ResponseHeader()</h2><p>响应头设置，使用方法</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">java</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ResponseHeader</span>(name = <span class="string">"响应头名称"</span>, description = <span class="string">"头描述"</span>)</span><br></pre></td></tr></table></figure></div>
+
+<table>
+<thead>
+<tr>
+<th>属性名称</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>name</td>
+<td>响应头名称</td>
+</tr>
+<tr>
+<td>description</td>
+<td>头描述</td>
+</tr>
+<tr>
+<td>response</td>
+<td>默认响应类 Void</td>
+</tr>
+<tr>
+<td>responseContainer</td>
+<td>参考ApiOperation中配置</td>
+</tr>
+</tbody></table>
+<h2 id="7-ApiModel-用于类"><a href="#7-ApiModel-用于类" class="headerlink" title="7. @ApiModel()用于类"></a>7. @ApiModel()用于类</h2><p>表示对类进行说明，用于参数用实体类接收 </p>
+<h2 id="8-ApiModelProperty-用于方法，字段"><a href="#8-ApiModelProperty-用于方法，字段" class="headerlink" title="8. @ApiModelProperty()用于方法，字段"></a>8. @ApiModelProperty()用于方法，字段</h2><p>表示对model属性的说明或者数据操作更改 </p>
+<h2 id="9-ApiImplicitParams"><a href="#9-ApiImplicitParams" class="headerlink" title="9.@ApiImplicitParams()"></a>9.@ApiImplicitParams()</h2><p>用于方法，包含一组参数说明，表示单独的请求参数 </p>
+<h2 id="10-ApiImplicitParam"><a href="#10-ApiImplicitParam" class="headerlink" title="10.@ApiImplicitParam()"></a>10.@ApiImplicitParam()</h2><p>用在@ApiImplicitParams注解中，指定一个请求参数的各个方面。即多个 @ApiImplicitParam</p>
+<p>参考：<br><a href="https://blog.csdn.net/u014231523/article/details/54562695" target="_blank" rel="noopener">SpringBoot集成springfox-swagger2构建restful API</a></p>
+<p><a href="https://blog.csdn.net/u014231523/article/details/54411026" target="_blank" rel="noopener">SpringMVC集成springfox-swagger2构建restful API</a></p>
+<p><a href="https://blog.csdn.net/u014231523/article/details/76522486" target="_blank" rel="noopener">swagger2常用注解说明</a></p>
+<p><a href="https://www.jianshu.com/p/12f4394462d5" target="_blank" rel="noopener">swagger常用注解说明</a></p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">csliao</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章鏈接: </span><span class="post-copyright-info"><a href="https://liaoguanwang.github.io/swagger2常用注解/">https://liaoguanwang.github.io/swagger2常用注解/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版權聲明: </span><span class="post-copyright-info">本博客所有文章除特別聲明外，均採用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 許可協議。轉載請註明來自 <a href="https://liaoguanwang.github.io" target="_blank">CSLiao's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/default.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js"></script></div></div><div class="post-reward"><a class="reward-button button--primary button--animated"> <i class="fa fa-qrcode"></i> 打賞<div class="reward-main"><ul class="reward-all"><li class="reward-item"><img class="lazyload post-qr-code__img" src="/img/wechat.png" alt="微信"><div class="post-qr-code__desc">微信</div></li><li class="reward-item"><img class="lazyload post-qr-code__img" src="/img/alipay.png" alt="支付寶"><div class="post-qr-code__desc">支付寶</div></li></ul></div></a></div><nav class="pagination_post" id="pagination"><div class="prev-post pull_left"><a href="/SpringBoot实现跨域/"><img class="prev_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/default.png" onerror="onerror=null;src='/img/404.jpg'"><div class="label">上一篇</div><div class="prev_info"><span>SpringBoot实现跨域</span></div></a></div><div class="next-post pull_right"><a href="/19-Spring注解/"><img class="next_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/default.png" onerror="onerror=null;src='/img/404.jpg'"><div class="label">下一篇</div><div class="next_info"><span>Spring注解</span></div></a></div></nav></div></main><footer id="footer" data-type="color"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2020 By csliao</div><div class="framework-info"><span>Power by </span><a href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme </span><a href="https://github.com/jerryc127/hexo-theme-butterfly"><span>Butterfly</span></a></div></div></footer></div><section class="rightside" id="rightside"><div id="rightside-config-hide"><i class="fa fa-book" id="readmode" title="閲讀模式"></i><i class="fa fa-plus" id="font_plus" title="放大字體"></i><i class="fa fa-minus" id="font_minus" title="縮小字體"></i><a class="translate_chn_to_cht" id="translateLink" href="javascript:translatePage();" title="簡繁轉換" target="_self">简</a><i class="darkmode fa fa-moon-o" id="darkmode" title="夜間模式"></i></div><div id="rightside-config-show"><div id="rightside_config" title="設置"><i class="fa fa-cog" aria-hidden="true"></i></div><i class="fa fa-list-ul close" id="mobile-toc-button" title="目錄" aria-hidden="true"></i><i class="fa fa-arrow-up" id="go-up" title="回到頂部" aria-hidden="true"></i></div></section><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/js/fireworks.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@latest/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@latest/lazysizes.min.js" async></script></body></html>
