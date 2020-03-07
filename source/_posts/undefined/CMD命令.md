@@ -1,6 +1,8 @@
 ---
 title: CMD命令
 date: 2019-09-18 23:45:45
+categories:
+- 未分类
 tags:
 - 命令
 ---

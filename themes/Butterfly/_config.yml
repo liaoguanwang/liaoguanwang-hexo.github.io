@@ -21,7 +21,7 @@ menu:
   #   - Music || /music/ || fa fa-music
   #   - Movie || /movies/ || fa fa-film
 
-# Favicon
+# Favicon 网站标签图标
 # ---------------
 # favicon: /img/favicon.ico
 favicon: /img/favicon-panda.ico
@@ -53,6 +53,15 @@ code_word_wrap: false
 copy:
   enable: true # true 開啓 / false 禁止
   copyright: false
+
+# Extensions
+plugins:
+  hexo-generator-feed
+#Feed Atom
+feed:
+  type: atom
+  path: atom.xml
+  limit: 20
 
 # social settings
 # formal:
@@ -287,23 +296,23 @@ qihu_site_verification:
 
 # 友情鏈接界面設置
 Flink:
-  headline: 友情鏈接
+  headline: 友情链接
   info_headline: 我的Blog資料
-  name: Blog 名字： JerryC
-  address: Blog 地址： https://jerryc.me/
-  avatar: Blog 頭像： https://jerryc.me/img/avatar.png
-  info: Blog 簡介： 今日事,今日畢
-  comment: 如果需要交換友鏈,請留言
+  name: Blog 名字： csliao
+  address: Blog 地址： https://csliao.top/
+  avatar: Blog 頭像： https://csliao.top/img/avatar-my.png
+  info: Blog 簡介： 好好学习,天天向上
+  comment: 如果需要交换友链，请留言
 
 # 打賞按鈕
 reward:
   enable: true
   QR_code:
     - itemlist:
-        img: /img/wechat.jpg
+        img: /img/wechat.png
         text: 微信
     - itemlist:
-        img: /img/alipay.jpg
+        img: /img/alipay.png
         text: 支付寶
 
 # 推薦文章
@@ -501,7 +510,9 @@ busuanzi:
 # 也可以寫成 年/月/日 時間
 runtimeshow:
   enable: true
-  start_date: 6/7/2019 00:00:00
+  start_date: 2019/7/1 00:00:00
+  # start_date: 7/1/2019 00:00:00
+  
 
 ####   右下角按鈕  ####
 #----------------------------------------------
@@ -509,9 +520,9 @@ runtimeshow:
 translate:
   enable: true
   # 默認按鈕顯示文字
-  default: 繁
+  default: 简
   #网站默认语言，1: 繁體中文, 2: 简体中文
-  defaultEncoding: 1
+  defaultEncoding: 2
   #延迟时间,若不在前, 要设定延迟翻译时间, 如100表示100ms,默认为0
   translateDelay: 0
   #博客网址

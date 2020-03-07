@@ -1,6 +1,8 @@
 ---
 title: Spring MVC静态资源处理
 date: 2019-08-06 23:47:00
+categories:
+- 未分类
 tags:
 ---
 

@@ -2,6 +2,8 @@
 layout: intellij
 title: idea解除svn关联
 date: 2019-09-09 23:04:33
+categories:
+- 未分类
 tags:
 - SVN
 ---

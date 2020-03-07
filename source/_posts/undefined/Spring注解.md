@@ -1,6 +1,8 @@
 ---
 title: Spring注解
 date: 2019-08-28 23:51:24
+categories:
+- 未分类
 tags:
 ---
 ### @Configuration

@@ -1,8 +1,11 @@
 ---
 title: Java实现WebSocket聊天室（一）
 date: 2020-02-26 23:39:28
+categories:
+- 未分类
 tags: 
 - websocket
+
 ---
 
 ## 什么是WebSocket
