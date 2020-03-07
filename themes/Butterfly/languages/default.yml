@@ -57,7 +57,7 @@ aside:
   tags: Tags
   categories: Categories
   card_announcement: Announcement
-  : Categories
+  card_categories: Categories
   card_tags: Tags
   card_archives: Archives
   card_recent_post: Recent Post

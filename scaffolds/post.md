@@ -2,6 +2,10 @@
 title: {{ title }}
 date: {{ date }}
 tags: 
-categories:
+categories: 
 - 未分类
+keywors: 
+description: 
+top_img: 
+cover: 
 ---

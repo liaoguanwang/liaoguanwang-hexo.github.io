@@ -3,8 +3,11 @@ title: linux常用命令总结
 date: 2020-03-05 23:58:51
 categories:
 - 未分类
-tags:
-
+tags: 
+keywors: 
+description: 
+top_img: 
+cover: /img/linux.jpg
 ---
 - lfconfig -a
 查看虚拟机的IP地址、子网掩码、MAC地址

@@ -7,6 +7,10 @@ tags:
 - MySQL
 categories: 
 - BUG
+keywors: 
+description: 
+top_img: 
+cover: /img/bug.jpg
 ---
 
 控制台报错信息：
