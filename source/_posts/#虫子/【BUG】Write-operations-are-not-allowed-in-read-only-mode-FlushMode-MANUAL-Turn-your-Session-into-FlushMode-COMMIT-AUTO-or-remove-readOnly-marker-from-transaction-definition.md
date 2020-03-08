@@ -7,6 +7,10 @@ tags:
 - 事务
 categories: 
 - BUG
+keywors: 
+description: 
+top_img: 
+cover: /img/bug.jpg
 ---
 
 ## 1. 问题描述

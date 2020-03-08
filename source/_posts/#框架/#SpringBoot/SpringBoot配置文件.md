@@ -1,0 +1,100 @@
+---
+title: SpringBoot配置文件
+date: 2019-08-28 23:50:45
+tags:
+- 配置
+categories: 
+- SpringBoot
+keywors: 
+description: 
+top_img: 
+cover: /img/springboot.jpg
+---
+## 1. CharacterEncodingFilter编码配置
+
+spring web项目中需要在添加CharacterEncodingFilter
+springboot中只需要在配置文件中添加以下配置
+### 1.1 application.properties
+```
+spring.http.encoding.charset=UTF-8
+spring.http.encoding.enabled=true 
+spring.http.encoding.force=true 
+```
+
+
+### 1.2 application.yml
+```yml
+spring:
+    http:
+        encoding:
+            charset: UTF-8
+            enabled: true
+            force: true
+
+server:
+    tomcat:
+        uri-encoding: UTF-8
+```
+
+参考springboot官方文档:
+https://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
+
+
+
+## 2. HTTP encoding (HttpEncodingProperties)
+spring.http.encoding.charset=UTF-8 # Charset of HTTP requests and responses. Added to the "Content-Type" header if not set explicitly.
+spring.http.encoding.enabled=true # Whether to enable http encoding support.
+spring.http.encoding.force= # Whether to force the encoding to the configured charset on HTTP requests and responses.
+spring.http.encoding.force-request= # Whether to force the encoding to the configured charset on HTTP requests. Defaults to true when "force" has not been specified.
+spring.http.encoding.force-response= # Whether to force the encoding to the configured charset on HTTP responses.
+spring.http.encoding.mapping= # Locale in which to encode mapping.
+另外web窗口 tomcat可以配置
+
+server.tomcat.uri-encoding=UTF-8 # Character encoding to use to decode the URI.
+
+https://blog.csdn.net/buyaore_wo/article/details/78196701
+
+https://blog.csdn.net/qq_39654841/article/details/81156695
+
+
+<br>
+### 向Spring注册一个自定义的StringHttpMessageConverter用于string转码
+```java
+// 基于Springboot2.0.1.RELEASE
+
+import com.simply.zuozuo.interceptor.HandleInterceptorImpl;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.StringHttpMessageConverter;
+import org.springframework.web.servlet.config.annotation.ContentNegotiationConfigurer;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
+import java.nio.charset.Charset;
+import java.util.List;
+
+@Configuration
+public class WebMvcConfig extends WebMvcConfigurationSupport {
+
+    @Bean
+    public HttpMessageConverter<String> responseBodyConverter() {
+        return new StringHttpMessageConverter(Charset.forName("UTF-8"));
+    }
+
+    @Override
+    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
+        converters.add(responseBodyConverter());
+        // 这里必须加上加载默认转换器，不然bug玩死人，并且该bug目前在网络上似乎没有解决方案
+        // 百度，谷歌，各大论坛等。你可以试试去掉。
+        addDefaultHttpMessageConverters(converters);
+    }
+
+    @Override
+    public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
+        configurer.favorPathExtension(false);
+    }
+
+}
+```
+参考：[向Spring注册一个自定义的StringHttpMessageConverter用于string转码](https://blog.csdn.net/qq_15071263/article/details/80248805)

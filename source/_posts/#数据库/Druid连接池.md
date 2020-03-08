@@ -2,9 +2,13 @@
 title: Druid连接池
 date: 2019-08-14 23:41:41
 tags:
-- 数据库连接池
+- 连接池
 categories: 
 - 数据库
+keywors: 
+description: 
+top_img: 
+cover: /img/connct.jpg
 ---
 
 ## 1 简介

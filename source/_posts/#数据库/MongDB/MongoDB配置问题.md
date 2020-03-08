@@ -3,8 +3,14 @@ title: MongoDB配置问题
 date: 2019-09-10 23:46:29
 tags:
 - MongoDB
+- NoSQL
+- 配置
 categories: 
 - 数据库
+keywors: 
+description: 
+top_img: 
+cover: /img/mongodb.jpg
 ---
 
 ### 1. mongodb启动配置

@@ -7,6 +7,10 @@ tags:
 - MyBatis
 categories: 
 - BUG
+keywors: 
+description: 
+top_img: 
+cover: /img/bug.jpg
 ---
 
 在使用Mybatis的过程中，使用了resultMap延迟加载。

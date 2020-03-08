@@ -1,10 +1,14 @@
 ---
 title: IntelliJ IDEA控制台输出中文乱码问题
-date: 2019-09-18 23:46:24
+date: 2019-08-18 23:46:24
 tags:
 - 乱码
 categories: 
 - BUG
+keywors: 
+description: 
+top_img: 
+cover: /img/bug.jpg
 ---
 ### 解决方法1
 1. 打开tomcat配置页面，Edit Configurations。

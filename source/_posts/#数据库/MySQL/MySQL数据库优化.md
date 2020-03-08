@@ -5,9 +5,13 @@ tags:
 - MySQL
 categories: 
 - 数据库
+keywors: 
+description: 
+top_img: 
+cover: /img/mysql.jpg
 ---
 
-## 优化 MySQL 数据库性能的 7 点必备技巧：
+## 优化MySQL 数据库性能的 7 点必备技巧：
 
 * 学习如何使用EXPLAIN
 * 创建正确的索引

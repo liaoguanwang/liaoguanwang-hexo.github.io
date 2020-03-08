@@ -5,6 +5,10 @@ tags:
 - MySQL
 categories: 
 - 数据库
+keywors: 
+description: 
+top_img: 
+cover: /img/mysql2.jpg
 ---
 
 ## 1.主键
