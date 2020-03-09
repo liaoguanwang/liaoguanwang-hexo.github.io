@@ -2,7 +2,7 @@
 title: >-
   【BUG】java.sql.SQLException: The server time zone value 'ÖÐ¹ú±ê×¼Ê±¼ä' is
   unrecognized or represents more than one time zone
-date: 2019-09-23 23:47:59
+date: 2019-08-03 23:47:59
 tags:
 - MySQL
 categories: 

@@ -2,7 +2,7 @@
 title: 【BUG】Write operations are not allowed in read-only mode (FlushMode.MANUAL):Turn
   your Session into FlushMode.COMMIT/AUTO or remove 'readOnly' marker from
   transaction definition.
-date: 2019-08-14 23:51:05
+date: 2019-08-03 23:51:05
 tags:
 - 事务
 categories: 

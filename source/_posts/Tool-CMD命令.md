@@ -2,7 +2,7 @@
 title: CMD命令
 date: 2019-09-20 23:45:45
 categories:
-- 开发技巧
+- Tool
 tags:
 - 命令
 keywors: 

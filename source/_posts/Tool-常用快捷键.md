@@ -1,10 +1,10 @@
 ---
 title: 常用快捷键
 date: 2019-08-12 00:26:36
+categories: 
+- Tool
 tags:
 - 快捷键
-categories: 
-- 开发技巧
 keywors: 
 description: 
 top_img: 

@@ -3,9 +3,10 @@ layout: intellij
 title: idea解除svn关联
 date: 2019-09-09 23:04:33
 categories:
-- 开发技巧
+- Tool
 tags:
 - SVN
+- IDEA
 keywors: 
 description: 
 top_img: 
