@@ -3,10 +3,10 @@ title: >-
   【转】使用MyBatis时遇到的延迟加载造成返回异常的问题——HttpMessageConversionException: Type definition
   error
 date: 2019-08-03 23:27:44
-tags: 
-- MyBatis
 categories: 
 - BUG
+tags: 
+- MyBatis
 keywors: 
 description: 
 top_img: 
