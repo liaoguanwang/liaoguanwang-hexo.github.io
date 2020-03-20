@@ -1,20 +1,20 @@
 ---
-title: 【转】Springboot-Mybatis读取配置文件
-date: 2019-08-18 23:41:10
+title: 【转】SpringBoot MyBatis配置
+categories:
+- SpringBoot
+date: 2019-09-16 00:41:54
 tags:
 - MyBatis
-- 配置
-categories: 
-- SpringBoot
-keywors: 
-description: 
-top_img: 
-cover: /img/springboot.jpg
+keywors:
+description:
+top_img:
+cover: /img/mybatis.jpg
 ---
-Springboot-Mybatis配置整理
-## 1. 加载mybatis的配置
-### 1.1 手写配置，写死在代码里
-```java
+
+## 加载mybatis的配置
+
+### 第一种、手写配置，写死在代码里
+```
 import java.io.IOException;
     import java.util.Properties;
 
@@ -106,10 +106,10 @@ import java.io.IOException;
     }
 ```
 
-### 1.2 读取配置文件方式
+### 第二种、读取配置文件方式
 
 先在配置文件application.yml中添加
-```yml
+```
 # MyBatis
 mybatis:
     # 配置类型别名
@@ -118,10 +118,11 @@ mybatis:
     mapperLocations: classpath:mybatis/mapper/*.xml
     # 加载全局的配置文件
     configLocation: classpath:mybatis/mybatis-config.xml
+
 ```
 
 然后配置文件为：
-```java
+```
    import java.io.IOException;
 
     import javax.sql.DataSource;
@@ -223,7 +224,7 @@ mybatis:
 ```
 
 最后还有配置一个扫描mapper的类：
-```java
+```
 import org.mybatis.spring.mapper.MapperScannerConfigurer;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.context.annotation.Bean;
@@ -250,7 +251,7 @@ public class MyBatisMapperScannerConfig {
 ```
 
 还有一个 mybatis-config.xml
-```xml
+```
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE configuration
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
@@ -293,6 +294,6 @@ public class MyBatisMapperScannerConfig {
         </plugin>
     </plugins>
 </configuration>    
-
 ```
+
 参考：https://blog.csdn.net/javahighness/article/details/53044655

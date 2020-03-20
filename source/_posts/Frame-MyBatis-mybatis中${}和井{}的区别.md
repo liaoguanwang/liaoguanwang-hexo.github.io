@@ -1,5 +1,5 @@
 ---
-title: mybatis中${}和#{}的区别
+title: MyBatis中${}和#{}的区别
 date: 2019-08-30 00:07:09
 tags:
 - MyBatis
