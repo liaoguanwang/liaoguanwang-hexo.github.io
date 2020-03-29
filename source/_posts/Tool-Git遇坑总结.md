@@ -73,3 +73,30 @@ NOTE: git reset --hard will discard your work, use it only if you know what you 
 
 ## 【报错信心】fatal: refusing to merge unrelated histories
 参考：https://blog.csdn.net/u012145252/article/details/80628451
+
+
+## Github图片未显示
+
+解决方法，打开路径C:\Windows\System32\drivers\etc下的hosts文件,在最后加上
+```xml
+# GitHub Start 
+192.30.253.112    github.com 
+192.30.253.119    gist.github.com
+151.101.184.133    assets-cdn.github.com
+151.101.184.133    raw.githubusercontent.com
+151.101.184.133    gist.githubusercontent.com
+151.101.184.133    cloud.githubusercontent.com
+151.101.184.133    camo.githubusercontent.com
+151.101.184.133    avatars0.githubusercontent.com
+151.101.184.133    avatars1.githubusercontent.com
+151.101.184.133    avatars2.githubusercontent.com
+151.101.184.133    avatars3.githubusercontent.com
+151.101.184.133    avatars4.githubusercontent.com
+151.101.184.133    avatars5.githubusercontent.com
+151.101.184.133    avatars6.githubusercontent.com
+151.101.184.133    avatars7.githubusercontent.com
+151.101.184.133    avatars8.githubusercontent.com
+ # GitHub End
+ ```
+
+参考：https://blog.csdn.net/weixin_42128813/article/details/102915578
