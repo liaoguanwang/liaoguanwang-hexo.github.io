@@ -84,6 +84,6 @@ theme: Butterfly
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  #repo: https://github.com/liaoguanwang/liaoguanwang.github.io.git
-  repo: git@106.53.9.5:/home/git/blog.git
+  repo: https://github.com/liaoguanwang/liaoguanwang.github.io.git
+  # repo: git@106.53.9.5:/home/git/blog.git
   branch: master
